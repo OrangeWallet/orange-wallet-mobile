@@ -3,6 +3,7 @@ import 'package:ckbalance/resources/strings.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:ckbalance/pages/import_wallet_page/import_wallet_page.dart';
 import 'package:ckbalance/views/page_indicator.dart';
+import 'package:bip39/bip39.dart' as bip39;
 
 class CreateImportPage extends StatefulWidget {
   @override
@@ -37,9 +38,7 @@ class _State extends State<CreateImportPage> {
                     .getString(StringIds.createNewWalletButton),
                 style: Theme.of(context).textTheme.button,
               ),
-              onPressed: () {
-                print('click');
-              },
+              onPressed: () {},
               color: Colors.red[300],
             ),
             FlatButton(
