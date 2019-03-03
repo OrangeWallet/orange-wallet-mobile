@@ -33,7 +33,7 @@ class LoadingDialog extends Dialog {
                   ),
                   child: new Text(
                     text,
-                    style: new TextStyle(fontSize: 12.0),
+                    style: new TextStyle(fontSize: 13.0),
                   ),
                 ),
               ],

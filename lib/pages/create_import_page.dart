@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ckbalance/resources/strings.dart';
 import 'package:fluintl/fluintl.dart';
-import 'package:ckbalance/pages/import_wallet_page/import_wallet_page.dart';
+import 'package:ckbalance/pages/import_wallet_page.dart';
 import 'package:ckbalance/views/page_indicator.dart';
+import 'package:ckbalance/pages/input_password.dart';
+import 'package:ckbalance/pages/input_repassword.dart';
 import 'package:bip39/bip39.dart' as bip39;
 
 class CreateImportPage extends StatefulWidget {
@@ -38,7 +40,10 @@ class _State extends State<CreateImportPage> {
                     .getString(StringIds.createNewWalletButton),
                 style: Theme.of(context).textTheme.button,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => InputPasswordPage()));
+              },
               color: Colors.red[300],
             ),
             FlatButton(

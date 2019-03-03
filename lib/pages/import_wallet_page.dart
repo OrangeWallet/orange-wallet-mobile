@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ckbalance/resources/strings.dart';
 import 'package:fluintl/fluintl.dart';
+import 'package:ckbalance/pages/input_password.dart';
 import 'package:bip39/bip39.dart' as bip39;
 
 class ImportWalletPage extends StatefulWidget {
@@ -9,16 +10,17 @@ class ImportWalletPage extends StatefulWidget {
 }
 
 class _State extends State<ImportWalletPage> {
-  GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-
-  String _data = '';
+  final GlobalKey<FormFieldState<String>> _fieldKey =
+      GlobalKey<FormFieldState<String>>();
 
   _import() {
-    var _form = _formKey.currentState;
-    if (_form.validate()) {
-      print(_data);
-      var seed = bip39.mnemonicToSeedHex(_data);
+    final FormFieldState<String> _field = _fieldKey.currentState;
+    if (_field.validate()) {
+      print(_field.value);
+      var seed = bip39.mnemonicToSeedHex(_field.value);
       print(seed);
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => InputPasswordPage()));
     }
   }
 
@@ -48,30 +50,25 @@ class _State extends State<ImportWalletPage> {
               const SizedBox(
                 height: 30,
               ),
-              Form(
-                  key: _formKey,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: CustomLocalizations.of(context)
-                          .getString(StringIds.importWalletInputHint),
-                    ),
-                    maxLines: 3,
-                    autofocus: true,
-                    validator: (value) {
-                      if (value.isNotEmpty) {
-                        _data = value;
-                        if (!bip39.validateMnemonic(_data)) {
-                          return CustomLocalizations.of(context)
-                              .getString(StringIds.errorValidMnemonic);
-                        }
-                      } else {
-                        return CustomLocalizations.of(context)
-                            .getString(StringIds.errorEmptyInput);
-                      }
-                      return null;
-                    },
-                  )),
+              TextFormField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: CustomLocalizations.of(context)
+                      .getString(StringIds.importWalletInputHint),
+                ),
+                key: _fieldKey,
+                maxLines: 3,
+                autofocus: true,
+                validator: (value) {
+                  if (value.isEmpty)
+                    return CustomLocalizations.of(context)
+                        .getString(StringIds.errorEmptyInput);
+                  if (!bip39.validateMnemonic(value))
+                    return CustomLocalizations.of(context)
+                        .getString(StringIds.errorValidMnemonic);
+                  return null;
+                },
+              ),
               const SizedBox(
                 height: 30,
               ),

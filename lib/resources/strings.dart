@@ -1,21 +1,32 @@
 class StringIds {
   static String appName = 'CKBalance';
-  static String createNewWalletButton = 'createNewWallet_button';
-  static String importWalletButton = 'importWallet_button';
-  static String importWalletTitle = 'importWallet_title';
-  static String bannerCryptoTitle = 'banner_crypto_title';
-  static String bannerCryptoDetail = 'banner_crypto_detail';
-  static String bannerPrivacyTitle = 'banner_privacy_title';
-  static String bannerPrivacyDetail = 'banner_privacy_detail';
-  static String bannerOpenSourceTitle = 'banner_open_source_title';
-  static String bannerOpenSourceDetail = 'banner_open_source_detail';
+  static String createNewWalletButton = 'createNewWalletButton';
+  static String importWalletButton = 'importWalletButton';
+  static String importWalletTitle = 'importWalletTitle';
+  static String bannerCryptoTitle = 'bannerCryptoTitle';
+  static String bannerCryptoDetail = 'bannerCryptoDetail';
+  static String bannerPrivacyTitle = 'bannerPrivacyTitle';
+  static String bannerPrivacyDetail = 'bannerPrivacyDetail';
+  static String bannerOpenSourceTitle = 'bannerOpenSourceTitle';
+  static String bannerOpenSourceDetail = 'bannerOpenSourceDetail';
 
-  static String importWalletInputHint = 'importWallet_input_hint';
-  static String importWalletInputHelper = 'importWallet_input_helper';
-  static String scanQRCodeButton = 'scan_qr_button';
+  static String importWalletInputHint = 'importWalletInputHint';
+  static String importWalletInputHelper = 'importWalletInputHelper';
+  static String scanQRCodeButton = 'scanQRCodeButton';
 
-  static String errorEmptyInput = 'error_empty_input';
-  static String errorValidMnemonic = 'error_valid_mnemonic';
+  static String inputPwdTitle = 'inputPwdTitle';
+  static String inputPwdTip = 'inputPwdTip';
+  static String inputPwdFieldLabel = 'inputPwdFieldLabel';
+  static String inputPwdFieldHelper = 'inputPwdFieldHelper';
+  static String inputPwdReTip = 'inputPwdReTip';
+  static String inputPwdReAttention = 'inputPwdReAttention';
+  static String nextButton = 'nextButton';
+
+  static String errorEmptyInput = 'errorEmptyInput';
+  static String errorValidMnemonic = 'errorValidMnemonic';
+  static String errorEmptyPwd = 'errorEmptyPwd';
+  static String errorLessPwd = 'errorLessPwd';
+  static String errorDiffPwd = 'errorDiffPwd';
 }
 
 Map<String, Map<String, Map<String, String>>> localizedValues = {
@@ -34,11 +45,20 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.bannerOpenSourceDetail:
           'Code in Github,Welcome contribution code',
       StringIds.importWalletInputHint: 'Words separated by spaces',
-      StringIds.importWalletInputHelper:
-          'Write here your mnemonic',
+      StringIds.importWalletInputHelper: 'Write here your mnemonic',
       StringIds.scanQRCodeButton: 'Scan QR Code',
+      StringIds.inputPwdTitle: 'Password',
+      StringIds.inputPwdTip: 'Enter your password',
+      StringIds.inputPwdFieldLabel: 'Password*',
+      StringIds.inputPwdFieldHelper: 'No less than 8 char',
+      StringIds.inputPwdReTip: 'Your password again',
+      StringIds.inputPwdReAttention:'Make sure you remember it. We can\'t find the wallet if you lose your password.',
+      StringIds.nextButton: 'Next',
       StringIds.errorEmptyInput: 'It can not be empty',
       StringIds.errorValidMnemonic: 'Wrong mnemonic',
+      StringIds.errorEmptyPwd: 'Please enter a password.',
+      StringIds.errorLessPwd: 'No less than 8 char',
+      StringIds.errorDiffPwd: 'Wrong password',
     }
   },
   'zh': {
@@ -59,6 +79,17 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.scanQRCodeButton: '二维码',
       StringIds.errorEmptyInput: '输入项不能为空',
       StringIds.errorValidMnemonic: '助记词不合法',
+      StringIds.inputPwdTitle: '密码',
+      StringIds.inputPwdTip: '请输入你的密码',
+      StringIds.inputPwdFieldLabel: '密码*',
+      StringIds.inputPwdFieldHelper: '最少八位密码',
+      StringIds.inputPwdReTip: '请在此输入密码，注意，密码不能修改，不能找回，请确保你记住了自己的密码！',
+      StringIds.nextButton: '下一步',
+      StringIds.errorEmptyInput: '输入项不能为空',
+      StringIds.errorValidMnemonic: '助记词不合法',
+      StringIds.errorEmptyPwd: '请输入密码',
+      StringIds.errorLessPwd: '最少八位',
+      StringIds.errorDiffPwd: '密码错误',
     },
   }
 };

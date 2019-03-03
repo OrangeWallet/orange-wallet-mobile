@@ -19,7 +19,10 @@ class MyApp extends StatelessWidget {
           textTheme: TextTheme(
               button: TextStyle(fontSize: 17, color: Colors.white),
               body1: TextStyle(fontSize: 17),
-              body2: TextStyle(fontSize: 17, fontWeight: FontWeight.bold))),
+              body2: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor))),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
