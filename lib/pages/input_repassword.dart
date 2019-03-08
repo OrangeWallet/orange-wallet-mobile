@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:ckbalance/resources/strings.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:ckbalance/views/password_field.dart';
+import 'package:ckbalance/utils/wallet_store.dart';
+import 'package:ckbalance/pages/home_page/home_page.dart';
+import 'package:ckbalance/utils/shared_preferences.dart';
+import 'package:ckbalance/resources/shared_preferences_keys.dart';
+import 'package:bip39/bip39.dart' as bip39;
 
 class InputRePasswordPage extends StatefulWidget {
   final String pwd;
+  final String mnemonic;
 
-  InputRePasswordPage(this.pwd);
+  InputRePasswordPage(this.pwd, {this.mnemonic = ""});
 
   @override
   State<StatefulWidget> createState() => _State();
@@ -27,11 +33,24 @@ class _State extends State<InputRePasswordPage> {
     return null;
   }
 
-  _handlePwd() {
+  _handlePwd() async {
     try {
       final FormFieldState<String> passwordField =
           _passwordFieldKey.currentState;
-      if (passwordField.validate()) {}
+      if (passwordField.validate()) {
+        String mnemonic = widget.mnemonic;
+        SpUtil spUtil = await SpUtil.getInstance();
+        if (widget.mnemonic == '') {
+          mnemonic = bip39.generateMnemonic();
+          spUtil.putBool(SharedPreferencesKeys.backup, false);
+        } else {
+          spUtil.putBool(SharedPreferencesKeys.backup, true);
+        }
+        WalletStore.getInstance().write(mnemonic, widget.pwd);
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (BuildContext context) => HomePage()),
+            (Route route) => route == null);
+      }
     } catch (e) {}
   }
 

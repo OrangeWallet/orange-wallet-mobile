@@ -5,6 +5,10 @@ import 'package:ckbalance/views/password_field.dart';
 import 'package:ckbalance/pages/input_repassword.dart';
 
 class InputPasswordPage extends StatefulWidget {
+  final String mnemonic;
+
+  InputPasswordPage({this.mnemonic = ""});
+
   @override
   State<StatefulWidget> createState() => _State();
 }
@@ -26,8 +30,10 @@ class _State extends State<InputPasswordPage> {
     final FormFieldState<String> passwordField = _passwordFieldKey.currentState;
     if (passwordField.validate()) {
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (BuildContext context) =>
-              InputRePasswordPage(passwordField.value)));
+          builder: (BuildContext context) => InputRePasswordPage(
+                passwordField.value,
+                mnemonic: widget.mnemonic,
+              )));
     }
   }
 

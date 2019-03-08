@@ -17,10 +17,10 @@ class _State extends State<ImportWalletPage> {
     final FormFieldState<String> _field = _fieldKey.currentState;
     if (_field.validate()) {
       print(_field.value);
-      var seed = bip39.mnemonicToSeedHex(_field.value);
-      print(seed);
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (BuildContext context) => InputPasswordPage()));
+          builder: (BuildContext context) => InputPasswordPage(
+                mnemonic: _field.value,
+              )));
     }
   }
 

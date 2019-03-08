@@ -4,8 +4,6 @@ import 'package:fluintl/fluintl.dart';
 import 'package:ckbalance/pages/import_wallet_page.dart';
 import 'package:ckbalance/views/page_indicator.dart';
 import 'package:ckbalance/pages/input_password.dart';
-import 'package:ckbalance/pages/input_repassword.dart';
-import 'package:bip39/bip39.dart' as bip39;
 
 class CreateImportPage extends StatefulWidget {
   @override
@@ -41,6 +39,8 @@ class _State extends State<CreateImportPage> {
                 style: Theme.of(context).textTheme.button,
               ),
               onPressed: () {
+                // create a mnemonic , and ask user to set a password
+
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (BuildContext context) => InputPasswordPage()));
               },
@@ -54,6 +54,7 @@ class _State extends State<CreateImportPage> {
                 style: Theme.of(context).textTheme.button,
               ),
               onPressed: () {
+                // import mnemonic
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (BuildContext context) => ImportWalletPage()));
               },
@@ -64,6 +65,7 @@ class _State extends State<CreateImportPage> {
     );
   }
 
+  // build view Pager
   Widget pageView() {
     PageController pageController = PageController(viewportFraction: 1);
     List<Widget> pages = _buildPages();
@@ -92,6 +94,7 @@ class _State extends State<CreateImportPage> {
     );
   }
 
+  // add page
   List<Widget> _buildPages() {
     List<Widget> pages = [];
     pages.add(pageViewHome(
