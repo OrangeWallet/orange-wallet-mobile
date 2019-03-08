@@ -6,6 +6,7 @@ import 'package:ckbalance/utils/wallet_store.dart';
 import 'package:ckbalance/pages/home_page/home_page.dart';
 import 'package:ckbalance/utils/shared_preferences.dart';
 import 'package:ckbalance/resources/shared_preferences_keys.dart';
+import 'package:ckbalance/utils/wallet_manager.dart';
 import 'package:bip39/bip39.dart' as bip39;
 
 class InputRePasswordPage extends StatefulWidget {
@@ -47,6 +48,7 @@ class _State extends State<InputRePasswordPage> {
           spUtil.putBool(SharedPreferencesKeys.backup, true);
         }
         WalletStore.getInstance().write(mnemonic, widget.pwd);
+        WalletManager.getInstance().init(bip39.mnemonicToSeed(mnemonic));
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (BuildContext context) => HomePage()),
             (Route route) => route == null);
