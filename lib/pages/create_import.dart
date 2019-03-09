@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ckbalance/resources/strings.dart';
 import 'package:fluintl/fluintl.dart';
-import 'package:ckbalance/pages/import_wallet_page.dart';
+import 'package:ckbalance/pages/import_wallet.dart';
 import 'package:ckbalance/views/page_indicator.dart';
 import 'package:ckbalance/pages/input_password.dart';
 
@@ -40,7 +40,6 @@ class _State extends State<CreateImportPage> {
               ),
               onPressed: () {
                 // create a mnemonic , and ask user to set a password
-
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (BuildContext context) => InputPasswordPage()));
               },

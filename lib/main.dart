@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ckbalance/pages/splash_page.dart';
+import 'package:ckbalance/pages/splash.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:ckbalance/resources/strings.dart';

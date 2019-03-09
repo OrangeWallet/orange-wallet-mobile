@@ -1,10 +1,14 @@
-import 'dart:typed_data';
+import 'dart:async';
 import 'package:convert/convert.dart';
 import 'package:bip32/bip32.dart' as bip32;
+import 'package:bip39/bip39.dart' as bip39;
+import 'package:ckbalance/utils/wallet_store.dart';
+import 'package:ckbalance/utils/shared_preferences.dart';
+import 'package:ckbalance/resources/shared_preferences_keys.dart';
 
 class WalletManager {
   static WalletManager _manager;
-  static bip32.BIP32 _node;
+  bip32.BIP32 _node;
   final String _purpose = "44'";
   final String _coinType = "0'";
   final String _account = "0'";
@@ -20,8 +24,36 @@ class WalletManager {
     return _manager;
   }
 
-  init(Uint8List seed) {
-    _node = bip32.BIP32.fromSeed(seed);
+  importWallet(String mnemonic, String password) async {
+    SpUtil spUtil = await SpUtil.getInstance();
+    if (mnemonic == '') {
+      mnemonic = bip39.generateMnemonic();
+      spUtil.putBool(SharedPreferencesKeys.backup, false);
+    } else {
+      spUtil.putBool(SharedPreferencesKeys.backup, true);
+    }
+    _node = bip32.BIP32.fromSeed(bip39.mnemonicToSeed(mnemonic));
+    WalletStore.getInstance().write(mnemonic, password);
+  }
+
+  fromStore(String password) async {
+    String mnemonic = await WalletStore.getInstance().read(password);
+    _node = bip32.BIP32.fromSeed(bip39.mnemonicToSeed(mnemonic));
+  }
+
+  // check the password right
+  Future<bool> checkPwd(String password) async {
+    String mnemonic = await WalletStore.getInstance().read(password);
+    return bip39.validateMnemonic(mnemonic);
+  }
+
+  // check the wallet stored
+  Future<bool> hasWallet() async {
+    return await WalletStore.getInstance().has();
+  }
+
+  deleteStore() {
+    WalletStore.getInstance().delete();
   }
 
   String getMasterPrivateKey() {

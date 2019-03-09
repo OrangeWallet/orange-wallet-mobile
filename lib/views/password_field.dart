@@ -7,6 +7,7 @@ class PasswordField extends StatefulWidget {
     this.hintText,
     this.labelText,
     this.helperText,
+    this.errorText,
     this.maxLength = 12,
     this.autofocus,
     this.onSaved,
@@ -18,6 +19,7 @@ class PasswordField extends StatefulWidget {
   final String hintText;
   final String labelText;
   final String helperText;
+  final String errorText;
   final int maxLength;
   final bool autofocus;
   final FormFieldSetter<String> onSaved;
@@ -46,6 +48,7 @@ class _PasswordFieldState extends State<PasswordField> {
         hintText: widget.hintText,
         labelText: widget.labelText,
         helperText: widget.helperText,
+        errorText: widget.errorText,
         suffixIcon: GestureDetector(
           dragStartBehavior: DragStartBehavior.down,
           onTap: () {

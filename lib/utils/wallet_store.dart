@@ -20,6 +20,14 @@ class WalletStore {
     return _instance;
   }
 
+  Future<bool> has() async {
+    String base64 = await _storage.read(key: WalletKey);
+    if (base64 == null) {
+      return false;
+    }
+    return true;
+  }
+
   write(String mnemonic, String password) {
     String base64 = WalletCrypto.encryptMnemonic(mnemonic, password);
     _storage.write(key: WalletKey, value: base64);

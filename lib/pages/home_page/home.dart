@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluintl/fluintl.dart';
-import 'package:ckbalance/resources/strings.dart';
+import 'package:ckbalance/utils/wallet_manager.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -10,8 +9,7 @@ class HomePage extends StatelessWidget {
         title: Text('Welcome to Flutter'),
       ),
       body: Center(
-        child:
-            Text(CustomLocalizations.of(context).getString(StringIds.appName)),
+        child: Text(WalletManager.getInstance().getMasterPrivateKey()),
       ),
     );
   }

@@ -21,6 +21,12 @@ class StringIds {
   static String inputPwdReTip = 'inputPwdReTip';
   static String inputPwdReAttention = 'inputPwdReAttention';
   static String nextButton = 'nextButton';
+  static String forgetPwd = 'forgetPwd';
+  static String forgetDialogContent = 'forgetDialogContent';
+  static String deleteWalletDialogContent = 'deleteWalletDialogContent';
+  static String tryAgain = 'tryAgain';
+  static String deleteWallet = 'deleteWallet';
+  static String alert = 'Alert';
 
   static String errorEmptyInput = 'errorEmptyInput';
   static String errorValidMnemonic = 'errorValidMnemonic';
@@ -52,8 +58,17 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.inputPwdFieldLabel: 'Password*',
       StringIds.inputPwdFieldHelper: 'No less than 8 char',
       StringIds.inputPwdReTip: 'Your password again',
-      StringIds.inputPwdReAttention:'Make sure you remember it. We can\'t find the wallet if you lose your password.',
+      StringIds.inputPwdReAttention:
+          'Make sure you remember it. We can\'t find the wallet if you lose your password.',
       StringIds.nextButton: 'Next',
+      StringIds.forgetPwd: 'Forget it',
+      StringIds.forgetDialogContent:
+          "We didn't save your password. You can not use your wallet without password.So if you hava saved your mnemonic, you can import it again!",
+      StringIds.deleteWalletDialogContent:
+          "Make sure you know what you're doing! If you delete this wallet, you will not get it back.(If you lost your mnomenic.)",
+      StringIds.tryAgain: 'Try again',
+      StringIds.deleteWallet: 'Delete wallet',
+      StringIds.alert: 'Alert',
       StringIds.errorEmptyInput: 'It can not be empty',
       StringIds.errorValidMnemonic: 'Wrong mnemonic',
       StringIds.errorEmptyPwd: 'Please enter a password.',
@@ -85,6 +100,12 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.inputPwdFieldHelper: '最少八位密码',
       StringIds.inputPwdReTip: '请在此输入密码，注意，密码不能修改，不能找回，请确保你记住了自己的密码！',
       StringIds.nextButton: '下一步',
+      StringIds.forgetPwd: '忘记密码',
+      StringIds.forgetDialogContent: '我们没有保存你的密码，所有无法找回，如果你有助记词请重新导入，或者继续尝试',
+      StringIds.deleteWalletDialogContent: '如果你没有助记词或者私钥，删除钱包后，你将丢失整个钱包！',
+      StringIds.tryAgain: '再试试',
+      StringIds.deleteWallet: '删除钱包',
+      StringIds.alert: '提示',
       StringIds.errorEmptyInput: '输入项不能为空',
       StringIds.errorValidMnemonic: '助记词不合法',
       StringIds.errorEmptyPwd: '请输入密码',

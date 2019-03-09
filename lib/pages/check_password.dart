@@ -1,0 +1,162 @@
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:ckbalance/resources/strings.dart';
+import 'package:fluintl/fluintl.dart';
+import 'package:ckbalance/views/password_field.dart';
+import 'package:ckbalance/pages/home_page/home.dart';
+import 'package:ckbalance/utils/wallet_manager.dart';
+import 'package:ckbalance/pages/create_import.dart';
+
+class CheckPasswordPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _State();
+}
+
+class _State extends State<CheckPasswordPage> {
+  final GlobalKey<FormFieldState<String>> _passwordFieldKey =
+      GlobalKey<FormFieldState<String>>();
+  String errorMsg;
+
+  Future<bool> _validatePassword() async {
+    String msg = "";
+    final FormFieldState<String> passwordField = _passwordFieldKey.currentState;
+    if (passwordField.value == null || passwordField.value.isEmpty)
+      msg = CustomLocalizations.of(context).getString(StringIds.errorEmptyPwd);
+    else if (passwordField.value.length < 8)
+      msg = CustomLocalizations.of(context).getString(StringIds.errorLessPwd);
+    else if (!await WalletManager.getInstance().checkPwd(passwordField.value))
+      msg = CustomLocalizations.of(context).getString(StringIds.errorDiffPwd);
+    if (msg != '') {
+      setState(() {
+        errorMsg = msg;
+      });
+      return false;
+    }
+    return true;
+  }
+
+  _handlePwd() async {
+    final FormFieldState<String> passwordField = _passwordFieldKey.currentState;
+    if (await _validatePassword()) {
+      await WalletManager.getInstance().fromStore(passwordField.value);
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (BuildContext context) => HomePage()),
+          (Route route) => route == null);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+            CustomLocalizations.of(context).getString(StringIds.inputPwdTitle)),
+      ),
+      body: Container(
+          padding: const EdgeInsets.fromLTRB(20, 50, 20, 0),
+          child: Column(
+            children: <Widget>[
+              Text(
+                CustomLocalizations.of(context)
+                    .getString(StringIds.inputPwdTip),
+                style: Theme.of(context).textTheme.body2,
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              PasswordField(
+                fieldKey: _passwordFieldKey,
+                labelText: CustomLocalizations.of(context)
+                    .getString(StringIds.inputPwdFieldLabel),
+                helperText: CustomLocalizations.of(context)
+                    .getString(StringIds.inputPwdFieldHelper),
+                errorText: errorMsg,
+                autofocus: true,
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              RaisedButton(
+                padding: const EdgeInsets.fromLTRB(60, 5, 60, 5),
+                child: Text(
+                  CustomLocalizations.of(context)
+                      .getString(StringIds.nextButton),
+                  style: Theme.of(context).textTheme.button,
+                ),
+                onPressed: _handlePwd,
+              ),
+              FlatButton(
+                child: Text(
+                    CustomLocalizations.of(context)
+                        .getString(StringIds.forgetPwd),
+                    style: Theme.of(context).textTheme.body1),
+                onPressed: _showForgetAlert,
+              )
+            ],
+          )),
+    );
+  }
+
+  _showForgetAlert() {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+            title: Text(
+                CustomLocalizations.of(context).getString(StringIds.alert)),
+            content: Text(CustomLocalizations.of(context)
+                .getString(StringIds.forgetDialogContent)),
+            actions: <Widget>[
+              FlatButton(
+                child: Text(CustomLocalizations.of(context)
+                    .getString(StringIds.tryAgain)),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              FlatButton(
+                child: Text(CustomLocalizations.of(context)
+                    .getString(StringIds.deleteWallet)),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  _showDeleteWallet();
+                },
+              ),
+            ],
+          ),
+    );
+  }
+
+  _showDeleteWallet() {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+            title: Text(
+                CustomLocalizations.of(context).getString(StringIds.alert)),
+            content: Text(CustomLocalizations.of(context)
+                .getString(StringIds.deleteWalletDialogContent)),
+            actions: <Widget>[
+              FlatButton(
+                child: Text(CustomLocalizations.of(context)
+                    .getString(StringIds.tryAgain)),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              FlatButton(
+                child: Text(CustomLocalizations.of(context)
+                    .getString(StringIds.deleteWallet)),
+                onPressed: () {
+                  WalletManager.getInstance().deleteStore();
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              CreateImportPage()),
+                      (Route route) => route == null);
+                },
+              )
+            ],
+          ),
+    );
+  }
+}
