@@ -59,7 +59,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.inputPwdFieldHelper: 'No less than 8 char',
       StringIds.inputPwdReTip: 'Your password again',
       StringIds.inputPwdReAttention:
-          'Make sure you remember it. We can\'t find the wallet if you lose your password.',
+          'Make sure you remember it. We can\'t use the wallet if you lose your password.',
       StringIds.nextButton: 'Next',
       StringIds.forgetPwd: 'Forget it',
       StringIds.forgetDialogContent:
@@ -98,7 +98,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.inputPwdTip: '请输入你的密码',
       StringIds.inputPwdFieldLabel: '密码*',
       StringIds.inputPwdFieldHelper: '最少八位密码',
-      StringIds.inputPwdReTip: '请在此输入密码，注意，密码不能修改，不能找回，请确保你记住了自己的密码！',
+      StringIds.inputPwdReTip: '请在此输入密码',
+      StringIds.inputPwdReAttention: '请确保记住你的密码，如果你忘记了，将无法使用钱包',
       StringIds.nextButton: '下一步',
       StringIds.forgetPwd: '忘记密码',
       StringIds.forgetDialogContent: '我们没有保存你的密码，所有无法找回，如果你有助记词请重新导入，或者继续尝试',

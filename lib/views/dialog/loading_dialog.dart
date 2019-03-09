@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LoadingDialog extends Dialog {
-  String text;
+  final String text;
 
   LoadingDialog({Key key, @required this.text}) : super(key: key);
 
