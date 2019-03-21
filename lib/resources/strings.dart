@@ -59,7 +59,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.inputPwdFieldHelper: 'No less than 8 char',
       StringIds.inputPwdReTip: 'Your password again',
       StringIds.inputPwdReAttention:
-          'Make sure you remember it. We can\'t use the wallet if you lose your password.',
+          'Make sure you remember it. You can\'t use the wallet if you lose your password.',
       StringIds.nextButton: 'Next',
       StringIds.forgetPwd: 'Forget it',
       StringIds.forgetDialogContent:

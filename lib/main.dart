@@ -22,6 +22,10 @@ class MyApp extends StatelessWidget {
               body2: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor),
+              title: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
                   color: Theme.of(context).primaryColor))),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,

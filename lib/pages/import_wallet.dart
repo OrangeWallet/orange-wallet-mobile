@@ -30,7 +30,7 @@ class _State extends State<ImportWalletPage> {
       appBar: AppBar(
         title: Text(CustomLocalizations.of(context)
             .getString(StringIds.importWalletTitle)),
-        leading: new IconButton(
+        leading: IconButton(
           tooltip: 'back',
           icon: const Icon(Icons.arrow_back),
           onPressed: () {

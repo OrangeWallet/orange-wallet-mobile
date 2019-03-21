@@ -47,9 +47,10 @@ class SpUtil {
     return _spf.get(key);
   }
 
-  getString(String key) {
+  getString(String key, String defaultValue) {
     if (_beforeCheck()) return null;
-    return _spf.getString(key);
+    String value = _spf.getString(key);
+    return value == null ? defaultValue : value;
   }
 
   Future<bool> putString(String key, String value) {
@@ -57,9 +58,10 @@ class SpUtil {
     return _spf.setString(key, value);
   }
 
-  bool getBool(String key) {
+  bool getBool(String key, bool defaultValue) {
     if (_beforeCheck()) return null;
-    return _spf.getBool(key);
+    bool value = _spf.getBool(key);
+    return value == null ? defaultValue : value;
   }
 
   Future<bool> putBool(String key, bool value) {
@@ -67,9 +69,10 @@ class SpUtil {
     return _spf.setBool(key, value);
   }
 
-  int getInt(String key) {
+  int getInt(String key, int defaultValue) {
     if (_beforeCheck()) return null;
-    return _spf.getInt(key);
+    int value = _spf.getInt(key);
+    return value == null ? defaultValue : value;
   }
 
   Future<bool> putInt(String key, int value) {
@@ -77,9 +80,10 @@ class SpUtil {
     return _spf.setInt(key, value);
   }
 
-  double getDouble(String key) {
+  double getDouble(String key, double defaultValue) {
     if (_beforeCheck()) return null;
-    return _spf.getDouble(key);
+    double value = _spf.getDouble(key);
+    return value == null ? defaultValue : value;
   }
 
   Future<bool> putDouble(String key, double value) {
