@@ -18,6 +18,9 @@ dependencies:
   shared_preferences: ^0.5.1+1
   encrypt: ^2.0.0
   bip32: ^1.0.5
+  ckb_sdk: 
+    git: 
+      url: git@github.com:BaojunCZ/ckb-sdk-dart.git
 
 dev_dependencies:
   flutter_test:

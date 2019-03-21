@@ -11,9 +11,8 @@ class WalletManager {
   bip32.BIP32 _node;
   final String _purpose = "44'";
   final String _coinType = "0'";
-  final String _account = "0'";
-  final String _receive = "0";
-  final String _change = "1";
+  static String _account = "0'";
+  static int _external = 0;
 
   WalletManager._();
 
@@ -60,15 +59,25 @@ class WalletManager {
     return hex.encode(_node.privateKey);
   }
 
+  setAccunt(String account) {
+    _account = account;
+  }
+
+  setExternal(int externalIndex) {
+    _external = externalIndex;
+  }
+
   String getReceivePrivateKey(String addressIndex) {
     return hex.encode(_node
-        .derivePath('m/$_purpose/$_coinType/$_account\/$_receive/$addressIndex')
+        .derivePath(
+            'm/$_purpose/$_coinType/$_account\/$_external/$addressIndex')
         .privateKey);
   }
 
   String getFeeChangePrivateKey(String addressIndex) {
     return hex.encode(_node
-        .derivePath('m/$_purpose/$_coinType/$_account\/$_change/$addressIndex')
+        .derivePath(
+            'm/$_purpose/$_coinType/$_account\/${_external + 1}/$addressIndex')
         .privateKey);
   }
 }
