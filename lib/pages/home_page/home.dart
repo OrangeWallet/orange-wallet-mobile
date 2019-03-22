@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ckbalance/utils/wallet_manager.dart';
 import 'package:ckbalance/utils/shared_preferences.dart';
 import 'package:ckbalance/resources/shared_preferences_keys.dart';
-import 'package:ckbalance/pages/home_page/leading_button.dart';
+import 'package:ckbalance/pages/home_page/wallet_card/wallet_card.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -27,26 +26,32 @@ class _State extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: Text(
-          'CKBalance',
-          style: Theme.of(context).textTheme.title,
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          title: Text(
+            'CKBalance',
+            style: Theme.of(context).textTheme.title,
+          ),
+          centerTitle: true,
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.more_horiz),
+              color: Theme.of(context).accentColor,
+              onPressed: () {},
+            )
+          ],
         ),
-        centerTitle: true,
-        leading: LeadingButton(),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.settings),
-            color: Theme.of(context).accentColor,
-            onPressed: () {},
-          )
-        ],
-      ),
-      body: Center(
-        child: Text(WalletManager.getInstance().getMasterPrivateKey()),
-      ),
-    );
+        body: Container(
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Container(
+                child: WalletCardWidget(),
+              )
+            ],
+          ),
+        ));
   }
 }

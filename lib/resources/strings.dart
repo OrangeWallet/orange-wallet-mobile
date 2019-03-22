@@ -28,6 +28,13 @@ class StringIds {
   static String deleteWallet = 'deleteWallet';
   static String alert = 'Alert';
 
+  static String ok = 'OK';
+  static String cancel = 'Cancel';
+
+  static String mainNetTip = 'MainNetTip';
+  static String mainNet = 'MainNet';
+  static String testNet = 'testNet';
+
   static String errorEmptyInput = 'errorEmptyInput';
   static String errorValidMnemonic = 'errorValidMnemonic';
   static String errorEmptyPwd = 'errorEmptyPwd';
@@ -69,6 +76,11 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.tryAgain: 'Try again',
       StringIds.deleteWallet: 'Delete wallet',
       StringIds.alert: 'Alert',
+      StringIds.ok: 'OK',
+      StringIds.cancel: 'Cancel',
+      StringIds.mainNetTip: 'The main network is not up yet!',
+      StringIds.mainNet: 'MainNet',
+      StringIds.testNet: 'Test Net',
       StringIds.errorEmptyInput: 'It can not be empty',
       StringIds.errorValidMnemonic: 'Wrong mnemonic',
       StringIds.errorEmptyPwd: 'Please enter a password.',
@@ -107,6 +119,11 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.tryAgain: '再试试',
       StringIds.deleteWallet: '删除钱包',
       StringIds.alert: '提示',
+      StringIds.ok: '确定',
+      StringIds.cancel: '取消',
+      StringIds.mainNetTip: '主网还未上线!',
+      StringIds.mainNet: 'MainNet',
+      StringIds.testNet: 'Test Net',
       StringIds.errorEmptyInput: '输入项不能为空',
       StringIds.errorValidMnemonic: '助记词不合法',
       StringIds.errorEmptyPwd: '请输入密码',
