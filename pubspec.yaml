@@ -20,7 +20,7 @@ dependencies:
   bip32: ^1.0.5
   ckb_sdk: 
     git: 
-      url: git@github.com:BaojunCZ/ckb-sdk-dart.git
+      url: https://github.com/CKBalance/ckb-sdk-dart.git
 
 dev_dependencies:
   flutter_test:

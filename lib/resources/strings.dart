@@ -27,6 +27,8 @@ class StringIds {
   static String tryAgain = 'tryAgain';
   static String deleteWallet = 'deleteWallet';
   static String alert = 'Alert';
+  static String backUp = 'backUp';
+  static String backedUp = 'backedUp';
 
   static String ok = 'OK';
   static String cancel = 'Cancel';
@@ -76,6 +78,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.tryAgain: 'Try again',
       StringIds.deleteWallet: 'Delete wallet',
       StringIds.alert: 'Alert',
+      StringIds.backUp: 'Backup',
+      StringIds.backedUp: 'Backed up',
       StringIds.ok: 'OK',
       StringIds.cancel: 'Cancel',
       StringIds.mainNetTip: 'The main network is not up yet!',
@@ -119,6 +123,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.tryAgain: '再试试',
       StringIds.deleteWallet: '删除钱包',
       StringIds.alert: '提示',
+      StringIds.backUp: '备份',
+      StringIds.backedUp: '已备份',
       StringIds.ok: '确定',
       StringIds.cancel: '取消',
       StringIds.mainNetTip: '主网还未上线!',

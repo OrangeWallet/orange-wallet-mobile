@@ -1,3 +1,5 @@
+import 'package:ckbalance/resources/strings.dart';
+import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 
 class BackupWidget extends StatelessWidget {
@@ -14,16 +16,51 @@ class BackupWidget extends StatelessWidget {
           Icon(
             Icons.check_circle,
             color: Colors.white,
-            size: 17,
+            size: 16,
           ),
-          SizedBox(width: 5),
+          SizedBox(width: 3),
           Text(
-            'Backed up',
-            style: TextStyle(fontSize: 15, color: Colors.white),
+            CustomLocalizations.of(context).getString(StringIds.backedUp),
+            style: TextStyle(fontSize: 16, color: Colors.white),
           )
         ],
       );
     }
-    return null;
+    return Row(
+      children: <Widget>[
+        SizedBox(width: 20),
+        Row(
+          children: <Widget>[
+            GestureDetector(
+              child: Container(
+                decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(15.0),
+                    )),
+                padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.warning,
+                      color: Colors.redAccent,
+                      size: 16,
+                    ),
+                    SizedBox(width: 3),
+                    Text(
+                      CustomLocalizations.of(context)
+                          .getString(StringIds.backUp),
+                      style: TextStyle(fontSize: 16, color: Colors.redAccent),
+                    )
+                  ],
+                ),
+              ),
+              onTap: () {},
+            ),
+          ],
+        ),
+      ],
+    );
   }
 }

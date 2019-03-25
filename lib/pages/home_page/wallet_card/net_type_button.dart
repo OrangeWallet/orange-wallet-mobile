@@ -11,6 +11,7 @@ class NetTypeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         alignment: Alignment.centerRight,
+        padding: EdgeInsets.fromLTRB(0, 5, 5, 0),
         child: GestureDetector(
           child: Container(
             decoration: BoxDecoration(

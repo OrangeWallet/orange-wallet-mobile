@@ -1,9 +1,10 @@
+import 'package:ckbalance/resources/shared_preferences_keys.dart';
+import 'package:ckbalance/utils/shared_preferences.dart';
+import 'package:flutter/material.dart';
+
+import 'backup.dart';
 import 'balance.dart';
 import 'net_type_button.dart';
-import 'backup.dart';
-import 'package:flutter/material.dart';
-import 'package:ckbalance/utils/shared_preferences.dart';
-import 'package:ckbalance/resources/shared_preferences_keys.dart';
 
 class WalletCardWidget extends StatefulWidget {
   @override
@@ -46,14 +47,26 @@ class _State extends State<WalletCardWidget> {
           children: <Widget>[
             Column(
               children: <Widget>[
-                SizedBox(height: 15),
-                BalanceWidget(balance.toString()),
                 SizedBox(height: 10),
+                BalanceWidget(balance.toString()),
+                SizedBox(height: 13),
                 BackupWidget(true),
                 SizedBox(height: 7)
               ],
             ),
-            NetTypeWidget(netType),
+            Column(
+              children: <Widget>[
+                NetTypeWidget(netType),
+                Container(
+                  padding: EdgeInsets.fromLTRB(0, 20, 20, 0),
+                  alignment: Alignment.centerRight,
+                  child: Image.asset(
+                    'images/ic_nervos.png',
+                    height: 50,
+                  ),
+                )
+              ],
+            )
           ],
         ));
   }
