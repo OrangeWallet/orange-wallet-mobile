@@ -4,6 +4,7 @@ import 'package:fluintl/fluintl.dart';
 import 'package:ckbalance/pages/import_wallet.dart';
 import 'package:ckbalance/views/page_indicator.dart';
 import 'package:ckbalance/pages/input_password.dart';
+import 'package:ckbalance/views/button/my_raised_button.dart';
 
 class CreateImportPage extends StatefulWidget {
   @override
@@ -31,31 +32,26 @@ class _State extends State<CreateImportPage> {
             SizedBox(
               height: 15,
             ),
-            RaisedButton(
+            MyRaisedButton(
               padding: const EdgeInsets.fromLTRB(90, 10, 90, 10),
-              child: Text(
-                CustomLocalizations.of(context)
-                    .getString(StringIds.createNewWalletButton),
-                style: Theme.of(context).textTheme.button,
-              ),
+              text: CustomLocalizations.of(context).getString(StringIds.createNewWalletButton),
               onPressed: () {
                 // create a mnemonic , and ask user to set a password
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => InputPasswordPage()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (BuildContext context) => InputPasswordPage()));
               },
               color: Colors.red[300],
             ),
             FlatButton(
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 50),
               child: Text(
-                CustomLocalizations.of(context)
-                    .getString(StringIds.importWalletButton),
+                CustomLocalizations.of(context).getString(StringIds.importWalletButton),
                 style: Theme.of(context).textTheme.button,
               ),
               onPressed: () {
                 // import mnemonic
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => ImportWalletPage()));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) => ImportWalletPage()));
               },
             ),
           ],
@@ -99,19 +95,15 @@ class _State extends State<CreateImportPage> {
     pages.add(pageViewHome(
         Icons.security,
         CustomLocalizations.of(context).getString(StringIds.bannerCryptoTitle),
-        CustomLocalizations.of(context)
-            .getString(StringIds.bannerCryptoDetail)));
+        CustomLocalizations.of(context).getString(StringIds.bannerCryptoDetail)));
     pages.add(pageViewHome(
         Icons.sync_disabled,
         CustomLocalizations.of(context).getString(StringIds.bannerPrivacyTitle),
-        CustomLocalizations.of(context)
-            .getString(StringIds.bannerPrivacyDetail)));
+        CustomLocalizations.of(context).getString(StringIds.bannerPrivacyDetail)));
     pages.add(pageViewHome(
         Icons.public,
-        CustomLocalizations.of(context)
-            .getString(StringIds.bannerOpenSourceTitle),
-        CustomLocalizations.of(context)
-            .getString(StringIds.bannerOpenSourceDetail)));
+        CustomLocalizations.of(context).getString(StringIds.bannerOpenSourceTitle),
+        CustomLocalizations.of(context).getString(StringIds.bannerOpenSourceDetail)));
     return pages;
   }
 
@@ -124,8 +116,7 @@ class _State extends State<CreateImportPage> {
           Center(
               child: Text(
             CustomLocalizations.of(context).getString(StringIds.appName),
-            style: TextStyle(
-                fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold),
           )),
           SizedBox(height: 30),
           Center(
@@ -143,10 +134,8 @@ class _State extends State<CreateImportPage> {
                 children: <Widget>[
                   Text(
                     title,
-                    style: TextStyle(
-                        fontSize: 25,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 10),
                   Text(

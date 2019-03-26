@@ -13,6 +13,7 @@ class WalletManager {
   final String _coinType = "0'";
   static String _account = "0'";
   static int _external = 0;
+  String _mnemonic;
 
   WalletManager._();
 
@@ -23,6 +24,7 @@ class WalletManager {
     return _manager;
   }
 
+  // if mnemonic is empty,creating a new wallet.otherwise import from mnemonic
   importWallet(String mnemonic, String password) async {
     SpUtil spUtil = await SpUtil.getInstance();
     if (mnemonic == '') {
@@ -31,13 +33,18 @@ class WalletManager {
     } else {
       spUtil.putBool(SharedPreferencesKeys.backup, true);
     }
-    _node = bip32.BIP32.fromSeed(bip39.mnemonicToSeed(mnemonic));
-    WalletStore.getInstance().write(mnemonic, password);
+    _mnemonic = mnemonic;
+    _node = bip32.BIP32.fromSeed(bip39.mnemonicToSeed(_mnemonic));
+    await WalletStore.getInstance().write(_mnemonic, password);
   }
 
   fromStore(String password) async {
-    String mnemonic = await WalletStore.getInstance().read(password);
-    _node = bip32.BIP32.fromSeed(bip39.mnemonicToSeed(mnemonic));
+    _mnemonic = await WalletStore.getInstance().read(password);
+    _node = bip32.BIP32.fromSeed(bip39.mnemonicToSeed(_mnemonic));
+  }
+
+  String getMnemonic() {
+    return _mnemonic;
   }
 
   // check the password right
@@ -68,16 +75,13 @@ class WalletManager {
   }
 
   String getReceivePrivateKey(String addressIndex) {
-    return hex.encode(_node
-        .derivePath(
-            'm/$_purpose/$_coinType/$_account\/$_external/$addressIndex')
-        .privateKey);
+    return hex.encode(
+        _node.derivePath('m/$_purpose/$_coinType/$_account\/$_external/$addressIndex').privateKey);
   }
 
   String getFeeChangePrivateKey(String addressIndex) {
     return hex.encode(_node
-        .derivePath(
-            'm/$_purpose/$_coinType/$_account\/${_external + 1}/$addressIndex')
+        .derivePath('m/$_purpose/$_coinType/$_account\/${_external + 1}/$addressIndex')
         .privateKey);
   }
 }

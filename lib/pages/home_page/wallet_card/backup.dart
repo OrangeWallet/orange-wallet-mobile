@@ -1,6 +1,9 @@
 import 'package:ckbalance/resources/strings.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
+import 'package:ckbalance/views/dialog/password_bottom_sheet.dart';
+import 'package:ckbalance/pages/backup_mnemonic.dart';
+import 'package:ckbalance/utils/wallet_manager.dart';
 
 class BackupWidget extends StatelessWidget {
   final bool isBackup;
@@ -39,7 +42,7 @@ class BackupWidget extends StatelessWidget {
                     borderRadius: BorderRadius.all(
                       Radius.circular(15.0),
                     )),
-                padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
                 child: Row(
                   children: <Widget>[
                     Icon(
@@ -47,16 +50,25 @@ class BackupWidget extends StatelessWidget {
                       color: Colors.redAccent,
                       size: 16,
                     ),
-                    SizedBox(width: 3),
+                    SizedBox(width: 2),
                     Text(
-                      CustomLocalizations.of(context)
-                          .getString(StringIds.backUp),
+                      CustomLocalizations.of(context).getString(StringIds.backUp),
                       style: TextStyle(fontSize: 16, color: Colors.redAccent),
                     )
                   ],
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                showBottomSheet(
+                    context: context,
+                    builder: (_) {
+                      return PasswordBottomSheet((password) async {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                BackupMnemonic(WalletManager.getInstance().getMnemonic())));
+                      });
+                    });
+              },
             ),
           ],
         ),

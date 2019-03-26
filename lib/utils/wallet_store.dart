@@ -28,9 +28,9 @@ class WalletStore {
     return true;
   }
 
-  write(String mnemonic, String password) {
+  write(String mnemonic, String password) async {
     String base64 = WalletCrypto.encryptMnemonic(mnemonic, password);
-    _storage.write(key: WalletKey, value: base64);
+    await _storage.write(key: WalletKey, value: base64);
   }
 
   read(String password) async {

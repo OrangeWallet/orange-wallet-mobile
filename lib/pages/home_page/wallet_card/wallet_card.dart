@@ -1,42 +1,23 @@
-import 'package:ckbalance/resources/shared_preferences_keys.dart';
-import 'package:ckbalance/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 import 'backup.dart';
 import 'balance.dart';
 import 'net_type_button.dart';
 
-class WalletCardWidget extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => _State();
-}
+class WalletCardWidget extends StatelessWidget {
+  final int netType;
+  final bool backup;
+  final String balance;
 
-class _State extends State<WalletCardWidget> {
-  int balance = 0;
-
-  SpUtil spUtil;
-  int netType = 1;
-
-  @override
-  void initState() {
-    super.initState();
-    _getNetType();
-  }
-
-  _getNetType() async {
-    spUtil = await SpUtil.getInstance();
-    setState(() {
-      netType = spUtil.getInt(SharedPreferencesKeys.netType, 1);
-    });
-  }
+  WalletCardWidget(this.netType, this.backup, this.balance);
 
   @override
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
           gradient: const LinearGradient(colors: [
-            Colors.lightBlue,
-            Colors.lightBlueAccent,
+            Colors.orange,
+            Colors.orangeAccent,
           ], begin: Alignment.topLeft),
           borderRadius: BorderRadius.all(
             Radius.circular(8.0),
@@ -48,9 +29,9 @@ class _State extends State<WalletCardWidget> {
             Column(
               children: <Widget>[
                 SizedBox(height: 10),
-                BalanceWidget(balance.toString()),
+                BalanceWidget(balance),
                 SizedBox(height: 13),
-                BackupWidget(true),
+                BackupWidget(backup),
                 SizedBox(height: 7)
               ],
             ),

@@ -10,17 +10,21 @@ class HomePage extends StatefulWidget {
 
 class _State extends State<HomePage> {
   SpUtil spUtil;
-  int netType;
+  int _netType = 1;
+  bool _backup = false;
 
   @override
   void initState() {
     super.initState();
-    getNetType();
+    _getData();
   }
 
-  getNetType() async {
+  _getData() async {
     spUtil = await SpUtil.getInstance();
-    netType = spUtil.getInt(SharedPreferencesKeys.netType, 1);
+    setState(() {
+      _netType = spUtil.getInt(SharedPreferencesKeys.netType, 1);
+      _backup = spUtil.getBool(SharedPreferencesKeys.backup, false);
+    });
   }
 
   @override
@@ -48,7 +52,7 @@ class _State extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Container(
-                child: WalletCardWidget(),
+                child: WalletCardWidget(_netType, _backup, '0'),
               )
             ],
           ),

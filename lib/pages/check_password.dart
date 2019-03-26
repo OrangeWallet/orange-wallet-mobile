@@ -6,6 +6,7 @@ import 'package:ckbalance/views/password_field.dart';
 import 'package:ckbalance/pages/home_page/home.dart';
 import 'package:ckbalance/utils/wallet_manager.dart';
 import 'package:ckbalance/pages/create_import.dart';
+import 'package:ckbalance/views/button/my_raised_button.dart';
 
 class CheckPasswordPage extends StatefulWidget {
   @override
@@ -13,8 +14,7 @@ class CheckPasswordPage extends StatefulWidget {
 }
 
 class _State extends State<CheckPasswordPage> {
-  final GlobalKey<FormFieldState<String>> _passwordFieldKey =
-      GlobalKey<FormFieldState<String>>();
+  final GlobalKey<FormFieldState<String>> _passwordFieldKey = GlobalKey<FormFieldState<String>>();
   String errorMsg;
 
   Future<bool> _validatePassword() async {
@@ -49,16 +49,14 @@ class _State extends State<CheckPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            CustomLocalizations.of(context).getString(StringIds.inputPwdTitle)),
+        title: Text(CustomLocalizations.of(context).getString(StringIds.inputPwdTitle)),
       ),
       body: Container(
           padding: const EdgeInsets.fromLTRB(20, 50, 20, 0),
           child: Column(
             children: <Widget>[
               Text(
-                CustomLocalizations.of(context)
-                    .getString(StringIds.inputPwdTip),
+                CustomLocalizations.of(context).getString(StringIds.inputPwdTip),
                 style: Theme.of(context).textTheme.body2,
               ),
               const SizedBox(
@@ -66,29 +64,23 @@ class _State extends State<CheckPasswordPage> {
               ),
               PasswordField(
                 fieldKey: _passwordFieldKey,
-                labelText: CustomLocalizations.of(context)
-                    .getString(StringIds.inputPwdFieldLabel),
-                helperText: CustomLocalizations.of(context)
-                    .getString(StringIds.inputPwdFieldHelper),
+                labelText: CustomLocalizations.of(context).getString(StringIds.inputPwdFieldLabel),
+                helperText:
+                    CustomLocalizations.of(context).getString(StringIds.inputPwdFieldHelper),
                 errorText: errorMsg,
                 autofocus: true,
+                onFieldSubmitted: (value) {
+                  _handlePwd();
+                },
               ),
               const SizedBox(
                 height: 30,
               ),
-              RaisedButton(
-                padding: const EdgeInsets.fromLTRB(60, 5, 60, 5),
-                child: Text(
-                  CustomLocalizations.of(context)
-                      .getString(StringIds.nextButton),
-                  style: Theme.of(context).textTheme.button,
-                ),
-                onPressed: _handlePwd,
-              ),
+              MyRaisedButton(
+                  text: CustomLocalizations.of(context).getString(StringIds.nextButton),
+                  onPressed: _handlePwd),
               FlatButton(
-                child: Text(
-                    CustomLocalizations.of(context)
-                        .getString(StringIds.forgetPwd),
+                child: Text(CustomLocalizations.of(context).getString(StringIds.forgetPwd),
                     style: Theme.of(context).textTheme.body1),
                 onPressed: _showForgetAlert,
               )
@@ -101,21 +93,17 @@ class _State extends State<CheckPasswordPage> {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-            title: Text(
-                CustomLocalizations.of(context).getString(StringIds.alert)),
-            content: Text(CustomLocalizations.of(context)
-                .getString(StringIds.forgetDialogContent)),
+            title: Text(CustomLocalizations.of(context).getString(StringIds.alert)),
+            content: Text(CustomLocalizations.of(context).getString(StringIds.forgetDialogContent)),
             actions: <Widget>[
               FlatButton(
-                child: Text(CustomLocalizations.of(context)
-                    .getString(StringIds.tryAgain)),
+                child: Text(CustomLocalizations.of(context).getString(StringIds.tryAgain)),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
               ),
               FlatButton(
-                child: Text(CustomLocalizations.of(context)
-                    .getString(StringIds.deleteWallet)),
+                child: Text(CustomLocalizations.of(context).getString(StringIds.deleteWallet)),
                 onPressed: () {
                   Navigator.of(context).pop();
                   _showDeleteWallet();
@@ -130,28 +118,23 @@ class _State extends State<CheckPasswordPage> {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-            title: Text(
-                CustomLocalizations.of(context).getString(StringIds.alert)),
-            content: Text(CustomLocalizations.of(context)
-                .getString(StringIds.deleteWalletDialogContent)),
+            title: Text(CustomLocalizations.of(context).getString(StringIds.alert)),
+            content: Text(
+                CustomLocalizations.of(context).getString(StringIds.deleteWalletDialogContent)),
             actions: <Widget>[
               FlatButton(
-                child: Text(CustomLocalizations.of(context)
-                    .getString(StringIds.tryAgain)),
+                child: Text(CustomLocalizations.of(context).getString(StringIds.tryAgain)),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
               ),
               FlatButton(
-                child: Text(CustomLocalizations.of(context)
-                    .getString(StringIds.deleteWallet)),
+                child: Text(CustomLocalizations.of(context).getString(StringIds.deleteWallet)),
                 onPressed: () {
                   WalletManager.getInstance().deleteStore();
                   Navigator.of(context).pop();
                   Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              CreateImportPage()),
+                      MaterialPageRoute(builder: (BuildContext context) => CreateImportPage()),
                       (Route route) => route == null);
                 },
               )

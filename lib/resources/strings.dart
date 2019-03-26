@@ -29,6 +29,7 @@ class StringIds {
   static String alert = 'Alert';
   static String backUp = 'backUp';
   static String backedUp = 'backedUp';
+  static String backedUpTitle = 'backedUpTitle';
 
   static String ok = 'OK';
   static String cancel = 'Cancel';
@@ -57,8 +58,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.bannerPrivacyDetail:
           '${StringIds.appName} never collect personal information, we will surely never forget our words',
       StringIds.bannerOpenSourceTitle: 'Open Source',
-      StringIds.bannerOpenSourceDetail:
-          'Code in Github,Welcome contribution code',
+      StringIds.bannerOpenSourceDetail: 'Code in Github,Welcome contribution code',
       StringIds.importWalletInputHint: 'Words separated by spaces',
       StringIds.importWalletInputHelper: 'Write here your mnemonic',
       StringIds.scanQRCodeButton: 'Scan QR Code',
@@ -80,6 +80,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.alert: 'Alert',
       StringIds.backUp: 'Backup',
       StringIds.backedUp: 'Backed up',
+      StringIds.backedUpTitle: 'Write these down',
       StringIds.ok: 'OK',
       StringIds.cancel: 'Cancel',
       StringIds.mainNetTip: 'The main network is not up yet!',
@@ -101,8 +102,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.bannerCryptoTitle: '加密',
       StringIds.bannerCryptoDetail: '你的钱包会被硬件级安全加密',
       StringIds.bannerPrivacyTitle: '隐私',
-      StringIds.bannerPrivacyDetail:
-          '${StringIds.appName} 不会收集用户的隐私信息，现在不会，将来也不会',
+      StringIds.bannerPrivacyDetail: '${StringIds.appName} 不会收集用户的隐私信息，现在不会，将来也不会',
       StringIds.bannerOpenSourceTitle: '开源',
       StringIds.bannerOpenSourceDetail: '代码在Github，欢迎贡献',
       StringIds.importWalletInputHint: '空格隔开',
@@ -125,6 +125,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.alert: '提示',
       StringIds.backUp: '备份',
       StringIds.backedUp: '已备份',
+      StringIds.backedUpTitle: '请抄写在纸上',
       StringIds.ok: '确定',
       StringIds.cancel: '取消',
       StringIds.mainNetTip: '主网还未上线!',
