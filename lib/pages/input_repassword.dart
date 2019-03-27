@@ -4,7 +4,6 @@ import 'package:ckbalance/utils/wallet_manager.dart';
 import 'package:ckbalance/views/password_field.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
-import 'package:ckbalance/views/dialog/loading_dialog.dart';
 
 class InputRePasswordPage extends StatefulWidget {
   final String pwd;
@@ -34,15 +33,12 @@ class _State extends State<InputRePasswordPage> {
     try {
       final FormFieldState<String> passwordField = _passwordFieldKey.currentState;
       if (passwordField.validate()) {
-        showDialog(
-            context: context,
-            builder: (_) => LoadingDialog(
-                  text: "saving",
-                ));
-        await WalletManager.getInstance().importWallet(widget.mnemonic, widget.pwd);
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (BuildContext context) => HomePage()),
-            (Route route) => route == null);
+        WalletManager.getInstance().importWallet(widget.mnemonic, widget.pwd).then((_) {
+          Navigator.of(context).pop(null);
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (BuildContext context) => HomePage()),
+              (Route route) => route == null);
+        });
       }
     } catch (e) {}
   }

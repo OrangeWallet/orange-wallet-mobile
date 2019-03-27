@@ -7,7 +7,6 @@ import '../resources/shared_preferences_keys.dart';
 import '../resources/strings.dart';
 import '../utils/shared_preferences.dart';
 import '../utils/wallet_manager.dart';
-import '../views/dialog/loading_dialog.dart';
 import '../views/mnemonic_field.dart';
 
 class ConfirmMnemonic extends StatefulWidget {
@@ -34,7 +33,6 @@ class _State extends State<ConfirmMnemonic> {
                 (Route route) => route == null);
           },
           validate: () {
-            showDialog(context: context, builder: (_) => LoadingDialog());
             if (bip39.mnemonicToSeedHex(_mnemonic) !=
                 WalletManager.getInstance().getMasterPrivateKey()) {
               return 'It`s wrong.Please check mnemonic agian';

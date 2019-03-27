@@ -1,4 +1,4 @@
-import 'dart:async';
+import 'package:ckbalance/views/dialog/loading_overlay.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:ckbalance/resources/strings.dart';
@@ -38,7 +38,9 @@ class _State extends State<CheckPasswordPage> {
   _handlePwd() async {
     final FormFieldState<String> passwordField = _passwordFieldKey.currentState;
     if (await _validatePassword()) {
+      LoadingOverlay.show(context: context);
       await WalletManager.getInstance().fromStore(passwordField.value);
+      LoadingOverlay.dismiss();
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (BuildContext context) => HomePage()),
           (Route route) => route == null);

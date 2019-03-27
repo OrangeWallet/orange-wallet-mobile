@@ -25,7 +25,7 @@ class WalletManager {
   }
 
   // if mnemonic is empty,creating a new wallet.otherwise import from mnemonic
-  importWallet(String mnemonic, String password) async {
+  Future importWallet(String mnemonic, String password) async {
     SpUtil spUtil = await SpUtil.getInstance();
     if (mnemonic == '') {
       mnemonic = bip39.generateMnemonic();
@@ -36,11 +36,13 @@ class WalletManager {
     _mnemonic = mnemonic;
     _node = bip32.BIP32.fromSeed(bip39.mnemonicToSeed(_mnemonic));
     await WalletStore.getInstance().write(_mnemonic, password);
+    return;
   }
 
-  fromStore(String password) async {
+  Future fromStore(String password) async {
     _mnemonic = await WalletStore.getInstance().read(password);
     _node = bip32.BIP32.fromSeed(bip39.mnemonicToSeed(_mnemonic));
+    return;
   }
 
   String getMnemonic() {
