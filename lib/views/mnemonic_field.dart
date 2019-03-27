@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:bip39/bip39.dart' as bip39;
 import 'package:ckbalance/resources/strings.dart';
 import 'package:fluintl/fluintl.dart';
-import 'package:bip39/bip39.dart' as bip39;
+import 'package:flutter/material.dart';
+import 'package:qrcode_reader/qrcode_reader.dart';
+
 import '../views/button/my_raised_button.dart';
 
 class MnemonicField extends StatefulWidget {
@@ -46,6 +48,9 @@ class _State extends State<MnemonicField> {
 
   @override
   Widget build(BuildContext context) {
+    _controller.addListener(() {
+      widget.onChanged(_controller.text);
+    });
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 50, 20, 0),
       child: Column(
@@ -66,7 +71,6 @@ class _State extends State<MnemonicField> {
                 errorText: errorMsg),
             maxLines: 3,
             autofocus: true,
-            onChanged: widget.onChanged,
           ),
           const SizedBox(
             height: 30,
@@ -80,7 +84,10 @@ class _State extends State<MnemonicField> {
           FlatButton(
             child: Text(CustomLocalizations.of(context).getString(StringIds.scanQRCodeButton),
                 style: Theme.of(context).textTheme.body1),
-            onPressed: () {},
+            onPressed: () async {
+              String mnemonic = await QRCodeReader().scan();
+              _controller.text = mnemonic;
+            },
           )
         ],
       ),

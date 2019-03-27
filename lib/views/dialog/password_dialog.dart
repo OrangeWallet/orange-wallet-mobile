@@ -14,7 +14,6 @@ class PasswordDialog extends Dialog {
     _sendPwd() {
       var _form = _formKey.currentState;
       if (_form.validate()) {
-        print(_pwd);
         okClick(_pwd);
       }
     }
@@ -26,8 +25,7 @@ class PasswordDialog extends Dialog {
           padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
           child: Container(
             decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(10))),
+                color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(10))),
             child: Wrap(
               children: <Widget>[
                 Column(

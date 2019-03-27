@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class LoadingDialog extends Dialog {
   final String text;
 
-  LoadingDialog({Key key, @required this.text}) : super(key: key);
+  LoadingDialog({Key key, this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class LoadingDialog extends Dialog {
                     top: 20.0,
                   ),
                   child: new Text(
-                    text,
+                    text == null ? "loading" : text,
                     style: new TextStyle(fontSize: 13.0),
                   ),
                 ),
