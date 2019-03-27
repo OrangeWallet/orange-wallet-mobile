@@ -30,6 +30,8 @@ class StringIds {
   static String backUp = 'backUp';
   static String backedUp = 'backedUp';
   static String backedUpTitle = 'backedUpTitle';
+  static String confirmMnemonic = 'confirmMnemonic';
+  static String confirMnemonicTip = 'confirMnemonicTip';
 
   static String ok = 'OK';
   static String cancel = 'Cancel';
@@ -60,13 +62,13 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.bannerOpenSourceTitle: 'Open Source',
       StringIds.bannerOpenSourceDetail: 'Code in Github,Welcome contribution code',
       StringIds.importWalletInputHint: 'Words separated by spaces',
-      StringIds.importWalletInputHelper: 'Write here your mnemonic',
+      StringIds.importWalletInputHelper: 'Enter your mnemonic',
       StringIds.scanQRCodeButton: 'Scan QR Code',
       StringIds.inputPwdTitle: 'Password',
       StringIds.inputPwdTip: 'Enter your password',
       StringIds.inputPwdFieldLabel: 'Password*',
       StringIds.inputPwdFieldHelper: 'No less than 8 char',
-      StringIds.inputPwdReTip: 'Your password again',
+      StringIds.inputPwdReTip: 'Confirm your password',
       StringIds.inputPwdReAttention:
           'Make sure you remember it. You can\'t use the wallet if you lose your password.',
       StringIds.nextButton: 'Next',
@@ -81,6 +83,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.backUp: 'Backup',
       StringIds.backedUp: 'Backed up',
       StringIds.backedUpTitle: 'Write these down',
+      StringIds.confirmMnemonic: 'Confirm Mnemonic',
+      StringIds.confirMnemonicTip: 'Enter your mnemonic',
       StringIds.ok: 'OK',
       StringIds.cancel: 'Cancel',
       StringIds.mainNetTip: 'The main network is not up yet!',
@@ -126,6 +130,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.backUp: '备份',
       StringIds.backedUp: '已备份',
       StringIds.backedUpTitle: '请抄写在纸上',
+      StringIds.confirmMnemonic: '确认助记词',
+      StringIds.confirMnemonicTip: '输入你的助记词',
       StringIds.ok: '确定',
       StringIds.cancel: '取消',
       StringIds.mainNetTip: '主网还未上线!',

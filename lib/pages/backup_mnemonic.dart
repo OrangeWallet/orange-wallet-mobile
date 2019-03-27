@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:fluintl/fluintl.dart';
-import 'package:ckbalance/resources/strings.dart';
-import 'package:ckbalance/views/button/my_raised_button.dart';
+import '../resources/strings.dart';
+import 'confirm_mnemonic.dart';
+import '../views/button/my_raised_button.dart';
 
 // ignore: must_be_immutable
 class BackupMnemonic extends StatelessWidget {
@@ -48,7 +49,10 @@ class BackupMnemonic extends StatelessWidget {
             MyRaisedButton(
               padding: const EdgeInsets.fromLTRB(90, 10, 90, 10),
               text: CustomLocalizations.of(context).getString(StringIds.nextButton),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) => ConfirmMnemonic()));
+              },
             )
           ],
         ),
