@@ -12,6 +12,16 @@ class BackupMnemonic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> words = _mnemonic.split(" ");
+    List<String> wordsLeft = List(words.length ~/ 2);
+    List<String> wordsRight = List(words.length ~/ 2);
+    for (int i = 0; i < words.length; i++) {
+      if (i < words.length ~/ 2) {
+        wordsLeft[i] = words[i];
+      } else {
+        wordsRight[i - words.length ~/ 2] = words[i - words.length ~/ 2];
+      }
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(CustomLocalizations.of(context).getString(StringIds.backedUp)),
@@ -29,14 +39,18 @@ class BackupMnemonic extends StatelessWidget {
             ),
             SizedBox(height: 30),
             Container(
-              padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
               decoration: BoxDecoration(
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   border: Border.all(color: Theme.of(context).accentColor, width: 1)),
-              child: Text(
-                _mnemonic,
-                style: TextStyle(fontSize: 18, wordSpacing: 8),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  wordColumn(wordsLeft, 1),
+                  SizedBox(width: 20),
+                  wordColumn(wordsRight, wordsLeft.length + 1),
+                ],
               ),
             ),
             SizedBox(height: 30),
@@ -51,6 +65,26 @@ class BackupMnemonic extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget wordColumn(List<String> words, int start) {
+    return Container(
+      height: 200,
+      width: 100,
+      child: ListView.builder(
+          itemCount: words.length,
+          itemBuilder: (context, index) {
+            return Container(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Text(
+                start + index > 9
+                    ? '${start + index}  ' + words[index]
+                    : '${start + index}    ' + words[index],
+                style: TextStyle(fontSize: 20),
+              ),
+            );
+          }),
     );
   }
 }
