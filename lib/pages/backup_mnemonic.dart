@@ -19,7 +19,7 @@ class BackupMnemonic extends StatelessWidget {
       if (i < words.length ~/ 2) {
         wordsLeft[i] = words[i];
       } else {
-        wordsRight[i - words.length ~/ 2] = words[i - words.length ~/ 2];
+        wordsRight[i - words.length ~/ 2] = words[i];
       }
     }
     return Scaffold(
@@ -48,7 +48,7 @@ class BackupMnemonic extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   wordColumn(wordsLeft, 1),
-                  SizedBox(width: 20),
+                  SizedBox(width: 15),
                   wordColumn(wordsRight, wordsLeft.length + 1),
                 ],
               ),
@@ -71,7 +71,7 @@ class BackupMnemonic extends StatelessWidget {
   Widget wordColumn(List<String> words, int start) {
     return Container(
       height: 200,
-      width: 100,
+      width: 120,
       child: ListView.builder(
           itemCount: words.length,
           itemBuilder: (context, index) {
