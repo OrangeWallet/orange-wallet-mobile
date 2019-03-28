@@ -1,6 +1,6 @@
 import 'package:ckbalance/pages/backup_mnemonic.dart';
 import 'package:ckbalance/resources/strings.dart';
-import 'package:ckbalance/utils/wallet_manager.dart';
+import 'package:ckbalance/utils/wallet/wallet_manager.dart';
 import 'package:ckbalance/views/dialog/password_bottom_sheet.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';

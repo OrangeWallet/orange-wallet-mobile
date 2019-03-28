@@ -1,19 +1,24 @@
 import 'dart:async';
-import 'package:convert/convert.dart';
+import 'dart:typed_data';
+
 import 'package:bip32/bip32.dart' as bip32;
 import 'package:bip39/bip39.dart' as bip39;
-import 'package:ckbalance/utils/wallet_store.dart';
+import 'package:convert/convert.dart';
+
 import 'package:ckbalance/utils/shared_preferences.dart';
+import 'package:ckbalance/utils/wallet/wallet_store.dart';
+import 'package:ckbalance/bean/mnemonic_bean.dart';
 import 'package:ckbalance/resources/shared_preferences_keys.dart';
+import 'package:ckbalance/utils/wallet/utils/isolate_mnemonic_to_seed.dart';
 
 class WalletManager {
   static WalletManager _manager;
-  bip32.BIP32 _node;
+  static bip32.BIP32 _node;
   final String _purpose = "44'";
   final String _coinType = "0'";
   static String _account = "0'";
   static int _external = 0;
-  String _mnemonic;
+  MnemonicBean _mnemonicBean;
 
   WalletManager._();
 
@@ -33,26 +38,32 @@ class WalletManager {
     } else {
       spUtil.putBool(SharedPreferencesKeys.backup, true);
     }
-    _mnemonic = mnemonic;
-    _node = bip32.BIP32.fromSeed(bip39.mnemonicToSeed(_mnemonic));
-    await WalletStore.getInstance().write(_mnemonic, password);
+    Uint8List seed = await MnemonicToSeedIsolate.loadData(mnemonic);
+    _mnemonicBean = MnemonicBean(mnemonic, hex.encode(seed));
+    _node = bip32.BIP32.fromSeed(seed);
+    await WalletStore.getInstance().write(_mnemonicBean, password);
     return;
   }
 
   Future fromStore(String password) async {
-    _mnemonic = await WalletStore.getInstance().read(password);
-    _node = bip32.BIP32.fromSeed(bip39.mnemonicToSeed(_mnemonic));
-    return;
+    _mnemonicBean = await WalletStore.getInstance().read(password);
+    _node = await Future(() {
+      bip32.BIP32.fromSeed(hex.decode(_mnemonicBean.seed));
+    });
   }
 
   String getMnemonic() {
-    return _mnemonic;
+    return _mnemonicBean.mnemonic;
   }
 
   // check the password right
   Future<bool> checkPwd(String password) async {
-    String mnemonic = await WalletStore.getInstance().read(password);
-    return bip39.validateMnemonic(mnemonic);
+    try {
+      _mnemonicBean = await WalletStore.getInstance().read(password);
+      return bip39.validateMnemonic(_mnemonicBean.mnemonic);
+    } catch (_) {
+      return false;
+    }
   }
 
   // check the wallet stored
@@ -68,12 +79,12 @@ class WalletManager {
     return hex.encode(_node.privateKey);
   }
 
-  setAccunt(String account) {
+  set account(String account) {
     _account = account;
   }
 
-  setExternal(int externalIndex) {
-    _external = externalIndex;
+  set external(int external) {
+    _external = external;
   }
 
   String getReceivePrivateKey(String addressIndex) {

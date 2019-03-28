@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:fluintl/fluintl.dart';
-import '../resources/strings.dart';
-import 'confirm_mnemonic.dart';
-import '../views/button/my_raised_button.dart';
+import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
+import 'package:ckbalance/resources/strings.dart';
+import 'package:ckbalance/views/button/my_raised_button.dart';
+import 'package:ckbalance/pages/confirm_mnemonic.dart';
+
 class BackupMnemonic extends StatelessWidget {
   final String _mnemonic;
 
@@ -39,11 +38,6 @@ class BackupMnemonic extends StatelessWidget {
                 _mnemonic,
                 style: TextStyle(fontSize: 18, wordSpacing: 8),
               ),
-            ),
-            SizedBox(height: 30),
-            QrImage(
-              data: _mnemonic,
-              size: 200,
             ),
             SizedBox(height: 30),
             MyRaisedButton(

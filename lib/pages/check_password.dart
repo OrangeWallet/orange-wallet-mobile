@@ -1,12 +1,12 @@
-import 'package:ckbalance/views/dialog/loading_overlay.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
-import 'package:ckbalance/resources/strings.dart';
-import 'package:ckbalance/views/password_field.dart';
-import 'package:ckbalance/pages/home_page/home.dart';
-import 'package:ckbalance/utils/wallet_manager.dart';
+
 import 'package:ckbalance/pages/create_import.dart';
+import 'package:ckbalance/pages/home_page/home.dart';
+import 'package:ckbalance/resources/strings.dart';
+import 'package:ckbalance/utils/wallet/wallet_manager.dart';
 import 'package:ckbalance/views/button/my_raised_button.dart';
+import 'package:ckbalance/views/password_field.dart';
 
 class CheckPasswordPage extends StatefulWidget {
   @override
@@ -38,9 +38,7 @@ class _State extends State<CheckPasswordPage> {
   _handlePwd() async {
     final FormFieldState<String> passwordField = _passwordFieldKey.currentState;
     if (await _validatePassword()) {
-      LoadingOverlay.show(context: context);
       await WalletManager.getInstance().fromStore(passwordField.value);
-      LoadingOverlay.dismiss();
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (BuildContext context) => HomePage()),
           (Route route) => route == null);

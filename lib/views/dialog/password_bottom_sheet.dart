@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ckbalance/views/password_field.dart';
 import 'package:ckbalance/resources/strings.dart';
 import 'package:fluintl/fluintl.dart';
-import 'package:ckbalance/utils/wallet_manager.dart';
+import 'package:ckbalance/utils/wallet/wallet_manager.dart';
 import 'package:ckbalance/views/button/my_raised_button.dart';
 
 class PasswordBottomSheet extends StatefulWidget {

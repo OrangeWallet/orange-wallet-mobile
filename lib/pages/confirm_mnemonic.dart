@@ -1,4 +1,3 @@
-import 'package:bip39/bip39.dart' as bip39;
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +5,7 @@ import '../pages/home_page/home.dart';
 import '../resources/shared_preferences_keys.dart';
 import '../resources/strings.dart';
 import '../utils/shared_preferences.dart';
-import '../utils/wallet_manager.dart';
+import 'package:ckbalance/utils/wallet/wallet_manager.dart';
 import '../views/mnemonic_field.dart';
 
 class ConfirmMnemonic extends StatefulWidget {
@@ -21,21 +20,26 @@ class _State extends State<ConfirmMnemonic> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(CustomLocalizations.of(context).getString(StringIds.confirmMnemonic)),
+          title: Text(CustomLocalizations.of(context)
+              .getString(StringIds.confirmMnemonic)),
         ),
         body: MnemonicField(
           handleMnemonic: (mnemonic) async {
             SpUtil spUtil = await SpUtil.getInstance();
             spUtil.putBool(SharedPreferencesKeys.backup, true);
-            Navigator.of(context).pop(null);
             Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (BuildContext context) => HomePage()),
+                MaterialPageRoute(
+                    builder: (BuildContext context) => HomePage()),
                 (Route route) => route == null);
           },
           validate: () {
-            if (bip39.mnemonicToSeedHex(_mnemonic) !=
-                WalletManager.getInstance().getMasterPrivateKey()) {
-              return 'It`s wrong.Please check mnemonic agian';
+            List<String> inputWordList = _mnemonic.split(' ');
+            List<String> myWordList =
+                WalletManager.getInstance().getMnemonic().split(' ');
+            for (int i = 0; i < inputWordList.length; i++) {
+              if (inputWordList[i] != myWordList[i]) {
+                return 'It`s wrong.Please check mnemonic agian';
+              }
             }
             return null;
           },

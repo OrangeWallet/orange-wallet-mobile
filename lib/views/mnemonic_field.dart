@@ -2,9 +2,8 @@ import 'package:bip39/bip39.dart' as bip39;
 import 'package:ckbalance/resources/strings.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
-import 'package:qrcode_reader/qrcode_reader.dart';
 
-import '../views/button/my_raised_button.dart';
+import 'package:ckbalance/views/button/my_raised_button.dart';
 
 class MnemonicField extends StatefulWidget {
   final ValueSetter<String> handleMnemonic;
@@ -28,22 +27,22 @@ class _State extends State<MnemonicField> {
       setState(() {
         errorMsg = validate;
       });
+    } else {
+      widget.handleMnemonic(_controller.text);
     }
-    widget.handleMnemonic(_controller.text);
   }
 
   _validate() {
     final value = _controller.text;
-    String result;
     if (value.isEmpty)
-      result = CustomLocalizations.of(context).getString(StringIds.errorEmptyInput);
+      return CustomLocalizations.of(context).getString(StringIds.errorEmptyInput);
     else if (!bip39.validateMnemonic(value))
-      result = CustomLocalizations.of(context).getString(StringIds.errorValidMnemonic);
+      return CustomLocalizations.of(context).getString(StringIds.errorValidMnemonic);
     else if (widget.validate != null) {
       String parentValidate = widget.validate();
-      if (parentValidate != null) result = parentValidate;
+      if (parentValidate != null) return parentValidate;
     }
-    return result;
+    return null;
   }
 
   @override
@@ -81,14 +80,6 @@ class _State extends State<MnemonicField> {
                 : widget.buttonText,
             onPressed: _handle,
           ),
-          FlatButton(
-            child: Text(CustomLocalizations.of(context).getString(StringIds.scanQRCodeButton),
-                style: Theme.of(context).textTheme.body1),
-            onPressed: () async {
-              String mnemonic = await QRCodeReader().scan();
-              _controller.text = mnemonic;
-            },
-          )
         ],
       ),
     );

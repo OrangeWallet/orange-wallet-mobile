@@ -1,5 +1,8 @@
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'dart:convert';
+
+import 'package:ckbalance/bean/mnemonic_bean.dart';
 import 'package:ckbalance/utils/wallet_crypto.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class WalletStore {
   static WalletStore _instance;
@@ -28,14 +31,18 @@ class WalletStore {
     return true;
   }
 
-  write(String mnemonic, String password) async {
-    String base64 = WalletCrypto.encryptMnemonic(mnemonic, password);
+  Future<void> write(MnemonicBean bean, String password) async {
+    String base64 = WalletCrypto.encryptMnemonic(jsonEncode(bean), password);
     await _storage.write(key: WalletKey, value: base64);
   }
 
-  read(String password) async {
-    String base64 = await _storage.read(key: WalletKey);
-    return WalletCrypto.decrptMnemonic(base64, password);
+  Future<MnemonicBean> read(String password) async {
+    try {
+      String beanStr = WalletCrypto.decrptMnemonic(await _storage.read(key: WalletKey), password);
+      return MnemonicBean.fromJson(jsonDecode(beanStr));
+    } catch (e) {
+      throw Error();
+    }
   }
 
   delete() {
