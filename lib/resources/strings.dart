@@ -118,7 +118,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.inputPwdTip: '请输入你的密码',
       StringIds.inputPwdFieldLabel: '密码*',
       StringIds.inputPwdFieldHelper: '最少八位密码',
-      StringIds.inputPwdReTip: '请在此输入密码',
+      StringIds.inputPwdReTip: '请再次输入密码',
       StringIds.inputPwdReAttention: '请确保记住你的密码，如果你忘记了，将无法使用钱包',
       StringIds.nextButton: '下一步',
       StringIds.forgetPwd: '忘记密码',

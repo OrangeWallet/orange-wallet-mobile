@@ -18,7 +18,6 @@ dependencies:
   shared_preferences: ^0.5.1+2
   encrypt: ^2.0.0
   bip32: ^1.0.5
-  qrcode_reader: ^0.4.4
   ckb_sdk:
     git:
       url: https://github.com/CKBalance/ckb-sdk-dart.git
