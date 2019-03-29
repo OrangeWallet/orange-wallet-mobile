@@ -24,7 +24,7 @@ class NetTypeWidget extends StatelessWidget {
             child: Text(
               _getNetTypeText(context),
               style:
-                  TextStyle(fontSize: 12, color: Theme.of(context).accentColor),
+                  TextStyle(fontSize: 12, color: Theme.of(context).primaryColor),
             ),
           ),
           onTap: () {

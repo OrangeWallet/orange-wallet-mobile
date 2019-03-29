@@ -13,11 +13,12 @@ class WalletCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
     return Container(
         decoration: BoxDecoration(
-          gradient: const LinearGradient(colors: [
-            Colors.orange,
-            Colors.orangeAccent,
+          gradient: LinearGradient(colors: [
+            theme.primaryColor,
+            theme.primaryColorLight,
           ], begin: Alignment.topLeft),
           borderRadius: BorderRadius.all(
             Radius.circular(8.0),

@@ -14,7 +14,7 @@ class MyRaisedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return RaisedButton(
       padding: padding == null ? const EdgeInsets.fromLTRB(60, 5, 60, 5) : padding,
-      color: color != null ? color : Theme.of(context).accentColor,
+      color: color != null ? color : Theme.of(context).primaryColor,
       child: Text(
         text,
         style: Theme.of(context).textTheme.button,

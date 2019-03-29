@@ -41,7 +41,7 @@ class _State extends State<HomePage> {
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.more_horiz),
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).primaryColor,
               onPressed: () {},
             )
           ],

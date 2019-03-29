@@ -52,7 +52,6 @@ class _State extends State<PasswordBottomSheet> {
             alignment: Alignment.bottomCenter,
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   border: Border.all(color: Theme.of(context).accentColor, width: 1)),
               child: Wrap(

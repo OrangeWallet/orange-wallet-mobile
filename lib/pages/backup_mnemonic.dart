@@ -41,7 +41,6 @@ class BackupMnemonic extends StatelessWidget {
             Container(
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
               decoration: BoxDecoration(
-                  color: Colors.grey[200],
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   border: Border.all(color: Theme.of(context).accentColor, width: 1)),
               child: Row(
@@ -76,7 +75,7 @@ class BackupMnemonic extends StatelessWidget {
           itemCount: words.length,
           itemBuilder: (context, index) {
             return Container(
-              padding: const EdgeInsets.only(bottom: 10),
+              padding: const EdgeInsets.only(left: 10, bottom: 10),
               child: Text(
                 start + index > 9
                     ? '${start + index}  ' + words[index]
