@@ -1,7 +1,10 @@
+import 'package:ckbalance/utils/redux/store.dart';
 import 'package:flutter/material.dart';
 import 'package:ckbalance/utils/shared_preferences.dart';
 import 'package:ckbalance/resources/shared_preferences_keys.dart';
 import 'package:ckbalance/pages/home_page/wallet_card/wallet_card.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:ckbalance/utils/redux/reducer/primary_swatch_reducer.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -42,7 +45,10 @@ class _State extends State<HomePage> {
             IconButton(
               icon: Icon(Icons.more_horiz),
               color: Theme.of(context).primaryColor,
-              onPressed: () {},
+              onPressed: () {
+                StoreProvider.of<AppState>(context)
+                    .dispatch(PrimarySwatchAction(PrimarySwatchState(color: Colors.deepOrange)));
+              },
             )
           ],
         ),
