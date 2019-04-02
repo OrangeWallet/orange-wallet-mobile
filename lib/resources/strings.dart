@@ -32,6 +32,8 @@ class StringIds {
   static String backedUpTitle = 'backedUpTitle';
   static String confirmMnemonic = 'confirmMnemonic';
   static String confirMnemonicTip = 'confirMnemonicTip';
+  static String settingTitle = 'settingTitle';
+  static String settingTheme = 'settingTheme';
 
   static String ok = 'OK';
   static String cancel = 'Cancel';
@@ -85,6 +87,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.backedUpTitle: 'Write these down',
       StringIds.confirmMnemonic: 'Confirm Mnemonic',
       StringIds.confirMnemonicTip: 'Enter your mnemonic',
+      StringIds.settingTitle: 'Settings',
+      StringIds.settingTheme: 'Theme',
       StringIds.ok: 'OK',
       StringIds.cancel: 'Cancel',
       StringIds.mainNetTip: 'The main network is not up yet!',
@@ -132,6 +136,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.backedUpTitle: '请抄写在纸上',
       StringIds.confirmMnemonic: '确认助记词',
       StringIds.confirMnemonicTip: '输入你的助记词',
+      StringIds.settingTitle: '设置',
+      StringIds.settingTheme: '主题',
       StringIds.ok: '确定',
       StringIds.cancel: '取消',
       StringIds.mainNetTip: '主网还未上线!',

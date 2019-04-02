@@ -21,7 +21,7 @@ dependencies:
   flutter_redux: ^0.5.3
   ckb_sdk:
     git:
-      url: https://github.com/CKBalance/ckb-sdk-dart.git
+      url: https://github.com/BaojunCZ/ckb-sdk-dart.git
 
 dev_dependencies:
   flutter_test:

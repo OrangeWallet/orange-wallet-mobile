@@ -50,50 +50,39 @@ class _State extends State<PasswordBottomSheet> {
       children: <Widget>[
         Container(
             alignment: Alignment.bottomCenter,
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  border: Border.all(color: Theme.of(context).accentColor, width: 1)),
-              child: Wrap(
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                        child: Text(
-                          CustomLocalizations.of(context).getString(StringIds.inputPwdTitle),
-                          style: TextStyle(
-                              color: Theme.of(context).accentColor,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(30, 20, 30, 10),
-                        child: PasswordField(
-                          fieldKey: _passwordFieldKey,
-                          labelText: CustomLocalizations.of(context)
-                              .getString(StringIds.inputPwdFieldLabel),
-                          helperText: CustomLocalizations.of(context)
-                              .getString(StringIds.inputPwdFieldHelper),
-                          errorText: errorMsg,
-                          autofocus: true,
-                          onFieldSubmitted: (value) {
-                            _handlePwd();
-                          },
-                        ),
-                      ),
-                      MyRaisedButton(
-                        text: CustomLocalizations.of(context).getString(StringIds.ok),
-                        onPressed: _handlePwd,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      )
-                    ],
-                  )
-                ],
-              ),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                border: Border.all(color: Theme.of(context).accentColor, width: 1)),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  child: Text(CustomLocalizations.of(context).getString(StringIds.inputPwdTitle),
+                      style: Theme.of(context).textTheme.display1),
+                ),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(30, 20, 30, 10),
+                  child: PasswordField(
+                    fieldKey: _passwordFieldKey,
+                    labelText:
+                        CustomLocalizations.of(context).getString(StringIds.inputPwdFieldLabel),
+                    helperText:
+                        CustomLocalizations.of(context).getString(StringIds.inputPwdFieldHelper),
+                    errorText: errorMsg,
+                    autofocus: true,
+                    onFieldSubmitted: (value) {
+                      _handlePwd();
+                    },
+                  ),
+                ),
+                MyRaisedButton(
+                  text: CustomLocalizations.of(context).getString(StringIds.ok),
+                  onPressed: _handlePwd,
+                ),
+                SizedBox(
+                  height: 10,
+                )
+              ],
             ))
       ],
     );
