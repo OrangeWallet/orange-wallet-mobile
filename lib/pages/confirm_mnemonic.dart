@@ -26,7 +26,7 @@ class _State extends State<ConfirmMnemonic> {
         body: MnemonicField(
           handleMnemonic: (mnemonic) async {
             SpUtil spUtil = await SpUtil.getInstance();
-            spUtil.putBool(SharedPreferencesKeys.backup, true);
+            spUtil.putBool(SpKeys.backup, true);
             Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(
                     builder: (BuildContext context) => HomePage()),

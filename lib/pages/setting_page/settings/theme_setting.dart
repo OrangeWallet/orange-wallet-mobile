@@ -29,7 +29,7 @@ class ThemeSetting extends StatelessWidget {
                 StoreProvider.of<AppState>(context).dispatch(
                     PrimarySwatchAction(PrimarySwatchState(color: Colors.primaries[index])));
                 SpUtil spUtil = await SpUtil.getInstance();
-                await spUtil.putInt(SharedPreferencesKeys.themeColor, index);
+                await spUtil.putInt(SpKeys.themeColor, index);
                 Navigator.of(context).pop(null);
               },
             );

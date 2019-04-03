@@ -23,8 +23,8 @@ class _State extends State<HomePage> {
   _getData() async {
     spUtil = await SpUtil.getInstance();
     setState(() {
-      _netType = spUtil.getInt(SharedPreferencesKeys.netType, 1);
-      _backup = spUtil.getBool(SharedPreferencesKeys.backup, false);
+      _netType = spUtil.getInt(SpKeys.netType, 1);
+      _backup = spUtil.getBool(SpKeys.backup, false);
     });
   }
 

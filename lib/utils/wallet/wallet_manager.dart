@@ -34,9 +34,9 @@ class WalletManager {
     SpUtil spUtil = await SpUtil.getInstance();
     if (mnemonic == '') {
       mnemonic = bip39.generateMnemonic();
-      spUtil.putBool(SharedPreferencesKeys.backup, false);
+      spUtil.putBool(SpKeys.backup, false);
     } else {
-      spUtil.putBool(SharedPreferencesKeys.backup, true);
+      spUtil.putBool(SpKeys.backup, true);
     }
     Uint8List seed = await MnemonicToSeedIsolate.loadData(mnemonic);
     _mnemonicBean = MnemonicBean(mnemonic, hex.encode(seed));
