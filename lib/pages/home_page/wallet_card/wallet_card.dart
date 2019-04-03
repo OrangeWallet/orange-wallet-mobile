@@ -1,6 +1,6 @@
-import 'package:ckbalance/pages/home_page/wallet_card/backup.dart';
-import 'package:ckbalance/pages/home_page/wallet_card/balance.dart';
-import 'package:ckbalance/pages/home_page/wallet_card/net_type_button.dart';
+import 'package:OrangeWallet/pages/home_page/wallet_card/backup.dart';
+import 'package:OrangeWallet/pages/home_page/wallet_card/balance.dart';
+import 'package:OrangeWallet/pages/home_page/wallet_card/net_type_button.dart';
 import 'package:flutter/material.dart';
 
 class WalletCardWidget extends StatelessWidget {

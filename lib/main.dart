@@ -1,8 +1,8 @@
-import 'package:ckbalance/pages/splash.dart';
-import 'package:ckbalance/resources/strings.dart';
-import 'package:ckbalance/utils/provide/backup_notifier.dart';
-import 'package:ckbalance/utils/provide/net_type_notifier.dart';
-import 'package:ckbalance/utils/provide/theme_color_notifier.dart';
+import 'package:OrangeWallet/pages/splash.dart';
+import 'package:OrangeWallet/resources/strings.dart';
+import 'package:OrangeWallet/utils/provide/backup_notifier.dart';
+import 'package:OrangeWallet/utils/provide/net_type_notifier.dart';
+import 'package:OrangeWallet/utils/provide/theme_color_notifier.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

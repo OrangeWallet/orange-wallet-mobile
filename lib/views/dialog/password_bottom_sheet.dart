@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ckbalance/views/password_field.dart';
-import 'package:ckbalance/resources/strings.dart';
+import 'package:OrangeWallet/views/password_field.dart';
+import 'package:OrangeWallet/resources/strings.dart';
 import 'package:fluintl/fluintl.dart';
-import 'package:ckbalance/utils/wallet/wallet_manager.dart';
-import 'package:ckbalance/views/button/my_raised_button.dart';
+import 'package:OrangeWallet/utils/wallet/wallet_manager.dart';
+import 'package:OrangeWallet/views/button/my_raised_button.dart';
 
 class PasswordBottomSheet extends StatefulWidget {
   final ValueChanged<String> okClick;

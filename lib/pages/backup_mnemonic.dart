@@ -1,9 +1,9 @@
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 
-import 'package:ckbalance/resources/strings.dart';
-import 'package:ckbalance/views/button/my_raised_button.dart';
-import 'package:ckbalance/pages/confirm_mnemonic.dart';
+import 'package:OrangeWallet/resources/strings.dart';
+import 'package:OrangeWallet/views/button/my_raised_button.dart';
+import 'package:OrangeWallet/pages/confirm_mnemonic.dart';
 
 class BackupMnemonic extends StatelessWidget {
   final String _mnemonic;

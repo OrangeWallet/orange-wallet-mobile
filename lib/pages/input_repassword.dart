@@ -1,8 +1,8 @@
-import 'package:ckbalance/pages/home_page/home.dart';
-import 'package:ckbalance/resources/strings.dart';
-import 'package:ckbalance/utils/wallet/wallet_manager.dart';
-import 'package:ckbalance/views/loading.dart';
-import 'package:ckbalance/views/password_field.dart';
+import 'package:OrangeWallet/pages/home_page/home.dart';
+import 'package:OrangeWallet/resources/strings.dart';
+import 'package:OrangeWallet/utils/wallet/wallet_manager.dart';
+import 'package:OrangeWallet/views/loading.dart';
+import 'package:OrangeWallet/views/password_field.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 

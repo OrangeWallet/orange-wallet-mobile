@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:ckbalance/bean/mnemonic_bean.dart';
-import 'package:ckbalance/utils/wallet_crypto.dart';
+import 'package:OrangeWallet/bean/mnemonic_bean.dart';
+import 'package:OrangeWallet/utils/wallet_crypto.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class WalletStore {

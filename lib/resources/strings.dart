@@ -1,5 +1,5 @@
 class StringIds {
-  static String appName = 'CKBalance';
+  static String appName = 'Orange Wallet';
   static String createNewWalletButton = 'createNewWalletButton';
   static String importWalletButton = 'importWalletButton';
   static String importWalletTitle = 'importWalletTitle';
@@ -52,7 +52,7 @@ class StringIds {
 Map<String, Map<String, Map<String, String>>> localizedValues = {
   'en': {
     'US': {
-      StringIds.appName: 'CKBalance',
+      StringIds.appName: 'Orange Wallet',
       StringIds.createNewWalletButton: 'ENJOY NOW',
       StringIds.importWalletButton: 'RESTORE WALLET',
       StringIds.importWalletTitle: 'Import',

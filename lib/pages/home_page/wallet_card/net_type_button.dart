@@ -1,7 +1,7 @@
-import 'package:ckbalance/utils/provide/net_type_notifier.dart';
+import 'package:OrangeWallet/utils/provide/net_type_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:fluintl/fluintl.dart';
-import 'package:ckbalance/resources/strings.dart';
+import 'package:OrangeWallet/resources/strings.dart';
 import 'package:provide/provide.dart';
 
 class NetTypeWidget extends StatelessWidget {

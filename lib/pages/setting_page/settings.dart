@@ -1,8 +1,8 @@
-import 'package:ckbalance/pages/setting_page/settings/theme_setting.dart';
-import 'package:ckbalance/views/button/setting_button.dart';
+import 'package:OrangeWallet/pages/setting_page/settings/theme_setting.dart';
+import 'package:OrangeWallet/views/button/setting_button.dart';
 import 'package:flutter/material.dart';
 import 'package:fluintl/fluintl.dart';
-import 'package:ckbalance/resources/strings.dart';
+import 'package:OrangeWallet/resources/strings.dart';
 
 class Settings extends StatelessWidget {
   @override

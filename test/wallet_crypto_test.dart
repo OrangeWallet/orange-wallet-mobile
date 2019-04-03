@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ckbalance/utils/wallet_crypto.dart';
+import 'package:OrangeWallet/utils/wallet_crypto.dart';
 
 void main() {
   test('test crypto mnemonic', () {

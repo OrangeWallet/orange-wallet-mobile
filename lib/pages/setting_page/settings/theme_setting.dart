@@ -1,6 +1,6 @@
-import 'package:ckbalance/resources/shared_preferences_keys.dart';
-import 'package:ckbalance/utils/provide/theme_color_notifier.dart';
-import 'package:ckbalance/utils/shared_preferences.dart';
+import 'package:OrangeWallet/resources/shared_preferences_keys.dart';
+import 'package:OrangeWallet/utils/provide/theme_color_notifier.dart';
+import 'package:OrangeWallet/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:provide/provide.dart';
 

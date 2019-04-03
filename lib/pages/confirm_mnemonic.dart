@@ -1,5 +1,5 @@
-import 'package:ckbalance/utils/provide/backup_notifier.dart';
-import 'package:ckbalance/utils/wallet/wallet_manager.dart';
+import 'package:OrangeWallet/utils/provide/backup_notifier.dart';
+import 'package:OrangeWallet/utils/wallet/wallet_manager.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:provide/provide.dart';

@@ -5,11 +5,11 @@ import 'package:bip32/bip32.dart' as bip32;
 import 'package:bip39/bip39.dart' as bip39;
 import 'package:convert/convert.dart';
 
-import 'package:ckbalance/utils/shared_preferences.dart';
-import 'package:ckbalance/utils/wallet/wallet_store.dart';
-import 'package:ckbalance/bean/mnemonic_bean.dart';
-import 'package:ckbalance/resources/shared_preferences_keys.dart';
-import 'package:ckbalance/utils/wallet/utils/isolate_mnemonic_to_seed.dart';
+import 'package:OrangeWallet/utils/shared_preferences.dart';
+import 'package:OrangeWallet/utils/wallet/wallet_store.dart';
+import 'package:OrangeWallet/bean/mnemonic_bean.dart';
+import 'package:OrangeWallet/resources/shared_preferences_keys.dart';
+import 'package:OrangeWallet/utils/wallet/utils/isolate_mnemonic_to_seed.dart';
 
 class WalletManager {
   static WalletManager _manager;

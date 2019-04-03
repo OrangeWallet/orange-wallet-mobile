@@ -1,13 +1,13 @@
-import 'package:ckbalance/utils/provide/backup_notifier.dart';
+import 'package:OrangeWallet/utils/provide/backup_notifier.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 
-import 'package:ckbalance/pages/create_import.dart';
-import 'package:ckbalance/pages/home_page/home.dart';
-import 'package:ckbalance/resources/strings.dart';
-import 'package:ckbalance/utils/wallet/wallet_manager.dart';
-import 'package:ckbalance/views/button/my_raised_button.dart';
-import 'package:ckbalance/views/password_field.dart';
+import 'package:OrangeWallet/pages/create_import.dart';
+import 'package:OrangeWallet/pages/home_page/home.dart';
+import 'package:OrangeWallet/resources/strings.dart';
+import 'package:OrangeWallet/utils/wallet/wallet_manager.dart';
+import 'package:OrangeWallet/views/button/my_raised_button.dart';
+import 'package:OrangeWallet/views/password_field.dart';
 import 'package:provide/provide.dart';
 
 class CheckPasswordPage extends StatefulWidget {

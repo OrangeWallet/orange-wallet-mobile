@@ -1,9 +1,9 @@
 import 'package:bip39/bip39.dart' as bip39;
-import 'package:ckbalance/resources/strings.dart';
+import 'package:OrangeWallet/resources/strings.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 
-import 'package:ckbalance/views/button/my_raised_button.dart';
+import 'package:OrangeWallet/views/button/my_raised_button.dart';
 
 class MnemonicField extends StatefulWidget {
   final ValueSetter<String> handleMnemonic;

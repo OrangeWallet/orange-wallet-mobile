@@ -1,6 +1,8 @@
-import 'package:ckbalance/pages/home_page/wallet_card/wallet_card.dart';
-import 'package:ckbalance/pages/setting_page/settings.dart';
+import 'package:OrangeWallet/pages/home_page/wallet_card/wallet_card.dart';
+import 'package:OrangeWallet/pages/setting_page/settings.dart';
 import 'package:flutter/material.dart';
+import 'package:fluintl/fluintl.dart';
+import 'package:OrangeWallet/resources/strings.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -10,7 +12,7 @@ class HomePage extends StatelessWidget {
           elevation: 0,
           backgroundColor: Colors.transparent,
           title: Text(
-            'CKBalance',
+            CustomLocalizations.of(context).getString(StringIds.appName),
             style: Theme.of(context).textTheme.title,
           ),
           centerTitle: true,

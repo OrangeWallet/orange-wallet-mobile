@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ckbalance/resources/strings.dart';
+import 'package:OrangeWallet/resources/strings.dart';
 import 'package:fluintl/fluintl.dart';
-import 'package:ckbalance/pages/input_password.dart';
+import 'package:OrangeWallet/pages/input_password.dart';
 import '../views/mnemonic_field.dart';
 
 class ImportWalletPage extends StatelessWidget {

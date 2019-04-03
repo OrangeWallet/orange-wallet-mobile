@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:ckbalance/resources/strings.dart';
+import 'package:OrangeWallet/resources/strings.dart';
 import 'package:fluintl/fluintl.dart';
-import 'package:ckbalance/pages/import_wallet.dart';
-import 'package:ckbalance/views/page_indicator.dart';
-import 'package:ckbalance/pages/input_password.dart';
-import 'package:ckbalance/views/button/my_raised_button.dart';
+import 'package:OrangeWallet/pages/import_wallet.dart';
+import 'package:OrangeWallet/views/page_indicator.dart';
+import 'package:OrangeWallet/pages/input_password.dart';
+import 'package:OrangeWallet/views/button/my_raised_button.dart';
 
 class CreateImportPage extends StatefulWidget {
   @override
