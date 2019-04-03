@@ -3,12 +3,11 @@ import 'dart:async';
 import 'package:ckbalance/pages/check_password.dart';
 import 'package:ckbalance/pages/create_import.dart';
 import 'package:ckbalance/resources/shared_preferences_keys.dart';
-import 'package:ckbalance/utils/redux/reducer/primary_swatch_reducer.dart';
-import 'package:ckbalance/utils/redux/store.dart';
+import 'package:ckbalance/utils/provide/theme_color_notifier.dart';
 import 'package:ckbalance/utils/shared_preferences.dart';
 import 'package:ckbalance/utils/wallet/wallet_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
+import 'package:provide/provide.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -38,8 +37,8 @@ class _SplashState extends State<SplashPage> {
   void handleSpData() async {
     SpUtil spUtil = await SpUtil.getInstance();
     int themeColor = spUtil.getInt(SpKeys.themeColor, 5);
-    StoreProvider.of<AppState>(context)
-        .dispatch(PrimarySwatchAction(PrimarySwatchState(color: Colors.primaries[themeColor])));
+    final currentThemeColor = Provide.value<ThemeColorProvider>(context);
+    currentThemeColor.themColor = Colors.primaries[themeColor];
   }
 
   @override

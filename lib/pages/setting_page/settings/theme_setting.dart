@@ -1,9 +1,8 @@
 import 'package:ckbalance/resources/shared_preferences_keys.dart';
-import 'package:ckbalance/utils/redux/reducer/primary_swatch_reducer.dart';
-import 'package:ckbalance/utils/redux/store.dart';
+import 'package:ckbalance/utils/provide/theme_color_notifier.dart';
 import 'package:ckbalance/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
+import 'package:provide/provide.dart';
 
 class ThemeSetting extends StatelessWidget {
   @override
@@ -26,10 +25,10 @@ class ThemeSetting extends StatelessWidget {
                 height: 30,
               ),
               onTap: () async {
-                StoreProvider.of<AppState>(context).dispatch(
-                    PrimarySwatchAction(PrimarySwatchState(color: Colors.primaries[index])));
                 SpUtil spUtil = await SpUtil.getInstance();
                 await spUtil.putInt(SpKeys.themeColor, index);
+                final currentThemeColor = Provide.value<ThemeColorProvider>(context);
+                currentThemeColor.themColor = Colors.primaries[index];
                 Navigator.of(context).pop(null);
               },
             );
