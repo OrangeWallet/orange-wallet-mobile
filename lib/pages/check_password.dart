@@ -1,3 +1,4 @@
+import 'package:ckbalance/utils/provide/backup_notifier.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,7 @@ import 'package:ckbalance/resources/strings.dart';
 import 'package:ckbalance/utils/wallet/wallet_manager.dart';
 import 'package:ckbalance/views/button/my_raised_button.dart';
 import 'package:ckbalance/views/password_field.dart';
+import 'package:provide/provide.dart';
 
 class CheckPasswordPage extends StatefulWidget {
   @override
@@ -130,8 +132,9 @@ class _State extends State<CheckPasswordPage> {
               ),
               FlatButton(
                 child: Text(CustomLocalizations.of(context).getString(StringIds.deleteWallet)),
-                onPressed: () {
+                onPressed: () async {
                   WalletManager.getInstance().deleteStore();
+                  await Provide.value<BackupProvider>(context).change(true);
                   Navigator.of(context).pop();
                   Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(builder: (BuildContext context) => CreateImportPage()),

@@ -1,12 +1,10 @@
+import 'package:ckbalance/utils/provide/net_type_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:ckbalance/resources/strings.dart';
+import 'package:provide/provide.dart';
 
 class NetTypeWidget extends StatelessWidget {
-  final int netType;
-
-  NetTypeWidget(this.netType);
-  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,31 +19,37 @@ class NetTypeWidget extends StatelessWidget {
                   Radius.circular(15.0),
                 )),
             padding: const EdgeInsets.fromLTRB(7, 2, 7, 2),
-            child: Text(
-              _getNetTypeText(context),
-              style:
-                  TextStyle(fontSize: 12, color: Theme.of(context).primaryColor),
-            ),
+            child: buildNetType(context),
           ),
           onTap: () {
-            showDialog(
-                context: context, builder: (_) => _netTypeDialog(context));
+            showDialog(context: context, builder: (_) => _netTypeDialog(context));
           },
         ));
   }
 
-  _getNetTypeText(BuildContext context) {
-    if (netType == 0) {
-      return CustomLocalizations.of(context).getString(StringIds.mainNet);
-    }
-    return CustomLocalizations.of(context).getString(StringIds.testNet);
+  Widget buildNetType(BuildContext context) {
+    final currentNetType = Provide.value<NetTypeProvider>(context);
+    return StreamBuilder<NetTypeProvider>(
+      initialData: currentNetType,
+      stream: Provide.stream<NetTypeProvider>(context),
+      builder: (context, netType) {
+        String typeStr;
+        if (netType.data.type == 0) {
+          typeStr = CustomLocalizations.of(context).getString(StringIds.mainNet);
+        }
+        typeStr = CustomLocalizations.of(context).getString(StringIds.testNet);
+        return Text(
+          typeStr,
+          style: TextStyle(fontSize: 12, color: Theme.of(context).primaryColor),
+        );
+      },
+    );
   }
 
   _netTypeDialog(BuildContext context) {
     return AlertDialog(
       title: Text(CustomLocalizations.of(context).getString(StringIds.alert)),
-      content:
-          Text(CustomLocalizations.of(context).getString(StringIds.mainNetTip)),
+      content: Text(CustomLocalizations.of(context).getString(StringIds.mainNetTip)),
       actions: <Widget>[
         FlatButton(
           child: Text(CustomLocalizations.of(context).getString(StringIds.ok)),

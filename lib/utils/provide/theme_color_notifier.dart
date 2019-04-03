@@ -9,7 +9,7 @@ class ThemeColorProvider with ChangeNotifier {
 
   Color get color => _color;
 
-  set themColor(Color color) {
+  set color(Color color) {
     _color = color;
     notifyListeners();
   }

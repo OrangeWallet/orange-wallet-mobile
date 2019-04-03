@@ -47,7 +47,7 @@ class BackupMnemonic extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   wordColumn(wordsLeft, 1),
-                  SizedBox(width: 15),
+                  SizedBox(width: 18),
                   wordColumn(wordsRight, wordsLeft.length + 1),
                 ],
               ),
@@ -70,7 +70,7 @@ class BackupMnemonic extends StatelessWidget {
   Widget wordColumn(List<String> words, int start) {
     return Container(
       height: 200,
-      width: 120,
+      width: 130,
       child: ListView.builder(
           itemCount: words.length,
           itemBuilder: (context, index) {
@@ -78,8 +78,8 @@ class BackupMnemonic extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10, bottom: 10),
               child: Text(
                 start + index > 9
-                    ? '${start + index}  ' + words[index]
-                    : '${start + index}    ' + words[index],
+                    ? '${start + index} ' + words[index]
+                    : '${start + index}   ' + words[index],
                 style: TextStyle(fontSize: 20),
               ),
             );

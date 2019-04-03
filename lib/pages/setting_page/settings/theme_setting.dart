@@ -28,7 +28,7 @@ class ThemeSetting extends StatelessWidget {
                 SpUtil spUtil = await SpUtil.getInstance();
                 await spUtil.putInt(SpKeys.themeColor, index);
                 final currentThemeColor = Provide.value<ThemeColorProvider>(context);
-                currentThemeColor.themColor = Colors.primaries[index];
+                currentThemeColor.color = Colors.primaries[index];
                 Navigator.of(context).pop(null);
               },
             );

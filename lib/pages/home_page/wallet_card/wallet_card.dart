@@ -1,19 +1,16 @@
+import 'package:ckbalance/pages/home_page/wallet_card/backup.dart';
+import 'package:ckbalance/pages/home_page/wallet_card/balance.dart';
+import 'package:ckbalance/pages/home_page/wallet_card/net_type_button.dart';
 import 'package:flutter/material.dart';
 
-import 'backup.dart';
-import 'balance.dart';
-import 'net_type_button.dart';
-
 class WalletCardWidget extends StatelessWidget {
-  final int netType;
-  final bool backup;
   final String balance;
 
-  WalletCardWidget(this.netType, this.backup, this.balance);
+  WalletCardWidget(this.balance);
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
+    final ThemeData theme = Theme.of(context);
     return Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(colors: [
@@ -32,13 +29,13 @@ class WalletCardWidget extends StatelessWidget {
                 SizedBox(height: 10),
                 BalanceWidget(balance),
                 SizedBox(height: 13),
-                BackupWidget(backup),
+                BackupWidget(),
                 SizedBox(height: 7)
               ],
             ),
             Column(
               children: <Widget>[
-                NetTypeWidget(netType),
+                NetTypeWidget(),
                 Container(
                   padding: EdgeInsets.fromLTRB(0, 20, 20, 0),
                   alignment: Alignment.centerRight,
