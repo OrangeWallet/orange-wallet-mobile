@@ -14,6 +14,10 @@ class StringIds {
   static String importWalletInputHelper = 'importWalletInputHelper';
   static String scanQRCodeButton = 'scanQRCodeButton';
 
+  static String importAnimFirst = 'importAnimFirst';
+  static String importAnimSecond = 'importAnimSecond';
+  static String importAnimThird = 'importAnimThird';
+
   static String inputPwdTitle = 'inputPwdTitle';
   static String inputPwdTip = 'inputPwdTip';
   static String inputPwdFieldLabel = 'inputPwdFieldLabel';
@@ -37,6 +41,7 @@ class StringIds {
 
   static String ok = 'OK';
   static String cancel = 'Cancel';
+  static String start = 'Start';
 
   static String mainNetTip = 'MainNetTip';
   static String mainNet = 'MainNet';
@@ -65,6 +70,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.bannerOpenSourceDetail: 'Code in Github,Welcome contribution code',
       StringIds.importWalletInputHint: 'Words separated by spaces',
       StringIds.importWalletInputHelper: 'Enter your mnemonic',
+      StringIds.importAnimFirst: 'Generate Seed',
+      StringIds.importAnimSecond: 'Generate Node',
+      StringIds.importAnimThird: 'Save Wallet',
       StringIds.scanQRCodeButton: 'Scan QR Code',
       StringIds.inputPwdTitle: 'Password',
       StringIds.inputPwdTip: 'Enter your password',
@@ -91,6 +99,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.settingTheme: 'Theme',
       StringIds.ok: 'OK',
       StringIds.cancel: 'Cancel',
+      StringIds.start: 'Start',
       StringIds.mainNetTip: 'The main network is not up yet!',
       StringIds.mainNet: 'MainNet',
       StringIds.testNet: 'Test Net',
@@ -115,6 +124,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.bannerOpenSourceDetail: '代码在Github，欢迎贡献',
       StringIds.importWalletInputHint: '空格隔开',
       StringIds.importWalletInputHelper: '输入你的助记词',
+      StringIds.importAnimFirst: '生成种子',
+      StringIds.importAnimSecond: '生成列表',
+      StringIds.importAnimThird: '保存钱包',
       StringIds.scanQRCodeButton: '二维码',
       StringIds.errorEmptyInput: '输入项不能为空',
       StringIds.errorValidMnemonic: '助记词不合法',
@@ -140,6 +152,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.settingTheme: '主题',
       StringIds.ok: '确定',
       StringIds.cancel: '取消',
+      StringIds.start: '开始',
       StringIds.mainNetTip: '主网还未上线!',
       StringIds.mainNet: 'MainNet',
       StringIds.testNet: 'Test Net',

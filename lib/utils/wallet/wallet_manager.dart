@@ -1,15 +1,17 @@
 import 'dart:async';
 import 'dart:typed_data';
 
+import 'package:OrangeWallet/bean/mnemonic_bean.dart';
+import 'package:OrangeWallet/resources/shared_preferences_keys.dart';
+import 'package:OrangeWallet/utils/provide/import_animation_notifier.dart';
+import 'package:OrangeWallet/utils/shared_preferences.dart';
+import 'package:OrangeWallet/utils/wallet/utils/isolate_mnemonic_to_seed.dart';
+import 'package:OrangeWallet/utils/wallet/wallet_store.dart';
 import 'package:bip32/bip32.dart' as bip32;
 import 'package:bip39/bip39.dart' as bip39;
 import 'package:convert/convert.dart';
-
-import 'package:OrangeWallet/utils/shared_preferences.dart';
-import 'package:OrangeWallet/utils/wallet/wallet_store.dart';
-import 'package:OrangeWallet/bean/mnemonic_bean.dart';
-import 'package:OrangeWallet/resources/shared_preferences_keys.dart';
-import 'package:OrangeWallet/utils/wallet/utils/isolate_mnemonic_to_seed.dart';
+import 'package:flutter/material.dart';
+import 'package:provide/provide.dart';
 
 class WalletManager {
   static WalletManager _manager;
@@ -30,7 +32,8 @@ class WalletManager {
   }
 
   // if mnemonic is empty,creating a new wallet.otherwise import from mnemonic
-  Future importWallet(String mnemonic, String password) async {
+  Future importWallet(BuildContext context, String mnemonic, String password) async {
+    final currentLoading = Provide.value<ImportAnimationProvide>(context);
     SpUtil spUtil = await SpUtil.getInstance();
     if (mnemonic == '') {
       mnemonic = bip39.generateMnemonic();
@@ -39,9 +42,12 @@ class WalletManager {
       spUtil.putBool(SpKeys.backup, true);
     }
     Uint8List seed = await MnemonicToSeedIsolate.loadData(mnemonic);
+    currentLoading.currentLoading = 1;
     _mnemonicBean = MnemonicBean(mnemonic, hex.encode(seed));
     _node = bip32.BIP32.fromSeed(seed);
+    currentLoading.currentLoading = 2;
     await WalletStore.getInstance().write(_mnemonicBean, password);
+    currentLoading.currentLoading = 3;
     return;
   }
 

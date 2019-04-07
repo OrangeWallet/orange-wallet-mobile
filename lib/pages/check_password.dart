@@ -134,7 +134,7 @@ class _State extends State<CheckPasswordPage> {
                 child: Text(CustomLocalizations.of(context).getString(StringIds.deleteWallet)),
                 onPressed: () async {
                   WalletManager.getInstance().deleteStore();
-                  await Provide.value<BackupProvider>(context).change(true);
+                  await Provide.value<BackupProvider>(context).change(false);
                   Navigator.of(context).pop();
                   Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(builder: (BuildContext context) => CreateImportPage()),
