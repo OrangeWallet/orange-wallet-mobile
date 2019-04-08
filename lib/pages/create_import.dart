@@ -19,11 +19,11 @@ class _State extends State<CreateImportPage> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-            gradient: const LinearGradient(colors: [
-          Colors.blueAccent,
-          Colors.blue,
-          Colors.lightBlue,
-        ], begin: Alignment.topCenter)),
+            gradient: LinearGradient(colors: [
+          Theme.of(context).primaryColorDark,
+          Theme.of(context).primaryColor,
+          Theme.of(context).primaryColorLight,
+        ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
         child: Column(
           children: <Widget>[
             Expanded(
@@ -40,7 +40,8 @@ class _State extends State<CreateImportPage> {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (BuildContext context) => InputPasswordPage()));
               },
-              color: Colors.red[300],
+              color: Colors.white,
+              fontColor: Theme.of(context).primaryColor,
             ),
             FlatButton(
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 50),

@@ -112,7 +112,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
   },
   'zh': {
     'CN': {
-      StringIds.appName: 'CKBalance',
+      StringIds.appName: 'Orange Wallet',
       StringIds.createNewWalletButton: '立即体验',
       StringIds.importWalletButton: '从备份中还原',
       StringIds.importWalletTitle: '导入',
