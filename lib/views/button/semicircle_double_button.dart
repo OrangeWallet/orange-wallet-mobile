@@ -38,7 +38,9 @@ class SemiCircleDoubleButton extends StatelessWidget {
                 ),
                 SizedBox(width: 5),
                 Container(
+                  alignment: Alignment.center,
                   width: 70,
+                  height: 40,
                   child: Text(
                     leftText,
                     style: TextStyle(color: Colors.white),
@@ -70,7 +72,9 @@ class SemiCircleDoubleButton extends StatelessWidget {
                 ),
                 SizedBox(width: 5),
                 Container(
+                  alignment: Alignment.center,
                   width: 70,
+                  height: 40,
                   child: Text(
                     rightText,
                     style: TextStyle(color: Colors.white),
