@@ -16,7 +16,7 @@ import 'package:provide/provide.dart';
 class WalletManager {
   static WalletManager _manager;
   WalletStoreBean _walletStoreBean;
-  WalletCore _walletCore;
+  WalletCore walletCore;
 
   WalletManager._();
 
@@ -28,21 +28,26 @@ class WalletManager {
   }
 
   // if mnemonic is empty,creating a new wallet.otherwise import from mnemonic
-  //TODO refactor import or create
   Future importWallet(BuildContext context, String mnemonic, String password) async {
     final currentLoading = Provide.value<ImportAnimationProvide>(context);
     SpUtil spUtil = await SpUtil.getInstance();
+    bool isImport = false;
     if (mnemonic == '') {
       mnemonic = bip39.generateMnemonic();
       spUtil.putBool(SpKeys.backup, false);
     } else {
+      isImport = true;
       spUtil.putBool(SpKeys.backup, true);
     }
     Uint8List seed = await MnemonicToSeedIsolate.loadData(mnemonic);
     currentLoading.currentLoading = 1;
-    _walletCore = await WalletCore.fromImport(seed);
+    if (isImport) {
+      walletCore = WalletCore.fromImport(seed);
+    } else {
+      walletCore = WalletCore.fromCreate(seed);
+    }
     _walletStoreBean = WalletStoreBean(mnemonic, hex.encode(seed),
-        _walletCore.unusedReceiveWallet.index, _walletCore.unusedChangeWallet.index);
+        walletCore.unusedReceiveWallet.index, walletCore.unusedChangeWallet.index);
     currentLoading.currentLoading = 2;
     await WalletStore.getInstance().write(_walletStoreBean, password);
     currentLoading.currentLoading = 3;
@@ -51,7 +56,7 @@ class WalletManager {
 
   Future fromStore(String password) async {
     _walletStoreBean = await WalletStore.getInstance().read(password);
-    _walletCore = await WalletCore.fromStore(hex.decode(_walletStoreBean.seed),
+    walletCore = await WalletCore.fromStore(hex.decode(_walletStoreBean.seed),
         _walletStoreBean.receiveIndex, _walletStoreBean.receiveIndex);
   }
 
