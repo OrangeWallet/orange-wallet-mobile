@@ -1,8 +1,9 @@
 import 'package:OrangeWallet/pages/home_page/wallet_card/wallet_card.dart';
 import 'package:OrangeWallet/pages/setting_page/settings.dart';
-import 'package:flutter/material.dart';
-import 'package:fluintl/fluintl.dart';
 import 'package:OrangeWallet/resources/strings.dart';
+import 'package:OrangeWallet/views/button/semicircle_double_button.dart';
+import 'package:fluintl/fluintl.dart';
+import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -26,6 +27,14 @@ class HomePage extends StatelessWidget {
             )
           ],
         ),
+        floatingActionButton: Builder(
+            builder: (BuildContext context) => SemiCircleDoubleButton(
+                  leftText: CustomLocalizations.of(context).getString(StringIds.receive),
+                  leftClick: () {},
+                  rightText: CustomLocalizations.of(context).getString(StringIds.send),
+                  rightClick: () {},
+                )),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: Container(
           padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
           child: Column(

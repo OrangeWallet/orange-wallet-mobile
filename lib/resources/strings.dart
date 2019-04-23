@@ -42,6 +42,8 @@ class StringIds {
   static String ok = 'OK';
   static String cancel = 'Cancel';
   static String start = 'Start';
+  static String receive = 'Receive';
+  static String send = 'Send';
 
   static String mainNetTip = 'MainNetTip';
   static String mainNet = 'MainNet';
@@ -100,6 +102,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.ok: 'OK',
       StringIds.cancel: 'Cancel',
       StringIds.start: 'Start',
+      StringIds.receive: 'Receive',
+      StringIds.send: 'Send',
       StringIds.mainNetTip: 'The main network is not up yet!',
       StringIds.mainNet: 'MainNet',
       StringIds.testNet: 'Test Net',
@@ -153,6 +157,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.ok: '确定',
       StringIds.cancel: '取消',
       StringIds.start: '开始',
+      StringIds.receive: '收款',
+      StringIds.send: '付款',
       StringIds.mainNetTip: '主网还未上线!',
       StringIds.mainNet: 'MainNet',
       StringIds.testNet: 'Test Net',
