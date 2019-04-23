@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:OrangeWallet/views/password_field.dart';
 import 'package:OrangeWallet/resources/strings.dart';
-import 'package:fluintl/fluintl.dart';
+import 'package:OrangeWallet/utils/provide/home_float_button_notifier.dart';
 import 'package:OrangeWallet/utils/wallet/wallet_manager.dart';
 import 'package:OrangeWallet/views/button/my_raised_button.dart';
+import 'package:OrangeWallet/views/password_field.dart';
+import 'package:fluintl/fluintl.dart';
+import 'package:flutter/material.dart';
+import 'package:provide/provide.dart';
 
 class PasswordBottomSheet extends StatefulWidget {
   final ValueChanged<String> okClick;
@@ -45,7 +47,14 @@ class _State extends State<PasswordBottomSheet> {
   }
 
   @override
+  void deactivate() {
+    Provide.value<HomeFloatButtonProvider>(context).show = true;
+    super.deactivate();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    Provide.value<HomeFloatButtonProvider>(context).show = false;
     return Wrap(
       children: <Widget>[
         Container(
