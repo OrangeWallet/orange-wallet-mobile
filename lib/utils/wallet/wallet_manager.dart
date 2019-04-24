@@ -56,7 +56,7 @@ class WalletManager {
 
   Future fromStore(String password) async {
     _walletStoreBean = await WalletStore.getInstance().read(password);
-    walletCore = await WalletCore.fromStore(hex.decode(_walletStoreBean.seed),
+    walletCore = WalletCore.fromStore(hex.decode(_walletStoreBean.seed),
         _walletStoreBean.receiveIndex, _walletStoreBean.receiveIndex);
   }
 

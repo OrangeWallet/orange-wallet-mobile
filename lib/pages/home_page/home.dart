@@ -1,4 +1,5 @@
 import 'package:OrangeWallet/pages/home_page/wallet_card/wallet_card.dart';
+import 'package:OrangeWallet/pages/receive_qr.dart';
 import 'package:OrangeWallet/pages/setting_page/settings.dart';
 import 'package:OrangeWallet/resources/strings.dart';
 import 'package:OrangeWallet/views/button/semicircle_double_button.dart';
@@ -30,7 +31,9 @@ class HomePage extends StatelessWidget {
         floatingActionButton: Builder(
             builder: (BuildContext context) => SemiCircleDoubleButton(
                   leftText: CustomLocalizations.of(context).getString(StringIds.receive),
-                  leftClick: () {},
+                  leftClick: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => ReceiveQr()));
+                  },
                   rightText: CustomLocalizations.of(context).getString(StringIds.send),
                   rightClick: () {},
                 )),
