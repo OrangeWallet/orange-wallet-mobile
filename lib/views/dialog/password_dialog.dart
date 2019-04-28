@@ -1,20 +1,38 @@
-import 'package:flutter/material.dart';
-import 'package:OrangeWallet/views/password_field.dart';
 import 'package:OrangeWallet/resources/strings.dart';
-import 'package:fluintl/fluintl.dart';
 import 'package:OrangeWallet/utils/wallet/wallet_manager.dart';
 import 'package:OrangeWallet/views/button/my_raised_button.dart';
+import 'package:OrangeWallet/views/password_field.dart';
+import 'package:fluintl/fluintl.dart';
+import 'package:flutter/material.dart';
 
-class PasswordBottomSheet extends StatefulWidget {
+class PasswordDialog extends AlertDialog {
   final ValueChanged<String> okClick;
 
-  PasswordBottomSheet(this.okClick);
+  PasswordDialog(
+    this.okClick, {
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget get content => PasswordWidget(this.okClick);
+
+  @override
+  EdgeInsetsGeometry get contentPadding => EdgeInsets.all(0.0);
+
+  @override
+  Color get backgroundColor => Colors.transparent;
+}
+
+class PasswordWidget extends StatefulWidget {
+  final ValueChanged<String> okClick;
+
+  PasswordWidget(this.okClick);
 
   @override
   State<StatefulWidget> createState() => _State();
 }
 
-class _State extends State<PasswordBottomSheet> {
+class _State extends State<PasswordWidget> {
   final GlobalKey<FormFieldState<String>> _passwordFieldKey = GlobalKey<FormFieldState<String>>();
   String errorMsg;
 
@@ -45,6 +63,11 @@ class _State extends State<PasswordBottomSheet> {
   }
 
   @override
+  void deactivate() {
+    super.deactivate();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Wrap(
       children: <Widget>[
@@ -52,7 +75,8 @@ class _State extends State<PasswordBottomSheet> {
             alignment: Alignment.bottomCenter,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
-                border: Border.all(color: Theme.of(context).accentColor, width: 1)),
+                border: Border.all(color: Theme.of(context).accentColor, width: 1),
+                color: Colors.white),
             child: Column(
               children: <Widget>[
                 Container(
@@ -61,7 +85,7 @@ class _State extends State<PasswordBottomSheet> {
                       style: Theme.of(context).textTheme.display1),
                 ),
                 Container(
-                  padding: const EdgeInsets.fromLTRB(30, 20, 30, 10),
+                  padding: const EdgeInsets.fromLTRB(15, 20, 15, 10),
                   child: PasswordField(
                     fieldKey: _passwordFieldKey,
                     labelText:

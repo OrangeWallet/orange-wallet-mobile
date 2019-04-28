@@ -38,10 +38,14 @@ class StringIds {
   static String confirMnemonicTip = 'confirMnemonicTip';
   static String settingTitle = 'settingTitle';
   static String settingTheme = 'settingTheme';
+  static String receiveAddress = 'receiveAddress';
+  static String copyToClipboard = 'copyToClipboard';
 
   static String ok = 'OK';
   static String cancel = 'Cancel';
   static String start = 'Start';
+  static String receive = 'Receive';
+  static String send = 'Send';
 
   static String mainNetTip = 'MainNetTip';
   static String mainNet = 'MainNet';
@@ -97,9 +101,13 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.confirMnemonicTip: 'Enter your mnemonic',
       StringIds.settingTitle: 'Settings',
       StringIds.settingTheme: 'Theme',
+      StringIds.receiveAddress: 'Receive Address',
+      StringIds.copyToClipboard: 'Copied to Clipboard',
       StringIds.ok: 'OK',
       StringIds.cancel: 'Cancel',
       StringIds.start: 'Start',
+      StringIds.receive: 'Receive',
+      StringIds.send: 'Send',
       StringIds.mainNetTip: 'The main network is not up yet!',
       StringIds.mainNet: 'MainNet',
       StringIds.testNet: 'Test Net',
@@ -150,9 +158,13 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.confirMnemonicTip: '输入你的助记词',
       StringIds.settingTitle: '设置',
       StringIds.settingTheme: '主题',
+      StringIds.receiveAddress: '收款地址',
+      StringIds.copyToClipboard: '已复制到粘贴板',
       StringIds.ok: '确定',
       StringIds.cancel: '取消',
       StringIds.start: '开始',
+      StringIds.receive: '收款',
+      StringIds.send: '付款',
       StringIds.mainNetTip: '主网还未上线!',
       StringIds.mainNet: 'MainNet',
       StringIds.testNet: 'Test Net',
