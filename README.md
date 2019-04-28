@@ -19,4 +19,4 @@ samples, guidance on mobile development, and a full API reference.
 
 
 ## License
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FCKBalance%2Fckbalance.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FCKBalance%2Fckbalance?ref=badge_large)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FOrangeWallet%2Forange-wallet.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FOrangeWallet%2Forange-wallet?ref=badge_large)
