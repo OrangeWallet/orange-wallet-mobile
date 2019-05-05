@@ -8,7 +8,7 @@ class MyWalletCore extends WalletCore {
   static MyWalletCore _myWalletCore;
   ImportAnimationProvide currentLoading;
 
-  MyWalletCore._(String storePath) : super(storePath, 'http://192.168.2.78:8114');
+  MyWalletCore._(String storePath) : super(storePath, 'http://192.168.2.78:8114', true);
 
   static MyWalletCore getInstance({String walletStorePath}) {
     if (_myWalletCore == null) {
