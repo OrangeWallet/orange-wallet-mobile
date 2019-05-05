@@ -1,5 +1,5 @@
 import 'package:OrangeWallet/resources/strings.dart';
-import 'package:OrangeWallet/utils/wallet/wallet_manager.dart';
+import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
 import 'package:OrangeWallet/views/button/my_raised_button.dart';
 import 'package:OrangeWallet/views/password_field.dart';
 import 'package:fluintl/fluintl.dart';
@@ -43,7 +43,7 @@ class _State extends State<PasswordWidget> {
       msg = CustomLocalizations.of(context).getString(StringIds.errorEmptyPwd);
     else if (passwordField.value.length < 8)
       msg = CustomLocalizations.of(context).getString(StringIds.errorLessPwd);
-    else if (!await WalletManager.getInstance().checkPwd(passwordField.value))
+    else if (!await MyWalletCore.getInstance().checkPwd(passwordField.value))
       msg = CustomLocalizations.of(context).getString(StringIds.errorDiffPwd);
     if (msg != '') {
       setState(() {
@@ -88,10 +88,8 @@ class _State extends State<PasswordWidget> {
                   padding: const EdgeInsets.fromLTRB(15, 20, 15, 10),
                   child: PasswordField(
                     fieldKey: _passwordFieldKey,
-                    labelText:
-                        CustomLocalizations.of(context).getString(StringIds.inputPwdFieldLabel),
-                    helperText:
-                        CustomLocalizations.of(context).getString(StringIds.inputPwdFieldHelper),
+                    labelText: CustomLocalizations.of(context).getString(StringIds.inputPwdFieldLabel),
+                    helperText: CustomLocalizations.of(context).getString(StringIds.inputPwdFieldHelper),
                     errorText: errorMsg,
                     autofocus: true,
                     onFieldSubmitted: (value) {

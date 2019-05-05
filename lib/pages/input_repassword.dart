@@ -1,10 +1,12 @@
 import 'package:OrangeWallet/pages/import_wallet_loading.dart';
 import 'package:OrangeWallet/resources/strings.dart';
-import 'package:OrangeWallet/utils/wallet/wallet_manager.dart';
+import 'package:OrangeWallet/utils/provide/import_animation_notifier.dart';
+import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
 import 'package:OrangeWallet/views/button/my_raised_button.dart';
 import 'package:OrangeWallet/views/password_field.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
+import 'package:provide/provide.dart';
 
 class InputRePasswordPage extends StatefulWidget {
   final String pwd;
@@ -23,20 +25,18 @@ class _State extends State<InputRePasswordPage> {
     final FormFieldState<String> passwordField = _passwordFieldKey.currentState;
     if (passwordField.value == null || passwordField.value.isEmpty)
       return CustomLocalizations.of(context).getString(StringIds.errorEmptyPwd);
-    if (passwordField.value.length < 8)
-      return CustomLocalizations.of(context).getString(StringIds.errorLessPwd);
-    if (passwordField.value != widget.pwd)
-      return CustomLocalizations.of(context).getString(StringIds.errorDiffPwd);
+    if (passwordField.value.length < 8) return CustomLocalizations.of(context).getString(StringIds.errorLessPwd);
+    if (passwordField.value != widget.pwd) return CustomLocalizations.of(context).getString(StringIds.errorDiffPwd);
     return null;
   }
 
   _handlePwd() {
     final FormFieldState<String> passwordField = _passwordFieldKey.currentState;
     if (passwordField.validate()) {
-      WalletManager.getInstance().importWallet(context, widget.mnemonic, widget.pwd);
+      MyWalletCore.getInstance().currentLoading = Provide.value<ImportAnimationProvide>(context);
+      MyWalletCore.getInstance().create(widget.mnemonic, widget.pwd);
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (BuildContext context) => ImportWalletLoading()),
-          (Route route) => route == null);
+          MaterialPageRoute(builder: (BuildContext context) => ImportWalletLoading()), (Route route) => route == null);
     }
   }
 
@@ -75,8 +75,7 @@ class _State extends State<InputRePasswordPage> {
               PasswordField(
                 fieldKey: _passwordFieldKey,
                 labelText: CustomLocalizations.of(context).getString(StringIds.inputPwdFieldLabel),
-                helperText:
-                    CustomLocalizations.of(context).getString(StringIds.inputPwdFieldHelper),
+                helperText: CustomLocalizations.of(context).getString(StringIds.inputPwdFieldHelper),
                 validator: _validatePassword,
                 autofocus: true,
                 onFieldSubmitted: (value) {
@@ -88,8 +87,7 @@ class _State extends State<InputRePasswordPage> {
               ),
               Center(
                 child: MyRaisedButton(
-                    text: CustomLocalizations.of(context).getString(StringIds.nextButton),
-                    onPressed: _handlePwd),
+                    text: CustomLocalizations.of(context).getString(StringIds.nextButton), onPressed: _handlePwd),
               ),
             ],
           )),

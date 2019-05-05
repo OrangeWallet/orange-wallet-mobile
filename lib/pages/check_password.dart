@@ -1,13 +1,12 @@
-import 'package:OrangeWallet/utils/provide/backup_notifier.dart';
-import 'package:fluintl/fluintl.dart';
-import 'package:flutter/material.dart';
-
 import 'package:OrangeWallet/pages/create_import.dart';
 import 'package:OrangeWallet/pages/home_page/home.dart';
 import 'package:OrangeWallet/resources/strings.dart';
-import 'package:OrangeWallet/utils/wallet/wallet_manager.dart';
+import 'package:OrangeWallet/utils/provide/backup_notifier.dart';
+import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
 import 'package:OrangeWallet/views/button/my_raised_button.dart';
 import 'package:OrangeWallet/views/password_field.dart';
+import 'package:fluintl/fluintl.dart';
+import 'package:flutter/material.dart';
 import 'package:provide/provide.dart';
 
 class CheckPasswordPage extends StatefulWidget {
@@ -26,7 +25,7 @@ class _State extends State<CheckPasswordPage> {
       msg = CustomLocalizations.of(context).getString(StringIds.errorEmptyPwd);
     else if (passwordField.value.length < 8)
       msg = CustomLocalizations.of(context).getString(StringIds.errorLessPwd);
-    else if (!await WalletManager.getInstance().checkPwd(passwordField.value))
+    else if (!await MyWalletCore.getInstance().checkPwd(passwordField.value))
       msg = CustomLocalizations.of(context).getString(StringIds.errorDiffPwd);
     if (msg != '') {
       setState(() {
@@ -40,10 +39,9 @@ class _State extends State<CheckPasswordPage> {
   _handlePwd() async {
     final FormFieldState<String> passwordField = _passwordFieldKey.currentState;
     if (await _validatePassword()) {
-      await WalletManager.getInstance().fromStore(passwordField.value);
+      await MyWalletCore.getInstance().init(passwordField.value);
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (BuildContext context) => HomePage()),
-          (Route route) => route == null);
+          MaterialPageRoute(builder: (BuildContext context) => HomePage()), (Route route) => route == null);
     }
   }
 
@@ -67,8 +65,7 @@ class _State extends State<CheckPasswordPage> {
               PasswordField(
                 fieldKey: _passwordFieldKey,
                 labelText: CustomLocalizations.of(context).getString(StringIds.inputPwdFieldLabel),
-                helperText:
-                    CustomLocalizations.of(context).getString(StringIds.inputPwdFieldHelper),
+                helperText: CustomLocalizations.of(context).getString(StringIds.inputPwdFieldHelper),
                 errorText: errorMsg,
                 autofocus: true,
                 onFieldSubmitted: (value) {
@@ -79,8 +76,7 @@ class _State extends State<CheckPasswordPage> {
                 height: 30,
               ),
               MyRaisedButton(
-                  text: CustomLocalizations.of(context).getString(StringIds.nextButton),
-                  onPressed: _handlePwd),
+                  text: CustomLocalizations.of(context).getString(StringIds.nextButton), onPressed: _handlePwd),
               FlatButton(
                 child: Text(CustomLocalizations.of(context).getString(StringIds.forgetPwd),
                     style: Theme.of(context).textTheme.body1),
@@ -121,8 +117,7 @@ class _State extends State<CheckPasswordPage> {
       context: context,
       builder: (_) => AlertDialog(
             title: Text(CustomLocalizations.of(context).getString(StringIds.alert)),
-            content: Text(
-                CustomLocalizations.of(context).getString(StringIds.deleteWalletDialogContent)),
+            content: Text(CustomLocalizations.of(context).getString(StringIds.deleteWalletDialogContent)),
             actions: <Widget>[
               FlatButton(
                 child: Text(CustomLocalizations.of(context).getString(StringIds.tryAgain)),
@@ -133,7 +128,7 @@ class _State extends State<CheckPasswordPage> {
               FlatButton(
                 child: Text(CustomLocalizations.of(context).getString(StringIds.deleteWallet)),
                 onPressed: () async {
-                  WalletManager.getInstance().deleteStore();
+                  MyWalletCore.getInstance().deleteStore();
                   await Provide.value<BackupProvider>(context).change(false);
                   Navigator.of(context).pop();
                   Navigator.of(context).pushAndRemoveUntil(

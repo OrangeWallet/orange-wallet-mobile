@@ -1,7 +1,7 @@
 import 'package:OrangeWallet/pages/backup_mnemonic.dart';
 import 'package:OrangeWallet/resources/strings.dart';
 import 'package:OrangeWallet/utils/provide/backup_notifier.dart';
-import 'package:OrangeWallet/utils/wallet/wallet_manager.dart';
+import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
 import 'package:OrangeWallet/views/dialog/password_dialog.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
@@ -66,9 +66,9 @@ class BackupWidget extends StatelessWidget {
                         context: context,
                         builder: (_) {
                           return PasswordDialog((password) async {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    BackupMnemonic(WalletManager.getInstance().getMnemonic())));
+                            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
+                              return BackupMnemonic(MyWalletCore.getInstance().hdCoreConfig.mnemonic);
+                            }));
                           });
                         });
                   },

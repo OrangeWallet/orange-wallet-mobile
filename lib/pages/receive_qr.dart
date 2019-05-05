@@ -1,6 +1,6 @@
 import 'package:OrangeWallet/resources/strings.dart';
 import 'package:OrangeWallet/utils/provide/net_type_notifier.dart';
-import 'package:OrangeWallet/utils/wallet/wallet_manager.dart';
+import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
 import 'package:ckb_sdk/ckb-utils/network.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
@@ -14,12 +14,11 @@ class ReceiveQr extends StatelessWidget {
   Widget build(BuildContext context) {
     final key = new GlobalKey<ScaffoldState>();
     final netType = Provide.value<NetTypeProvider>(context);
-    final wallet = WalletManager.getInstance().walletCore.unusedChangeWallet;
+    final wallet = MyWalletCore.getInstance().unusedChangeWallet;
     String address = wallet.getAddress(netType.type == 0 ? Network.MainNet : Network.TestNet);
     return Scaffold(
       key: key,
-      appBar:
-          AppBar(title: Text(CustomLocalizations.of(context).getString(StringIds.receiveAddress))),
+      appBar: AppBar(title: Text(CustomLocalizations.of(context).getString(StringIds.receiveAddress))),
       body: Center(
         child: Wrap(
           children: <Widget>[
@@ -36,8 +35,7 @@ class ReceiveQr extends StatelessWidget {
                     onLongPress: () {
                       Clipboard.setData(new ClipboardData(text: address));
                       key.currentState.showSnackBar(new SnackBar(
-                        content: new Text(
-                            CustomLocalizations.of(context).getString(StringIds.copyToClipboard)),
+                        content: new Text(CustomLocalizations.of(context).getString(StringIds.copyToClipboard)),
                       ));
                     },
                   ),
