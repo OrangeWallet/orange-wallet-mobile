@@ -56,8 +56,9 @@ class MyWalletCore extends WalletCore {
     spUtil.putBool(SpKeys.backup, isBackup);
   }
 
-  deleteStore() {
-    WalletStore.getInstance().delete();
+  Future deleteWallet() async {
+    await WalletStore.getInstance().delete();
+    await super.clearStore();
   }
 
   @override

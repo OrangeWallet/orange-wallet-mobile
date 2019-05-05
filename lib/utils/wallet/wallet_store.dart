@@ -41,7 +41,7 @@ class WalletStore {
     }
   }
 
-  delete() {
-    _storage.delete(key: WalletKey);
+  Future delete() async {
+    await _storage.delete(key: WalletKey);
   }
 }

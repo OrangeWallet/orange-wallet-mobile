@@ -128,7 +128,7 @@ class _State extends State<CheckPasswordPage> {
               FlatButton(
                 child: Text(CustomLocalizations.of(context).getString(StringIds.deleteWallet)),
                 onPressed: () async {
-                  MyWalletCore.getInstance().deleteStore();
+                  MyWalletCore.getInstance().deleteWallet();
                   await Provide.value<BackupProvider>(context).change(false);
                   Navigator.of(context).pop();
                   Navigator.of(context).pushAndRemoveUntil(
