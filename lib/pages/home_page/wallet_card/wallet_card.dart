@@ -1,6 +1,7 @@
 import 'package:OrangeWallet/pages/home_page/wallet_card/backup.dart';
 import 'package:OrangeWallet/pages/home_page/wallet_card/balance.dart';
 import 'package:OrangeWallet/pages/home_page/wallet_card/net_type_button.dart';
+import 'package:OrangeWallet/pages/home_page/wallet_card/sync_progressing.dart';
 import 'package:flutter/material.dart';
 
 class WalletCardWidget extends StatelessWidget {
@@ -25,19 +26,20 @@ class WalletCardWidget extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 10),
+                SyncProgressing(),
                 BalanceWidget(balance),
-                SizedBox(height: 13),
+                SizedBox(height: 15),
                 BackupWidget(),
-                SizedBox(height: 7)
+                SizedBox(height: 15)
               ],
             ),
             Column(
               children: <Widget>[
                 NetTypeWidget(),
                 Container(
-                  padding: EdgeInsets.fromLTRB(0, 20, 20, 0),
+                  padding: EdgeInsets.fromLTRB(0, 25, 20, 0),
                   alignment: Alignment.centerRight,
                   child: Image.asset(
                     'images/ic_nervos.png',
