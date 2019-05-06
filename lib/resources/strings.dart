@@ -56,6 +56,7 @@ class StringIds {
   static String errorEmptyPwd = 'errorEmptyPwd';
   static String errorLessPwd = 'errorLessPwd';
   static String errorDiffPwd = 'errorDiffPwd';
+  static String errorSync = 'errorSync';
 }
 
 Map<String, Map<String, Map<String, String>>> localizedValues = {
@@ -83,8 +84,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.inputPwdFieldLabel: 'Password*',
       StringIds.inputPwdFieldHelper: 'No less than 8 char',
       StringIds.inputPwdReTip: 'Confirm your password',
-      StringIds.inputPwdReAttention:
-          'Make sure you remember it. You can\'t use the wallet if you lose your password.',
+      StringIds.inputPwdReAttention: 'Make sure you remember it. You can\'t use the wallet if you lose your password.',
       StringIds.nextButton: 'Next',
       StringIds.forgetPwd: 'Forget it',
       StringIds.forgetDialogContent:
@@ -116,6 +116,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.errorEmptyPwd: 'Please enter a password.',
       StringIds.errorLessPwd: 'No less than 8 char',
       StringIds.errorDiffPwd: 'Wrong password',
+      StringIds.errorSync: 'Sync failed',
     }
   },
   'zh': {
@@ -173,6 +174,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.errorEmptyPwd: '请输入密码',
       StringIds.errorLessPwd: '最少八位',
       StringIds.errorDiffPwd: '密码错误',
+      StringIds.errorSync: '同步失败',
     },
   }
 };

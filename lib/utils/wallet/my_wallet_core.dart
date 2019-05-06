@@ -21,22 +21,20 @@ class MyWalletCore extends WalletCore {
 
   @override
   Future init(String password) async {
-    try {
-      await super.init(password);
-      super.updateCurrentIndexCells();
-    } catch (e) {
-      print(e);
-    }
+    await super.init(password);
+    super.updateCurrentIndexCells();
   }
 
   @override
   Future create(String mnemonic, String password) async {
-    try {
-      await super.create(mnemonic, password);
-      super.updateCurrentIndexCells();
-    } catch (e) {
-      print(e);
-    }
+    await super.create(mnemonic, password);
+    super.updateCurrentIndexCells();
+  }
+
+  @override
+  updateCurrentIndexCells() async {
+    super.updateCurrentIndexCells();
+    balanceSync.synced = 0.0;
   }
 
   Future<bool> hasWallet() async {
@@ -73,7 +71,7 @@ class MyWalletCore extends WalletCore {
 
   @override
   syncedFinished() {
-    print('synced finished');
+    Log.log('synced finished');
     if (balanceSync == null) {
       throw Exception('Please set Provide first');
     }
@@ -82,12 +80,12 @@ class MyWalletCore extends WalletCore {
 
   @override
   blockChanged() {
-    print(cellsResultBean.syncedBlockNumber);
+    Log.log(cellsResultBean.syncedBlockNumber);
   }
 
   @override
   cellsChanged() {
-    print(cellsResultBean.cells.length);
+    Log.log(cellsResultBean.cells.length);
   }
 
   @override
@@ -107,5 +105,15 @@ class MyWalletCore extends WalletCore {
       throw Exception('Please set Provide first');
     }
     balanceSync.synced = processing;
+  }
+
+  @override
+  exception(Exception e) {
+    if (e is SyncException) {
+      if (balanceSync == null) {
+        throw Exception('Please set Provide first');
+      }
+      balanceSync.synced = -1.0;
+    } else if (e is BlockUpdateException) {}
   }
 }
