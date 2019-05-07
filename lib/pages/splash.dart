@@ -6,6 +6,7 @@ import 'package:OrangeWallet/pages/create_import.dart';
 import 'package:OrangeWallet/resources/shared_preferences_keys.dart';
 import 'package:OrangeWallet/utils/provide/backup_notifier.dart';
 import 'package:OrangeWallet/utils/provide/blocks_notifier.dart';
+import 'package:OrangeWallet/utils/provide/cells_sync_notifier.dart';
 import 'package:OrangeWallet/utils/provide/import_animation_notifier.dart';
 import 'package:OrangeWallet/utils/provide/net_type_notifier.dart';
 import 'package:OrangeWallet/utils/provide/theme_color_notifier.dart';
@@ -38,6 +39,7 @@ class _SplashState extends State<SplashPage> {
       }
       MyWalletCore.getInstance().blocksProvider = Provide.value<BlocksProvider>(context);
       MyWalletCore.getInstance().currentLoading = Provide.value<ImportAnimationProvider>(context);
+      MyWalletCore.getInstance().balanceSync = Provide.value<CellsSyncProvider>(context);
     });
   }
 

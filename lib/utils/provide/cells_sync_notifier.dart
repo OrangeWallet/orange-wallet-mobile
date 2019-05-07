@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class BalanceSyncProvider with ChangeNotifier {
+class CellsSyncProvider with ChangeNotifier {
   double _synced;
 
-  BalanceSyncProvider({double synced}) {
+  CellsSyncProvider({double synced}) {
     _synced = synced;
   }
 

@@ -1,8 +1,8 @@
 import 'package:OrangeWallet/pages/splash.dart';
 import 'package:OrangeWallet/resources/strings.dart';
 import 'package:OrangeWallet/utils/provide/backup_notifier.dart';
-import 'package:OrangeWallet/utils/provide/balance_sync_notifier.dart';
 import 'package:OrangeWallet/utils/provide/blocks_notifier.dart';
+import 'package:OrangeWallet/utils/provide/cells_sync_notifier.dart';
 import 'package:OrangeWallet/utils/provide/import_animation_notifier.dart';
 import 'package:OrangeWallet/utils/provide/net_type_notifier.dart';
 import 'package:OrangeWallet/utils/provide/theme_color_notifier.dart';
@@ -17,7 +17,7 @@ void main() {
     ..provide(Provider.function((context) => NetTypeProvider()))
     ..provide(Provider.function((context) => ImportAnimationProvider()))
     ..provide(Provider.function((context) => BackupProvider()))
-    ..provide(Provider.function((context) => BalanceSyncProvider(synced: 0.0)))
+    ..provide(Provider.function((context) => CellsSyncProvider(synced: 0.0)))
     ..provide(Provider.function((context) => BlocksProvider()));
   runApp(ProviderNode(child: MyApp(), providers: providers));
 }

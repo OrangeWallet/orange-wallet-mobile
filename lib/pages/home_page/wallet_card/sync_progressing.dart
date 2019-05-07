@@ -1,18 +1,17 @@
 import 'package:OrangeWallet/resources/strings.dart';
-import 'package:OrangeWallet/utils/provide/balance_sync_notifier.dart';
+import 'package:OrangeWallet/utils/provide/cells_sync_notifier.dart';
 import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
+import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:provide/provide.dart';
-import 'package:fluintl/fluintl.dart';
 
 class SyncProgressing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final balanceSync = Provide.value<BalanceSyncProvider>(context);
-    MyWalletCore.getInstance().balanceSync = balanceSync;
-    return StreamBuilder<BalanceSyncProvider>(
+    final balanceSync = Provide.value<CellsSyncProvider>(context);
+    return StreamBuilder<CellsSyncProvider>(
         initialData: balanceSync,
-        stream: Provide.stream<BalanceSyncProvider>(context),
+        stream: Provide.stream<CellsSyncProvider>(context),
         builder: (context, balanceSync) {
           return balanceSync.data.synced >= 0
               ? Row(

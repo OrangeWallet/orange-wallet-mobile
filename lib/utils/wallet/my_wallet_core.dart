@@ -1,6 +1,6 @@
 import 'package:OrangeWallet/resources/shared_preferences_keys.dart';
-import 'package:OrangeWallet/utils/provide/balance_sync_notifier.dart';
 import 'package:OrangeWallet/utils/provide/blocks_notifier.dart';
+import 'package:OrangeWallet/utils/provide/cells_sync_notifier.dart';
 import 'package:OrangeWallet/utils/provide/import_animation_notifier.dart';
 import 'package:OrangeWallet/utils/shared_preferences.dart';
 import 'package:OrangeWallet/utils/wallet/wallet_store.dart';
@@ -12,7 +12,7 @@ import 'package:ckbcore/ckbcore.dart';
 class MyWalletCore extends WalletCore {
   static MyWalletCore _myWalletCore;
   ImportAnimationProvider currentLoading;
-  BalanceSyncProvider balanceSync;
+  CellsSyncProvider balanceSync;
   BlocksProvider blocksProvider;
 
   MyWalletCore._(String storePath) : super(storePath, 'http://192.168.2.78:8114', true);
