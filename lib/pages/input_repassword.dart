@@ -1,12 +1,10 @@
 import 'package:OrangeWallet/pages/import_wallet_loading.dart';
 import 'package:OrangeWallet/resources/strings.dart';
-import 'package:OrangeWallet/utils/provide/import_animation_notifier.dart';
 import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
 import 'package:OrangeWallet/views/button/my_raised_button.dart';
 import 'package:OrangeWallet/views/password_field.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
-import 'package:provide/provide.dart';
 
 class InputRePasswordPage extends StatefulWidget {
   final String pwd;
