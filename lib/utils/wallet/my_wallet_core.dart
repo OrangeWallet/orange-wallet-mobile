@@ -1,14 +1,19 @@
 import 'package:OrangeWallet/resources/shared_preferences_keys.dart';
 import 'package:OrangeWallet/utils/provide/balance_sync_notifier.dart';
+import 'package:OrangeWallet/utils/provide/blocks_notifier.dart';
 import 'package:OrangeWallet/utils/provide/import_animation_notifier.dart';
 import 'package:OrangeWallet/utils/shared_preferences.dart';
 import 'package:OrangeWallet/utils/wallet/wallet_store.dart';
+import 'package:ckbcore/base/bean/thin_block.dart';
+import 'package:ckbcore/base/exception/exception.dart';
+import 'package:ckbcore/base/utils/log.dart';
 import 'package:ckbcore/ckbcore.dart';
 
 class MyWalletCore extends WalletCore {
   static MyWalletCore _myWalletCore;
-  ImportAnimationProvide currentLoading;
+  ImportAnimationProvider currentLoading;
   BalanceSyncProvider balanceSync;
+  BlocksProvider blocksProvider;
 
   MyWalletCore._(String storePath) : super(storePath, 'http://192.168.2.78:8114', true);
 
@@ -79,8 +84,12 @@ class MyWalletCore extends WalletCore {
   }
 
   @override
-  blockChanged() {
-    Log.log(cellsResultBean.syncedBlockNumber);
+  blockChanged(ThinBlock thinBlock) {
+    if (blocksProvider == null) {
+      throw Exception('Please set Provide first');
+    }
+    Log.log('blockChanged ' + thinBlock.thinHeader.number);
+    blocksProvider.addThinBlock(thinBlock);
   }
 
   @override

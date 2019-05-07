@@ -1,0 +1,1 @@
+final maxThinBlocksSize = 200;

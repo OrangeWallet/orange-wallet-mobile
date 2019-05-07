@@ -1,3 +1,4 @@
+import 'package:OrangeWallet/pages/home_page/block_display/block_display.dart';
 import 'package:OrangeWallet/pages/home_page/wallet_card/wallet_card.dart';
 import 'package:OrangeWallet/pages/receive_qr.dart';
 import 'package:OrangeWallet/pages/setting_page/settings.dart';
@@ -44,7 +45,13 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Container(
-                child: WalletCardWidget('0'),
+                child: Column(
+                  children: <Widget>[
+                    WalletCardWidget('0'),
+                    SizedBox(height: 20),
+                    BlockDisplay(),
+                  ],
+                ),
               )
             ],
           ),

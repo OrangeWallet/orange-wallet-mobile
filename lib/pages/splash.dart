@@ -5,6 +5,8 @@ import 'package:OrangeWallet/pages/check_password.dart';
 import 'package:OrangeWallet/pages/create_import.dart';
 import 'package:OrangeWallet/resources/shared_preferences_keys.dart';
 import 'package:OrangeWallet/utils/provide/backup_notifier.dart';
+import 'package:OrangeWallet/utils/provide/blocks_notifier.dart';
+import 'package:OrangeWallet/utils/provide/import_animation_notifier.dart';
 import 'package:OrangeWallet/utils/provide/net_type_notifier.dart';
 import 'package:OrangeWallet/utils/provide/theme_color_notifier.dart';
 import 'package:OrangeWallet/utils/shared_preferences.dart';
@@ -34,6 +36,8 @@ class _SplashState extends State<SplashPage> {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (BuildContext context) => CreateImportPage()), (Route route) => route == null);
       }
+      MyWalletCore.getInstance().blocksProvider = Provide.value<BlocksProvider>(context);
+      MyWalletCore.getInstance().currentLoading = Provide.value<ImportAnimationProvider>(context);
     });
   }
 
