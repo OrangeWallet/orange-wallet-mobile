@@ -76,13 +76,12 @@ class MyWalletCore extends WalletCore {
     if (blocksProvider == null) {
       throw Exception('Please set Provide first');
     }
-    Log.log('blockChanged ' + thinBlock.thinHeader.number);
     blocksProvider.addThinBlock(thinBlock);
   }
 
   @override
   cellsChanged() {
-    Log.log(cellsResultBean.cells.length);
+    Log.log('cells size ${cellsResultBean.cells.length}');
   }
 
   @override
@@ -93,7 +92,6 @@ class MyWalletCore extends WalletCore {
   @override
   Future writeWallet(String wallet, String password) async {
     await WalletStore.getInstance().write(wallet, password);
-    return;
   }
 
   @override

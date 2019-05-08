@@ -10,8 +10,8 @@ class BlocksProvider with ChangeNotifier {
 
   List<ThinBlock> get thinBlocks => _thinBlocks;
 
-  addThinBlock(ThinBlock thinBlocks) {
-    _thinBlocks.insert(0, thinBlocks);
+  addThinBlock(ThinBlock thinBlock) {
+    _thinBlocks.insert(0, thinBlock);
     if (_thinBlocks.length > maxThinBlocksSize) _thinBlocks.removeLast();
     notifyListeners();
   }
