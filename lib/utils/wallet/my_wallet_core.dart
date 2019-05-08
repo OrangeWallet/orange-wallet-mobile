@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:OrangeWallet/contant/constant.dart' as Constant;
 import 'package:OrangeWallet/resources/shared_preferences_keys.dart';
 import 'package:OrangeWallet/utils/provide/blocks_notifier.dart';
 import 'package:OrangeWallet/utils/provide/cells_sync_notifier.dart';
@@ -18,7 +19,7 @@ class MyWalletCore extends WalletCore {
   CellsSyncProvider cellsSyncProvider;
   BlocksProvider blocksProvider;
 
-  MyWalletCore._(String storePath) : super(storePath, 'http://192.168.2.78:8114', true);
+  MyWalletCore._(String storePath) : super(storePath, Constant.nodeUrl, true);
 
   static MyWalletCore getInstance({String walletStorePath}) {
     if (_myWalletCore == null) {
