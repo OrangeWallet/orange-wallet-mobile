@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:OrangeWallet/resources/shared_preferences_keys.dart';
 import 'package:OrangeWallet/utils/provide/blocks_notifier.dart';
 import 'package:OrangeWallet/utils/provide/cells_sync_notifier.dart';
@@ -5,6 +7,7 @@ import 'package:OrangeWallet/utils/provide/import_animation_notifier.dart';
 import 'package:OrangeWallet/utils/shared_preferences.dart';
 import 'package:OrangeWallet/utils/wallet/wallet_store.dart';
 import 'package:ckbcore/base/bean/thin_block.dart';
+import 'package:ckbcore/base/config/hd_core_config.dart';
 import 'package:ckbcore/base/exception/exception.dart';
 import 'package:ckbcore/base/utils/log.dart';
 import 'package:ckbcore/ckbcore.dart';
@@ -31,7 +34,8 @@ class MyWalletCore extends WalletCore {
   // check the password right
   Future<bool> checkPwd(String password) async {
     try {
-      await WalletStore.getInstance().read(password);
+      String data = await WalletStore.getInstance().read(password);
+      HDCoreConfig.fromJson(jsonDecode(data));
       return true;
     } catch (_) {
       return false;
