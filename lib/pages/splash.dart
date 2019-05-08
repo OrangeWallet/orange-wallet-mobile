@@ -39,7 +39,7 @@ class _SplashState extends State<SplashPage> {
       }
       MyWalletCore.getInstance().blocksProvider = Provide.value<BlocksProvider>(context);
       MyWalletCore.getInstance().currentLoading = Provide.value<ImportAnimationProvider>(context);
-      MyWalletCore.getInstance().balanceSync = Provide.value<CellsSyncProvider>(context);
+      MyWalletCore.getInstance().cellsSyncProvider = Provide.value<CellsSyncProvider>(context);
     });
   }
 

@@ -31,7 +31,11 @@ class _State extends State<InputRePasswordPage> {
   _handlePwd() {
     final FormFieldState<String> passwordField = _passwordFieldKey.currentState;
     if (passwordField.validate()) {
-      MyWalletCore.getInstance().create(widget.mnemonic, widget.pwd);
+      if (widget.mnemonic == '') {
+        MyWalletCore.getInstance().create(widget.pwd);
+      } else {
+        MyWalletCore.getInstance().import(widget.mnemonic, widget.pwd);
+      }
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (BuildContext context) => ImportWalletLoading()), (Route route) => route == null);
     }

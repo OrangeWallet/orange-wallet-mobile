@@ -12,7 +12,7 @@ import 'package:ckbcore/ckbcore.dart';
 class MyWalletCore extends WalletCore {
   static MyWalletCore _myWalletCore;
   ImportAnimationProvider currentLoading;
-  CellsSyncProvider balanceSync;
+  CellsSyncProvider cellsSyncProvider;
   BlocksProvider blocksProvider;
 
   MyWalletCore._(String storePath) : super(storePath, 'http://192.168.2.78:8114', true);
@@ -22,24 +22,6 @@ class MyWalletCore extends WalletCore {
       _myWalletCore = MyWalletCore._(walletStorePath);
     }
     return _myWalletCore;
-  }
-
-  @override
-  Future init(String password) async {
-    await super.init(password);
-    super.updateCurrentIndexCells();
-  }
-
-  @override
-  Future create(String mnemonic, String password) async {
-    await super.create(mnemonic, password);
-    super.updateCurrentIndexCells();
-  }
-
-  @override
-  updateCurrentIndexCells() async {
-    super.updateCurrentIndexCells();
-    balanceSync.synced = 0.0;
   }
 
   Future<bool> hasWallet() async {
@@ -67,6 +49,12 @@ class MyWalletCore extends WalletCore {
   }
 
   @override
+  updateCurrentIndexCells() async {
+    cellsSyncProvider.synced = 0.0;
+    super.updateCurrentIndexCells();
+  }
+
+  @override
   createStep(int step) {
     if (currentLoading == null) {
       throw Exception('Please set Provide first');
@@ -77,10 +65,10 @@ class MyWalletCore extends WalletCore {
   @override
   syncedFinished() {
     Log.log('synced finished');
-    if (balanceSync == null) {
+    if (cellsSyncProvider == null) {
       throw Exception('Please set Provide first');
     }
-    balanceSync.synced = 1.0;
+    cellsSyncProvider.synced = 1.0;
   }
 
   @override
@@ -110,19 +98,19 @@ class MyWalletCore extends WalletCore {
 
   @override
   syncProcess(double processing) {
-    if (balanceSync == null) {
+    if (cellsSyncProvider == null) {
       throw Exception('Please set Provide first');
     }
-    balanceSync.synced = processing;
+    cellsSyncProvider.synced = processing;
   }
 
   @override
   exception(Exception e) {
     if (e is SyncException) {
-      if (balanceSync == null) {
+      if (cellsSyncProvider == null) {
         throw Exception('Please set Provide first');
       }
-      balanceSync.synced = -1.0;
+      cellsSyncProvider.synced = -1.0;
     } else if (e is BlockUpdateException) {}
   }
 }
