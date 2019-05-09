@@ -13,42 +13,48 @@ class WalletCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [theme.primaryColor, theme.accentColor, theme.primaryColorLight],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight),
-          borderRadius: BorderRadius.all(
-            Radius.circular(8.0),
-          ),
+      height: 150,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            colors: [theme.primaryColor, theme.accentColor, theme.primaryColorLight],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight),
+        borderRadius: BorderRadius.all(
+          Radius.circular(8.0),
         ),
-        padding: const EdgeInsets.all(10),
-        child: Stack(
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                SyncProgressing(),
-                BalanceWidget(balance),
-                SizedBox(height: 15),
-                BackupWidget(),
-                SizedBox(height: 15)
-              ],
+      ),
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            top: 5,
+            left: 5,
+            child: SyncProgressing(),
+          ),
+          Positioned(
+            top: 40,
+            left: 20,
+            child: BalanceWidget(balance),
+          ),
+          Positioned(
+            left: 20,
+            bottom: 20,
+            child: BackupWidget(),
+          ),
+          Positioned(
+            right: 15,
+            bottom: 15,
+            child: Image.asset(
+              'images/ic_nervos.png',
+              height: 50,
             ),
-            Column(
-              children: <Widget>[
-                NetTypeWidget(),
-                Container(
-                  padding: EdgeInsets.fromLTRB(0, 25, 20, 0),
-                  alignment: Alignment.centerRight,
-                  child: Image.asset(
-                    'images/ic_nervos.png',
-                    height: 50,
-                  ),
-                )
-              ],
-            )
-          ],
-        ));
+          ),
+          Positioned(
+            right: 15,
+            top: 15,
+            child: NetTypeWidget(),
+          ),
+        ],
+      ),
+    );
   }
 }

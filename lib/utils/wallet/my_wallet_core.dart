@@ -7,6 +7,7 @@ import 'package:OrangeWallet/utils/provide/cells_sync_notifier.dart';
 import 'package:OrangeWallet/utils/provide/import_animation_notifier.dart';
 import 'package:OrangeWallet/utils/shared_preferences.dart';
 import 'package:OrangeWallet/utils/wallet/wallet_store.dart';
+import 'package:ckbcore/base/bean/balance_bean.dart';
 import 'package:ckbcore/base/bean/thin_block.dart';
 import 'package:ckbcore/base/config/hd_core_config.dart';
 import 'package:ckbcore/base/exception/exception.dart';
@@ -68,12 +69,8 @@ class MyWalletCore extends WalletCore {
   }
 
   @override
-  syncedFinished() {
-    Log.log('synced finished');
-    if (cellsSyncProvider == null) {
-      throw Exception('Please set Provide first');
-    }
-    cellsSyncProvider.synced = 1.0;
+  cellsChanged(BalanceBean balance) {
+    Log.log(jsonEncode(balance));
   }
 
   @override
@@ -82,11 +79,6 @@ class MyWalletCore extends WalletCore {
       throw Exception('Please set Provide first');
     }
     blocksProvider.addThinBlock(thinBlock);
-  }
-
-  @override
-  cellsChanged() {
-    Log.log('cells size ${cellsResultBean.cells.length}');
   }
 
   @override

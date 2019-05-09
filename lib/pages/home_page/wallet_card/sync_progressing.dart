@@ -14,25 +14,29 @@ class SyncProgressing extends StatelessWidget {
         stream: Provide.stream<CellsSyncProvider>(context),
         builder: (context, balanceSync) {
           return balanceSync.data.synced >= 0
-              ? Row(
-                  children: <Widget>[
-                    SizedBox(
-                        height: 15,
-                        width: 15,
-                        child: balanceSync.data.synced >= 1.0
-                            ? Container()
-                            : CircularProgressIndicator(
-                                strokeWidth: 2,
-                                valueColor: AlwaysStoppedAnimation(Colors.white),
-                              )),
-                    SizedBox(width: 5),
-                    balanceSync.data.synced >= 1.0
-                        ? Container()
-                        : Text(
-                            (balanceSync.data.synced * 100).toInt().toString() + "%",
-                            style: TextStyle(color: Colors.white, fontSize: 16),
-                          ),
-                  ],
+              ? Container(
+                  margin: const EdgeInsets.only(left: 5, top: 5),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                          height: 15,
+                          width: 15,
+                          child: balanceSync.data.synced >= 1.0
+                              ? Container()
+                              : CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  valueColor: AlwaysStoppedAnimation(Colors.white),
+                                )),
+                      SizedBox(width: 5),
+                      balanceSync.data.synced >= 1.0
+                          ? Container()
+                          : Text(
+                              (balanceSync.data.synced * 100).toInt().toString() + "%",
+                              style: TextStyle(color: Colors.white, fontSize: 16),
+                            ),
+                    ],
+                  ),
                 )
               : GestureDetector(
                   child: Row(
@@ -40,9 +44,9 @@ class SyncProgressing extends StatelessWidget {
                       Icon(
                         Icons.refresh,
                         color: Colors.white,
-                        size: 15,
+                        size: 20,
                       ),
-                      SizedBox(width: 5),
+                      SizedBox(width: 3),
                       Text(CustomLocalizations.of(context).getString(StringIds.errorSync),
                           style: TextStyle(color: Colors.white, fontSize: 16))
                     ],

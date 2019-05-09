@@ -1,30 +1,27 @@
-import 'package:OrangeWallet/utils/provide/net_type_notifier.dart';
-import 'package:flutter/material.dart';
-import 'package:fluintl/fluintl.dart';
 import 'package:OrangeWallet/resources/strings.dart';
+import 'package:OrangeWallet/utils/provide/net_type_notifier.dart';
+import 'package:fluintl/fluintl.dart';
+import 'package:flutter/material.dart';
 import 'package:provide/provide.dart';
 
 class NetTypeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        alignment: Alignment.centerRight,
-        padding: EdgeInsets.fromLTRB(0, 10, 5, 0),
-        child: GestureDetector(
-          child: Container(
-            decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(15.0),
-                )),
-            padding: const EdgeInsets.fromLTRB(7, 2, 7, 2),
-            child: buildNetType(context),
-          ),
-          onTap: () {
-            showDialog(context: context, builder: (_) => _netTypeDialog(context));
-          },
-        ));
+    return GestureDetector(
+      child: Container(
+        decoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+            color: Colors.white,
+            borderRadius: BorderRadius.all(
+              Radius.circular(15.0),
+            )),
+        padding: const EdgeInsets.fromLTRB(7, 2, 7, 2),
+        child: buildNetType(context),
+      ),
+      onTap: () {
+        showDialog(context: context, builder: (_) => _netTypeDialog(context));
+      },
+    );
   }
 
   Widget buildNetType(BuildContext context) {

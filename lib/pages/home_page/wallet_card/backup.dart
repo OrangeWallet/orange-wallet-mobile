@@ -18,7 +18,6 @@ class BackupWidget extends StatelessWidget {
         if (backup.data.backup) {
           return Row(
             children: <Widget>[
-              SizedBox(width: 25),
               Icon(
                 Icons.check_circle,
                 color: Colors.white,
@@ -34,7 +33,6 @@ class BackupWidget extends StatelessWidget {
         }
         return Row(
           children: <Widget>[
-            SizedBox(width: 20),
             Row(
               children: <Widget>[
                 GestureDetector(
@@ -43,17 +41,11 @@ class BackupWidget extends StatelessWidget {
                         shape: BoxShape.rectangle,
                         color: Colors.white,
                         borderRadius: BorderRadius.all(
-                          Radius.circular(15.0),
+                          Radius.circular(10.0),
                         )),
-                    padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
+                    padding: const EdgeInsets.fromLTRB(7, 2, 7, 2),
                     child: Row(
                       children: <Widget>[
-                        Icon(
-                          Icons.warning,
-                          color: Colors.redAccent,
-                          size: 16,
-                        ),
-                        SizedBox(width: 2),
                         Text(
                           CustomLocalizations.of(context).getString(StringIds.backUp),
                           style: TextStyle(fontSize: 16, color: Colors.redAccent),
@@ -66,8 +58,10 @@ class BackupWidget extends StatelessWidget {
                         context: context,
                         builder: (_) {
                           return PasswordDialog((password) async {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
-                              return BackupMnemonic(MyWalletCore.getInstance().hdCoreConfig.mnemonic);
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: (BuildContext context) {
+                              return BackupMnemonic(
+                                  MyWalletCore.getInstance().hdCoreConfig.mnemonic);
                             }));
                           });
                         });

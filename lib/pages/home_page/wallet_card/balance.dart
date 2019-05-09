@@ -10,19 +10,17 @@ class BalanceWidget extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
-        SizedBox(width: 15),
         Text.rich(
           TextSpan(children: [
             TextSpan(
               text: balance,
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, letterSpacing: 10, fontSize: 45),
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 26),
             ),
             TextSpan(
-              text: 'CKB',
+              text: ' CKB',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 30,
-                letterSpacing: 2,
+                fontSize: 20,
               ),
             ),
           ]),

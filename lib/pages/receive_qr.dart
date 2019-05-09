@@ -14,11 +14,12 @@ class ReceiveQr extends StatelessWidget {
   Widget build(BuildContext context) {
     final key = new GlobalKey<ScaffoldState>();
     final netType = Provide.value<NetTypeProvider>(context);
-    final wallet = MyWalletCore.getInstance().unusedChangeWallet;
+    final wallet = MyWalletCore.getInstance().unusedReceiveWallet;
     String address = wallet.getAddress(netType.type == 0 ? Network.MainNet : Network.TestNet);
     return Scaffold(
       key: key,
-      appBar: AppBar(title: Text(CustomLocalizations.of(context).getString(StringIds.receiveAddress))),
+      appBar:
+          AppBar(title: Text(CustomLocalizations.of(context).getString(StringIds.receiveAddress))),
       body: Center(
         child: Wrap(
           children: <Widget>[
@@ -35,7 +36,8 @@ class ReceiveQr extends StatelessWidget {
                     onLongPress: () {
                       Clipboard.setData(new ClipboardData(text: address));
                       key.currentState.showSnackBar(new SnackBar(
-                        content: new Text(CustomLocalizations.of(context).getString(StringIds.copyToClipboard)),
+                        content: new Text(
+                            CustomLocalizations.of(context).getString(StringIds.copyToClipboard)),
                       ));
                     },
                   ),
