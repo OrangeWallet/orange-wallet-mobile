@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class BlocksProvider with ChangeNotifier {
   List<ThinBlock> _thinBlocks;
+
   BlocksProvider() {
     _thinBlocks = [];
   }
@@ -13,6 +14,11 @@ class BlocksProvider with ChangeNotifier {
   addThinBlock(ThinBlock thinBlock) {
     _thinBlocks.insert(0, thinBlock);
     if (_thinBlocks.length > maxThinBlocksSize) _thinBlocks.removeLast();
+    notifyListeners();
+  }
+
+  clearThinBlock() {
+    _thinBlocks = [];
     notifyListeners();
   }
 }

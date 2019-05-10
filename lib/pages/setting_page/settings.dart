@@ -1,8 +1,9 @@
 import 'package:OrangeWallet/pages/setting_page/settings/theme_setting.dart';
-import 'package:OrangeWallet/views/button/setting_button.dart';
-import 'package:flutter/material.dart';
-import 'package:fluintl/fluintl.dart';
 import 'package:OrangeWallet/resources/strings.dart';
+import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
+import 'package:OrangeWallet/views/button/setting_button.dart';
+import 'package:fluintl/fluintl.dart';
+import 'package:flutter/material.dart';
 
 class Settings extends StatelessWidget {
   @override
@@ -16,6 +17,7 @@ class Settings extends StatelessWidget {
         child: Column(
           children: <Widget>[
             buildThemeSetting(),
+            buildResetBlockChainSetting(),
           ],
         ),
       ),
@@ -40,6 +42,49 @@ class Settings extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   children: <Widget>[ThemeSetting()],
+                );
+              });
+        },
+      );
+    });
+  }
+
+  Builder buildResetBlockChainSetting() {
+    return Builder(builder: (BuildContext context) {
+      return SettingButton(
+        iconData: Icons.loop,
+        text: CustomLocalizations.of(context).getString(StringIds.settingResetBlockChain),
+        onClick: () {
+          showDialog(
+              context: context,
+              builder: (_) {
+                return AlertDialog(
+                  title: Text(
+                      CustomLocalizations.of(context).getString(StringIds.settingResetBlockChain)),
+                  content:
+                      Text(CustomLocalizations.of(context).getString(StringIds.resetBlockChainTip)),
+                  actions: <Widget>[
+                    FlatButton(
+                      child: Text(CustomLocalizations.of(context).getString(StringIds.ok)),
+                      onPressed: () async {
+                        Navigator.of(context).pop();
+                        showDialog(
+                            context: context,
+                            builder: (_) => AlertDialog(
+                                  content: CircularProgressIndicator(),
+                                ));
+                        await MyWalletCore.getInstance().resetBlockChain();
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    FlatButton(
+                      child: Text(CustomLocalizations.of(context).getString(StringIds.cancel)),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    )
+                  ],
                 );
               });
         },

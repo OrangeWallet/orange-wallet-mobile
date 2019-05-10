@@ -55,6 +55,14 @@ class MyWalletCore extends WalletCore {
     await super.clearStore();
   }
 
+  Future resetBlockChain() async {
+    await MyWalletCore.getInstance().stopSync();
+    await MyWalletCore.getInstance().clearStore();
+    blocksProvider.clearThinBlock();
+    balanceProvider.balance = BalanceBean(0, 0);
+    MyWalletCore.getInstance().updateCurrentIndexCells();
+  }
+
   @override
   updateCurrentIndexCells() async {
     cellsSyncProvider.synced = 0.0;

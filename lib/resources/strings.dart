@@ -38,6 +38,8 @@ class StringIds {
   static String confirMnemonicTip = 'confirMnemonicTip';
   static String settingTitle = 'settingTitle';
   static String settingTheme = 'settingTheme';
+  static String settingResetBlockChain = 'settingResetBlockChain';
+  static String resetBlockChainTip = 'resetBlockChainTip';
   static String receiveAddress = 'receiveAddress';
   static String copyToClipboard = 'copyToClipboard';
 
@@ -84,7 +86,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.inputPwdFieldLabel: 'Password*',
       StringIds.inputPwdFieldHelper: 'No less than 8 char',
       StringIds.inputPwdReTip: 'Confirm your password',
-      StringIds.inputPwdReAttention: 'Make sure you remember it. You can\'t use the wallet if you lose your password.',
+      StringIds.inputPwdReAttention:
+          'Make sure you remember it. You can\'t use the wallet if you lose your password.',
       StringIds.nextButton: 'Next',
       StringIds.forgetPwd: 'Forget it',
       StringIds.forgetDialogContent:
@@ -101,6 +104,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.confirMnemonicTip: 'Enter your mnemonic',
       StringIds.settingTitle: 'Settings',
       StringIds.settingTheme: 'Theme',
+      StringIds.settingResetBlockChain: 'Reset block chain',
+      StringIds.resetBlockChainTip:
+          'Pay attention! Reset block chain and wallet balance.Replay will take a while,so only do this if you know why.',
       StringIds.receiveAddress: 'Receive Address',
       StringIds.copyToClipboard: 'Copied to Clipboard',
       StringIds.ok: 'OK',
@@ -159,6 +165,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.confirMnemonicTip: '输入你的助记词',
       StringIds.settingTitle: '设置',
       StringIds.settingTheme: '主题',
+      StringIds.settingResetBlockChain: '重置链',
+      StringIds.resetBlockChainTip: '注意，重置链将会删除区块以及钱包余额，重新同步将需要一定时间',
       StringIds.receiveAddress: '收款地址',
       StringIds.copyToClipboard: '已复制到粘贴板',
       StringIds.ok: '确定',
