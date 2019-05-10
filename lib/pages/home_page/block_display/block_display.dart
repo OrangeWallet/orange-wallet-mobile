@@ -26,12 +26,16 @@ class BlockDisplay extends StatelessWidget {
               return Container(
                 height: 310,
                 width: 130,
-                padding: const EdgeInsets.only(left: 10, right: 10),
                 child: ListView.builder(
                   itemCount: blocks.length,
                   itemBuilder: (context, index) {
                     final ThinBlock thinBlock = blocks[index];
-                    return buildListItem(thinBlock);
+                    return Card(
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        child: buildListItem(thinBlock),
+                      ),
+                    );
                   },
                 ),
               );
@@ -43,8 +47,8 @@ class BlockDisplay extends StatelessWidget {
   }
 
   Widget buildListItem(ThinBlock thinBlock) {
-    final timeStamp =
-        DateFormat('HH:mm:ss').format(DateTime.fromMillisecondsSinceEpoch(int.parse(thinBlock.thinHeader.timestamp)));
+    final timeStamp = DateFormat('HH:mm:ss')
+        .format(DateTime.fromMillisecondsSinceEpoch(int.parse(thinBlock.thinHeader.timestamp)));
     return Container(
       padding: const EdgeInsets.all(5),
       child: Column(
@@ -100,13 +104,10 @@ class BlockDisplay extends StatelessWidget {
                           )
                         ],
                       ),
-                      Divider()
                     ],
                   );
                 },
               )),
-          SizedBox(height: 3),
-          Divider()
         ],
       ),
     );
