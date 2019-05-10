@@ -5,6 +5,7 @@ import 'package:OrangeWallet/pages/check_password.dart';
 import 'package:OrangeWallet/pages/create_import.dart';
 import 'package:OrangeWallet/resources/shared_preferences_keys.dart';
 import 'package:OrangeWallet/utils/provide/backup_notifier.dart';
+import 'package:OrangeWallet/utils/provide/balance_notifier.dart';
 import 'package:OrangeWallet/utils/provide/blocks_notifier.dart';
 import 'package:OrangeWallet/utils/provide/cells_sync_notifier.dart';
 import 'package:OrangeWallet/utils/provide/import_animation_notifier.dart';
@@ -32,20 +33,24 @@ class _SplashState extends State<SplashPage> {
       Directory appDocDir = await getTemporaryDirectory();
       if (await MyWalletCore.getInstance(walletStorePath: appDocDir.path).hasWallet()) {
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (BuildContext context) => CheckPasswordPage()), (Route route) => route == null);
+            MaterialPageRoute(builder: (BuildContext context) => CheckPasswordPage()),
+            (Route route) => route == null);
       } else {
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (BuildContext context) => CreateImportPage()), (Route route) => route == null);
+            MaterialPageRoute(builder: (BuildContext context) => CreateImportPage()),
+            (Route route) => route == null);
       }
       MyWalletCore.getInstance().blocksProvider = Provide.value<BlocksProvider>(context);
       MyWalletCore.getInstance().currentLoading = Provide.value<ImportAnimationProvider>(context);
       MyWalletCore.getInstance().cellsSyncProvider = Provide.value<CellsSyncProvider>(context);
+      MyWalletCore.getInstance().balanceProvider = Provide.value<BalanceProvider>(context);
     });
   }
 
   handleSpData() async {
     SpUtil spUtil = await SpUtil.getInstance();
-    Provide.value<ThemeColorProvider>(context).color = Colors.primaries[spUtil.getInt(SpKeys.themeColor, 5)];
+    Provide.value<ThemeColorProvider>(context).color =
+        Colors.primaries[spUtil.getInt(SpKeys.themeColor, 5)];
     Provide.value<NetTypeProvider>(context).type = spUtil.getInt(SpKeys.netType, 1);
     Provide.value<BackupProvider>(context).backup = spUtil.getBool(SpKeys.backup, false);
   }

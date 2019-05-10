@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:OrangeWallet/contant/constant.dart' as Constant;
 import 'package:OrangeWallet/resources/shared_preferences_keys.dart';
+import 'package:OrangeWallet/utils/provide/balance_notifier.dart';
 import 'package:OrangeWallet/utils/provide/blocks_notifier.dart';
 import 'package:OrangeWallet/utils/provide/cells_sync_notifier.dart';
 import 'package:OrangeWallet/utils/provide/import_animation_notifier.dart';
@@ -11,7 +12,6 @@ import 'package:ckbcore/base/bean/balance_bean.dart';
 import 'package:ckbcore/base/bean/thin_block.dart';
 import 'package:ckbcore/base/config/hd_core_config.dart';
 import 'package:ckbcore/base/exception/exception.dart';
-import 'package:ckbcore/base/utils/log.dart';
 import 'package:ckbcore/ckbcore.dart';
 
 class MyWalletCore extends WalletCore {
@@ -19,6 +19,7 @@ class MyWalletCore extends WalletCore {
   ImportAnimationProvider currentLoading;
   CellsSyncProvider cellsSyncProvider;
   BlocksProvider blocksProvider;
+  BalanceProvider balanceProvider;
 
   MyWalletCore._(String storePath) : super(storePath, Constant.nodeUrl, true);
 
@@ -70,7 +71,10 @@ class MyWalletCore extends WalletCore {
 
   @override
   cellsChanged(BalanceBean balance) {
-    Log.log(jsonEncode(balance));
+    if (balanceProvider == null) {
+      throw Exception('Please set Provide first');
+    }
+    balanceProvider.balance = balance;
   }
 
   @override

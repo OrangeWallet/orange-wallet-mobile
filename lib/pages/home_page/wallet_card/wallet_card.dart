@@ -5,10 +5,6 @@ import 'package:OrangeWallet/pages/home_page/wallet_card/sync_progressing.dart';
 import 'package:flutter/material.dart';
 
 class WalletCardWidget extends StatelessWidget {
-  final String balance;
-
-  WalletCardWidget(this.balance);
-
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
@@ -33,7 +29,7 @@ class WalletCardWidget extends StatelessWidget {
           Positioned(
             top: 40,
             left: 20,
-            child: BalanceWidget(balance),
+            child: BalanceWidget(),
           ),
           Positioned(
             left: 20,

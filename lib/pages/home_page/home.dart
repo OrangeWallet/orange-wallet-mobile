@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
               Container(
                 child: Column(
                   children: <Widget>[
-                    WalletCardWidget('21250000'),
+                    WalletCardWidget(),
                     SizedBox(height: 20),
                     BlockDisplay(),
                   ],
