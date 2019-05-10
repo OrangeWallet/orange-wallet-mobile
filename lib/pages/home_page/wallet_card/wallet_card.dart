@@ -27,7 +27,7 @@ class WalletCardWidget extends StatelessWidget {
             child: SyncProgressing(),
           ),
           Positioned(
-            top: 40,
+            top: 45,
             left: 20,
             child: BalanceWidget(),
           ),
@@ -37,8 +37,8 @@ class WalletCardWidget extends StatelessWidget {
             child: BackupWidget(),
           ),
           Positioned(
-            right: 15,
-            bottom: 15,
+            right: 20,
+            bottom: 20,
             child: Image.asset(
               'images/ic_nervos.png',
               height: 50,

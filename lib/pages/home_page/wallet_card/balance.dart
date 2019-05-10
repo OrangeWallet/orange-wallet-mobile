@@ -17,7 +17,7 @@ class BalanceWidget extends StatelessWidget {
               TextSpan(children: [
                 TextSpan(
                   text: provider.data.balance.totalCapacity.toStringAsPrecision(3),
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 26),
+                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
                 ),
                 TextSpan(
                   text: ' CKB',
