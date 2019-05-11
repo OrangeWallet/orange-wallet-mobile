@@ -1,18 +1,17 @@
 import 'dart:convert';
 
 import 'package:OrangeWallet/contant/constant.dart' as Constant;
-import 'package:OrangeWallet/resources/shared_preferences_keys.dart';
 import 'package:OrangeWallet/utils/provide/balance_notifier.dart';
 import 'package:OrangeWallet/utils/provide/blocks_notifier.dart';
 import 'package:OrangeWallet/utils/provide/cells_sync_notifier.dart';
 import 'package:OrangeWallet/utils/provide/import_animation_notifier.dart';
-import 'package:OrangeWallet/utils/shared_preferences.dart';
 import 'package:OrangeWallet/utils/wallet/wallet_store.dart';
 import 'package:ckbcore/base/bean/balance_bean.dart';
 import 'package:ckbcore/base/bean/thin_block.dart';
 import 'package:ckbcore/base/config/hd_core_config.dart';
-import 'package:ckbcore/base/exception/exception.dart';
+import 'package:ckbcore/base/utils/log.dart';
 import 'package:ckbcore/ckbcore.dart';
+import 'package:flutter/widgets.dart';
 
 class MyWalletCore extends WalletCore {
   static MyWalletCore _myWalletCore;
@@ -30,6 +29,17 @@ class MyWalletCore extends WalletCore {
     return _myWalletCore;
   }
 
+  initWallet({@required String password, String mnemonic, bool fromStore = false}) async {
+    if (fromStore) {
+      await super.init(password);
+    } else if (mnemonic == null) {
+      await super.create(password);
+    } else {
+      await super.import(mnemonic, password);
+    }
+    updateCurrentIndexCells();
+  }
+
   Future<bool> hasWallet() async {
     return await WalletStore.getInstance().has();
   }
@@ -43,11 +53,6 @@ class MyWalletCore extends WalletCore {
     } catch (_) {
       return false;
     }
-  }
-
-  Future createFinished(bool isBackup) async {
-    SpUtil spUtil = await SpUtil.getInstance();
-    spUtil.putBool(SpKeys.backup, isBackup);
   }
 
   Future deleteWallet() async {
@@ -66,30 +71,25 @@ class MyWalletCore extends WalletCore {
   @override
   updateCurrentIndexCells() async {
     cellsSyncProvider.synced = 0.0;
-    super.updateCurrentIndexCells();
+    try {
+      super.updateCurrentIndexCells();
+    } catch (e) {
+      cellsSyncProvider.synced = -1.0;
+    }
   }
 
   @override
   createStep(int step) {
-    if (currentLoading == null) {
-      throw Exception('Please set Provide first');
-    }
     currentLoading.currentLoading = step;
   }
 
   @override
   cellsChanged(BalanceBean balance) {
-    if (balanceProvider == null) {
-      throw Exception('Please set Provide first');
-    }
     balanceProvider.balance = balance;
   }
 
   @override
   blockChanged(ThinBlock thinBlock) {
-    if (blocksProvider == null) {
-      throw Exception('Please set Provide first');
-    }
     blocksProvider.addThinBlock(thinBlock);
   }
 
@@ -105,19 +105,12 @@ class MyWalletCore extends WalletCore {
 
   @override
   syncProcess(double processing) {
-    if (cellsSyncProvider == null) {
-      throw Exception('Please set Provide first');
-    }
     cellsSyncProvider.synced = processing;
   }
 
   @override
-  exception(Exception e) {
-    if (e is SyncException) {
-      if (cellsSyncProvider == null) {
-        throw Exception('Please set Provide first');
-      }
-      cellsSyncProvider.synced = -1.0;
-    } else if (e is BlockUpdateException) {}
+  syncException(Exception e) {
+    Log.log(e.toString());
+    cellsSyncProvider.synced = -1.0;
   }
 }

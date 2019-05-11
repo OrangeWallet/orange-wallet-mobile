@@ -39,9 +39,10 @@ class _State extends State<CheckPasswordPage> {
   _handlePwd() async {
     final FormFieldState<String> passwordField = _passwordFieldKey.currentState;
     if (await _validatePassword()) {
-      await MyWalletCore.getInstance().init(passwordField.value);
+      await MyWalletCore.getInstance().initWallet(password: passwordField.value, fromStore: true);
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (BuildContext context) => HomePage()), (Route route) => route == null);
+          MaterialPageRoute(builder: (BuildContext context) => HomePage()),
+          (Route route) => route == null);
     }
   }
 
@@ -65,7 +66,8 @@ class _State extends State<CheckPasswordPage> {
               PasswordField(
                 fieldKey: _passwordFieldKey,
                 labelText: CustomLocalizations.of(context).getString(StringIds.inputPwdFieldLabel),
-                helperText: CustomLocalizations.of(context).getString(StringIds.inputPwdFieldHelper),
+                helperText:
+                    CustomLocalizations.of(context).getString(StringIds.inputPwdFieldHelper),
                 errorText: errorMsg,
                 autofocus: true,
                 onFieldSubmitted: (value) {
@@ -76,7 +78,8 @@ class _State extends State<CheckPasswordPage> {
                 height: 30,
               ),
               MyRaisedButton(
-                  text: CustomLocalizations.of(context).getString(StringIds.nextButton), onPressed: _handlePwd),
+                  text: CustomLocalizations.of(context).getString(StringIds.nextButton),
+                  onPressed: _handlePwd),
               FlatButton(
                 child: Text(CustomLocalizations.of(context).getString(StringIds.forgetPwd),
                     style: Theme.of(context).textTheme.body1),
@@ -117,7 +120,8 @@ class _State extends State<CheckPasswordPage> {
       context: context,
       builder: (_) => AlertDialog(
             title: Text(CustomLocalizations.of(context).getString(StringIds.alert)),
-            content: Text(CustomLocalizations.of(context).getString(StringIds.deleteWalletDialogContent)),
+            content: Text(
+                CustomLocalizations.of(context).getString(StringIds.deleteWalletDialogContent)),
             actions: <Widget>[
               FlatButton(
                 child: Text(CustomLocalizations.of(context).getString(StringIds.tryAgain)),

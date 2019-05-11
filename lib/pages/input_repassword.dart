@@ -23,8 +23,10 @@ class _State extends State<InputRePasswordPage> {
     final FormFieldState<String> passwordField = _passwordFieldKey.currentState;
     if (passwordField.value == null || passwordField.value.isEmpty)
       return CustomLocalizations.of(context).getString(StringIds.errorEmptyPwd);
-    if (passwordField.value.length < 8) return CustomLocalizations.of(context).getString(StringIds.errorLessPwd);
-    if (passwordField.value != widget.pwd) return CustomLocalizations.of(context).getString(StringIds.errorDiffPwd);
+    if (passwordField.value.length < 8)
+      return CustomLocalizations.of(context).getString(StringIds.errorLessPwd);
+    if (passwordField.value != widget.pwd)
+      return CustomLocalizations.of(context).getString(StringIds.errorDiffPwd);
     return null;
   }
 
@@ -32,12 +34,13 @@ class _State extends State<InputRePasswordPage> {
     final FormFieldState<String> passwordField = _passwordFieldKey.currentState;
     if (passwordField.validate()) {
       if (widget.mnemonic == '') {
-        MyWalletCore.getInstance().create(widget.pwd);
+        MyWalletCore.getInstance().initWallet(password: widget.pwd);
       } else {
-        MyWalletCore.getInstance().import(widget.mnemonic, widget.pwd);
+        MyWalletCore.getInstance().initWallet(mnemonic: widget.mnemonic, password: widget.pwd);
       }
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (BuildContext context) => ImportWalletLoading()), (Route route) => route == null);
+          MaterialPageRoute(builder: (BuildContext context) => ImportWalletLoading()),
+          (Route route) => route == null);
     }
   }
 
@@ -76,7 +79,8 @@ class _State extends State<InputRePasswordPage> {
               PasswordField(
                 fieldKey: _passwordFieldKey,
                 labelText: CustomLocalizations.of(context).getString(StringIds.inputPwdFieldLabel),
-                helperText: CustomLocalizations.of(context).getString(StringIds.inputPwdFieldHelper),
+                helperText:
+                    CustomLocalizations.of(context).getString(StringIds.inputPwdFieldHelper),
                 validator: _validatePassword,
                 autofocus: true,
                 onFieldSubmitted: (value) {
@@ -88,7 +92,8 @@ class _State extends State<InputRePasswordPage> {
               ),
               Center(
                 child: MyRaisedButton(
-                    text: CustomLocalizations.of(context).getString(StringIds.nextButton), onPressed: _handlePwd),
+                    text: CustomLocalizations.of(context).getString(StringIds.nextButton),
+                    onPressed: _handlePwd),
               ),
             ],
           )),
