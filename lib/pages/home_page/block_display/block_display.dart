@@ -63,51 +63,54 @@ class BlockDisplay extends StatelessWidget {
               Text(timeStamp),
             ],
           ),
+          SizedBox(height: 5),
           Text(
             thinBlock.thinHeader.hash,
             style: TextStyle(fontSize: 14),
           ),
-          Container(
-              margin: const EdgeInsets.only(top: 5),
-              height: 30,
-              child: ListView.builder(
-                itemCount: thinBlock.thinTrans.length,
-                itemBuilder: (context, index) {
-                  ThinTransaction thinTransaction = thinBlock.thinTrans[index];
-                  final transResult = thinTransaction.capacityIn - thinTransaction.capacityOut;
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        thinTransaction.hash,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 14),
-                      ),
-                      SizedBox(width: 10),
-                      Row(
+          thinBlock.thinTrans.length <= 0
+              ? Container(height: 5)
+              : Container(
+                  margin: const EdgeInsets.only(top: 5),
+                  height: 30,
+                  child: ListView.builder(
+                    itemCount: thinBlock.thinTrans.length,
+                    itemBuilder: (context, index) {
+                      ThinTransaction thinTransaction = thinBlock.thinTrans[index];
+                      final transResult = thinTransaction.capacityIn - thinTransaction.capacityOut;
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          transResult > 0
-                              ? Icon(
-                                  Icons.call_received,
-                                  color: Colors.green,
-                                  size: 16,
-                                )
-                              : Icon(
-                                  Icons.call_made,
-                                  color: Colors.red,
-                                  size: 16,
-                                ),
-                          SizedBox(width: 5),
                           Text(
-                            transResult.abs().toString(),
-                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                          )
+                            thinTransaction.hash,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: 14),
+                          ),
+                          SizedBox(width: 10),
+                          Row(
+                            children: <Widget>[
+                              transResult > 0
+                                  ? Icon(
+                                      Icons.call_received,
+                                      color: Colors.green,
+                                      size: 16,
+                                    )
+                                  : Icon(
+                                      Icons.call_made,
+                                      color: Colors.red,
+                                      size: 16,
+                                    ),
+                              SizedBox(width: 5),
+                              Text(
+                                transResult.abs().toString(),
+                                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          ),
                         ],
-                      ),
-                    ],
-                  );
-                },
-              )),
+                      );
+                    },
+                  )),
         ],
       ),
     );

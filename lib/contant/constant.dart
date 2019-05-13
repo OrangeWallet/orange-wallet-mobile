@@ -1,2 +1,2 @@
 final maxThinBlocksSize = 100;
-final nodeUrl = 'http://192.168.99.123:8114';
+final nodeUrl = 'http://192.168.2.78:8114';
