@@ -4,6 +4,7 @@ import 'package:OrangeWallet/resources/strings.dart';
 import 'package:OrangeWallet/utils/provide/balance_notifier.dart';
 import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
 import 'package:OrangeWallet/views/button/my_raised_button.dart';
+import 'package:OrangeWallet/views/dialog/password_dialog.dart';
 import 'package:OrangeWallet/views/loading.dart';
 import 'package:ckb_sdk/ckb_address/ckb_address.dart';
 import 'package:ckbcore/base/bean/receiver_bean.dart';
@@ -96,17 +97,25 @@ class _State extends State<TransferPage> {
                         ? () async {
                             if (_validateAddress(address)) {
                               try {
-                                setState(() {
-                                  isLoading = true;
-                                });
-                                String hash = await MyWalletCore.getInstance().sendCapacity(
-                                    [ReceiverBean(address, int.parse(capacity) * 100000000)],
-                                    network);
-                                if (hash != null) {
-                                  Navigator.of(context).pop();
-                                } else {
-                                  _showErrorDialog(context, "Transfer failed");
-                                }
+                                showDialog(
+                                    context: context,
+                                    builder: (_) {
+                                      return PasswordDialog((password) async {
+                                        setState(() {
+                                          isLoading = true;
+                                        });
+                                        String hash = await MyWalletCore.getInstance().sendCapacity(
+                                            [
+                                              ReceiverBean(address, int.parse(capacity) * 100000000)
+                                            ],
+                                            network);
+                                        if (hash != null) {
+                                          Navigator.of(context).pop();
+                                        } else {
+                                          _showErrorDialog(context, "Transfer failed");
+                                        }
+                                      });
+                                    });
                               } catch (e) {
                                 _showErrorDialog(context, e.toString());
                               }
