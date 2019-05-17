@@ -44,6 +44,7 @@ class StringIds {
   static String copyToClipboard = 'copyToClipboard';
   static String transferTitle = 'transferTitle';
   static String availableCapacity = 'availableCapacity';
+  static String sourceCode = 'sourceCode';
 
   static String ok = 'OK';
   static String cancel = 'Cancel';
@@ -137,6 +138,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.capacity: 'Capacity',
       StringIds.errorNoEnoughCapacity: 'You don`t have enough CKB',
       StringIds.errorLessThanMinCapacity: 'Less than min capacity(60CKB)',
+      StringIds.sourceCode: 'Source Code',
     }
   },
   'zh': {
@@ -204,6 +206,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.capacity: 'Capacity',
       StringIds.errorNoEnoughCapacity: '你没有足够的CKB',
       StringIds.errorLessThanMinCapacity: '最小转账为60CKB',
+      StringIds.sourceCode: '源码',
     },
   }
 };
