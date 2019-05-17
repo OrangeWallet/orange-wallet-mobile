@@ -1,15 +1,19 @@
+import 'package:OrangeWallet/bean/balance_all_bean.dart';
 import 'package:ckbcore/base/bean/balance_bean.dart';
 import 'package:flutter/material.dart';
 
 class BalanceProvider with ChangeNotifier {
-  BalanceBean _balanceBean;
+  int shannon = 100000000;
+  BalanceAllBean _balanceAll;
 
-  BalanceProvider(this._balanceBean);
+  BalanceProvider(BalanceBean baseBalance) {
+    _balanceAll = BalanceAllBean(baseBalance);
+  }
 
-  BalanceBean get balance => _balanceBean;
+  BalanceAllBean get balance => _balanceAll;
 
-  set balance(BalanceBean balanceBean) {
-    _balanceBean = balanceBean;
+  set balance(BalanceBean baseBalance) {
+    _balanceAll = BalanceAllBean(baseBalance);
     notifyListeners();
   }
 }

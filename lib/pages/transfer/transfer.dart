@@ -32,7 +32,7 @@ class _State extends State<TransferPage> {
         title: Text(CustomLocalizations.of(context).getString(StringIds.transferTitle)),
       ),
       body: isLoading
-          ? Loading()
+          ? WillPopScope(child: Loading(), onWillPop: () {})
           : Container(
               alignment: Alignment(0, -0.7),
               padding: const EdgeInsets.only(left: 30, right: 30),
@@ -65,7 +65,9 @@ class _State extends State<TransferPage> {
                                 ),
                                 SizedBox(height: 10),
                                 Text(
-                                  '${provider.data.balance.availableCapacity} CKB',
+                                  provider.data.balance.availableForDisplay.balance +
+                                      " " +
+                                      provider.data.balance.availableForDisplay.uint,
                                   style: TextStyle(fontSize: 26),
                                 ),
                               ],
