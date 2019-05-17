@@ -57,8 +57,8 @@ class BackupMnemonic extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(90, 10, 90, 10),
               text: CustomLocalizations.of(context).getString(StringIds.nextButton),
               onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (BuildContext context) => ConfirmMnemonic()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => ConfirmMnemonic(_mnemonic)));
               },
             )
           ],

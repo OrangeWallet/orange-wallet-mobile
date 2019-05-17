@@ -14,7 +14,7 @@ class ReceiveQr extends StatelessWidget {
   Widget build(BuildContext context) {
     final key = new GlobalKey<ScaffoldState>();
     final netType = Provide.value<NetTypeProvider>(context);
-    final wallet = MyWalletCore.getInstance().unusedReceiveWallet;
+    final wallet = MyWalletCore.getInstance().myWallet;
     String address = wallet.getAddress(netType.type == 0 ? Network.MainNet : Network.TestNet);
     return Scaffold(
       key: key,
