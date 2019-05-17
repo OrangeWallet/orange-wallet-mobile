@@ -20,7 +20,7 @@ class MyWalletCore extends WalletCore {
   BlocksProvider blocksProvider;
   BalanceProvider balanceProvider;
 
-  MyWalletCore._(String storePath) : super(storePath, Constant.nodeUrl, true);
+  MyWalletCore._(String storePath) : super(storePath, Constant.nodeUrl, Constant.network, true);
 
   static MyWalletCore getInstance({String walletStorePath}) {
     if (_myWalletCore == null) {
@@ -31,11 +31,11 @@ class MyWalletCore extends WalletCore {
 
   initWallet({@required String password, String mnemonic, bool fromStore = false}) async {
     if (fromStore) {
-      await super.init(password);
+      await super.walletFromStore(password);
     } else if (mnemonic == null) {
-      await super.create(password);
+      await super.walletFromCreate(password);
     } else {
-      await super.import(mnemonic, password);
+      await super.walletFromImport(mnemonic, password);
     }
     updateCurrentIndexCells();
   }
