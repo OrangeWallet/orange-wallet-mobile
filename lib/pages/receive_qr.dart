@@ -1,21 +1,18 @@
+import 'package:OrangeWallet/contant/constant.dart';
 import 'package:OrangeWallet/resources/strings.dart';
-import 'package:OrangeWallet/utils/provide/net_type_notifier.dart';
 import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
-import 'package:ckb_sdk/ckb-utils/network.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:provide/provide.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class ReceiveQr extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final key = new GlobalKey<ScaffoldState>();
-    final netType = Provide.value<NetTypeProvider>(context);
     final wallet = MyWalletCore.getInstance().myWallet;
-    String address = wallet.getAddress(netType.type == 0 ? Network.MainNet : Network.TestNet);
+    String address = wallet.getAddress(network);
     return Scaffold(
       key: key,
       appBar:

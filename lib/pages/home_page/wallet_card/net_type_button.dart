@@ -1,5 +1,6 @@
+import 'package:OrangeWallet/contant/constant.dart';
 import 'package:OrangeWallet/resources/strings.dart';
-import 'package:OrangeWallet/utils/provide/net_type_notifier.dart';
+import 'package:ckb_sdk/ckb-utils/network.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:provide/provide.dart';
@@ -25,21 +26,15 @@ class NetTypeWidget extends StatelessWidget {
   }
 
   Widget buildNetType(BuildContext context) {
-    final currentNetType = Provide.value<NetTypeProvider>(context);
-    return StreamBuilder<NetTypeProvider>(
-      initialData: currentNetType,
-      stream: Provide.stream<NetTypeProvider>(context),
-      builder: (context, netType) {
-        String typeStr;
-        if (netType.data.type == 0) {
-          typeStr = CustomLocalizations.of(context).getString(StringIds.mainNet);
-        }
-        typeStr = CustomLocalizations.of(context).getString(StringIds.testNet);
-        return Text(
-          typeStr,
-          style: TextStyle(fontSize: 12, color: Theme.of(context).primaryColor),
-        );
-      },
+    String typeStr;
+    if (network == Network.MainNet) {
+      typeStr = CustomLocalizations.of(context).getString(StringIds.mainNet);
+    } else {
+      typeStr = CustomLocalizations.of(context).getString(StringIds.testNet);
+    }
+    return Text(
+      typeStr,
+      style: TextStyle(fontSize: 12, color: Theme.of(context).primaryColor),
     );
   }
 

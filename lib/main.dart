@@ -5,7 +5,6 @@ import 'package:OrangeWallet/utils/provide/balance_notifier.dart';
 import 'package:OrangeWallet/utils/provide/blocks_notifier.dart';
 import 'package:OrangeWallet/utils/provide/cells_sync_notifier.dart';
 import 'package:OrangeWallet/utils/provide/import_animation_notifier.dart';
-import 'package:OrangeWallet/utils/provide/net_type_notifier.dart';
 import 'package:OrangeWallet/utils/provide/theme_color_notifier.dart';
 import 'package:ckbcore/base/bean/balance_bean.dart';
 import 'package:fluintl/fluintl.dart';
@@ -16,7 +15,6 @@ import 'package:provide/provide.dart';
 void main() {
   final providers = Providers()
     ..provide(Provider.function((context) => ThemeColorProvider()))
-    ..provide(Provider.function((context) => NetTypeProvider()))
     ..provide(Provider.function((context) => ImportAnimationProvider()))
     ..provide(Provider.function((context) => BackupProvider()))
     ..provide(Provider.function((context) => CellsSyncProvider(synced: 0.0)))

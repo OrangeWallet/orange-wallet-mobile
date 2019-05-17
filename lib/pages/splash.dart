@@ -9,7 +9,6 @@ import 'package:OrangeWallet/utils/provide/balance_notifier.dart';
 import 'package:OrangeWallet/utils/provide/blocks_notifier.dart';
 import 'package:OrangeWallet/utils/provide/cells_sync_notifier.dart';
 import 'package:OrangeWallet/utils/provide/import_animation_notifier.dart';
-import 'package:OrangeWallet/utils/provide/net_type_notifier.dart';
 import 'package:OrangeWallet/utils/provide/theme_color_notifier.dart';
 import 'package:OrangeWallet/utils/shared_preferences.dart';
 import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
@@ -51,7 +50,6 @@ class _SplashState extends State<SplashPage> {
     SpUtil spUtil = await SpUtil.getInstance();
     Provide.value<ThemeColorProvider>(context).color =
         Colors.primaries[spUtil.getInt(SpKeys.themeColor, 5)];
-    Provide.value<NetTypeProvider>(context).type = spUtil.getInt(SpKeys.netType, 1);
     Provide.value<BackupProvider>(context).backup = spUtil.getBool(SpKeys.backup, false);
   }
 
