@@ -1,3 +1,4 @@
+import 'package:OrangeWallet/bean/thin_block_with_transaction.dart';
 import 'package:OrangeWallet/utils/provide/blocks_notifier.dart';
 import 'package:ckbcore/base/bean/thin_block.dart';
 import 'package:ckbcore/base/bean/thin_transaction.dart';
@@ -14,7 +15,7 @@ class BlockDisplay extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
-            'Blocks',
+            'Transactions',
             style: Theme.of(context).textTheme.display1.copyWith(fontSize: 26),
           ),
           SizedBox(height: 10),
@@ -22,7 +23,7 @@ class BlockDisplay extends StatelessWidget {
             initialData: blocksProvider,
             stream: Provide.stream<BlocksProvider>(context),
             builder: (context, blocksProvider) {
-              final List<ThinBlock> blocks = blocksProvider.data.thinBlocks;
+              final List<ThinBlockWithTransaction> blocks = blocksProvider.data.thinBlocksWithTrans;
               return Container(
                 height: 310,
                 width: 130,
@@ -46,7 +47,7 @@ class BlockDisplay extends StatelessWidget {
     );
   }
 
-  Widget buildListItem(ThinBlock thinBlock) {
+  Widget buildListItem(ThinBlockWithTransaction thinBlock) {
     final timeStamp = DateFormat('HH:mm:ss')
         .format(DateTime.fromMillisecondsSinceEpoch(int.parse(thinBlock.thinHeader.timestamp)));
     return Container(
@@ -63,11 +64,11 @@ class BlockDisplay extends StatelessWidget {
               Text(timeStamp),
             ],
           ),
-          SizedBox(height: 5),
-          Text(
-            thinBlock.thinHeader.hash,
-            style: TextStyle(fontSize: 14),
-          ),
+//          SizedBox(height: 5),
+//          Text(
+//            thinBlock.thinHeader.hash,
+//            style: TextStyle(fontSize: 14),
+//          ),
           thinBlock.thinTrans.length <= 0
               ? Container(height: 5)
               : Container(
@@ -102,7 +103,9 @@ class BlockDisplay extends StatelessWidget {
                                     ),
                               SizedBox(width: 5),
                               Text(
-                                transResult.abs().toString(),
+                                thinBlock.thinTransDisplay[index].balance +
+                                    " " +
+                                    thinBlock.thinTransDisplay[index].uint,
                                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                               )
                             ],
