@@ -9,42 +9,50 @@ import 'package:provide/provide.dart';
 class BlockDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final blocksProvider = Provide.value<BlocksProvider>(context);
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Text(
-            'Transactions',
-            style: Theme.of(context).textTheme.display1.copyWith(fontSize: 26),
-          ),
-          SizedBox(height: 10),
-          StreamBuilder<BlocksProvider>(
-            initialData: blocksProvider,
-            stream: Provide.stream<BlocksProvider>(context),
-            builder: (context, blocksProvider) {
-              final List<ThinBlockWithTransaction> blocks = blocksProvider.data.thinBlocksWithTrans;
-              return Container(
-                height: 310,
-                width: 130,
-                child: ListView.builder(
-                  itemCount: blocks.length,
-                  itemBuilder: (context, index) {
-                    final ThinBlock thinBlock = blocks[index];
-                    return Card(
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        child: buildListItem(thinBlock),
-                      ),
-                    );
-                  },
+    final blocksCurrent = Provide.value<BlocksProvider>(context);
+    return StreamBuilder<BlocksProvider>(
+        initialData: blocksCurrent,
+        stream: Provide.stream<BlocksProvider>(context),
+        builder: (context, blocksProvider) {
+          final List<ThinBlockWithTransaction> blocks = blocksProvider.data.thinBlocks;
+          return Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Text(
+                      blocksProvider.data.onlyShowBlocksWithTransaction ? 'Transactions' : 'Blocks',
+                      style: Theme.of(context).textTheme.display1.copyWith(fontSize: 26),
+                    ),
+                    Switch(
+                        value: blocksProvider.data.onlyShowBlocksWithTransaction,
+                        onChanged: (value) {
+                          blocksCurrent.changeDisplay(value);
+                        }),
+                  ],
                 ),
-              );
-            },
-          ),
-        ],
-      ),
-    );
+                SizedBox(height: 10),
+                Container(
+                  height: 310,
+                  width: 130,
+                  child: ListView.builder(
+                    itemCount: blocks.length,
+                    itemBuilder: (context, index) {
+                      final ThinBlock thinBlock = blocks[index];
+                      return Card(
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          child: buildListItem(thinBlock),
+                        ),
+                      );
+                    },
+                  ),
+                )
+              ],
+            ),
+          );
+        });
   }
 
   Widget buildListItem(ThinBlockWithTransaction thinBlock) {
@@ -64,13 +72,13 @@ class BlockDisplay extends StatelessWidget {
               Text(timeStamp),
             ],
           ),
-//          SizedBox(height: 5),
-//          Text(
-//            thinBlock.thinHeader.hash,
-//            style: TextStyle(fontSize: 14),
-//          ),
+          SizedBox(height: 5),
+          Text(
+            thinBlock.thinHeader.hash,
+            style: TextStyle(fontSize: 14),
+          ),
           thinBlock.thinTrans.length <= 0
-              ? Container(height: 5)
+              ? Container()
               : Container(
                   margin: const EdgeInsets.only(top: 5),
                   height: 30,
