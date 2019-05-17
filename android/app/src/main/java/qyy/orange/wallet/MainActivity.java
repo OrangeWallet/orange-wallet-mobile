@@ -1,4 +1,4 @@
-package qyy.ckbalance;
+package qyy.orange.wallet;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
