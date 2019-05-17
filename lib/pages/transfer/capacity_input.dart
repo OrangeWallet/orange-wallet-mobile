@@ -1,5 +1,8 @@
+import 'package:OrangeWallet/contant/constant.dart';
+import 'package:OrangeWallet/resources/strings.dart';
 import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
 import 'package:ckbcore/base/constant/constant.dart';
+import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -21,8 +24,8 @@ class _State extends State<CapacityInput> {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
-        labelText: 'Capacity',
-        suffixText: 'CKB',
+        labelText: CustomLocalizations.of(context).getString(StringIds.capacity),
+        suffixText: CKBUnit,
         errorText: errorMessage,
       ),
       keyboardType: TextInputType.number,
@@ -34,12 +37,14 @@ class _State extends State<CapacityInput> {
         } else if (double.parse(str) * 100000000 >
             MyWalletCore.getInstance().balanceBean.availableCapacity) {
           setState(() {
-            errorMessage = 'You don`t have enough CKB';
+            errorMessage =
+                CustomLocalizations.of(context).getString(StringIds.errorNoEnoughCapacity);
           });
           widget.capacityChanged('');
         } else if (double.parse(str) < MinCapacity) {
           setState(() {
-            errorMessage = 'Less than min capacity(60CKB)';
+            errorMessage =
+                CustomLocalizations.of(context).getString(StringIds.errorLessThanMinCapacity);
           });
           widget.capacityChanged('');
         } else {

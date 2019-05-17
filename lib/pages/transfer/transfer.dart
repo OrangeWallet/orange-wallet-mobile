@@ -53,7 +53,8 @@ class _State extends State<TransferPage> {
                                 Row(
                                   children: <Widget>[
                                     Text(
-                                      'Available Capacity',
+                                      CustomLocalizations.of(context)
+                                          .getString(StringIds.availableCapacity),
                                       style: TextStyle(fontSize: 16),
                                     ),
                                     SizedBox(width: 6),
@@ -112,7 +113,10 @@ class _State extends State<TransferPage> {
                                         if (hash != null) {
                                           Navigator.of(context).pop();
                                         } else {
-                                          _showErrorDialog(context, "Transfer failed");
+                                          _showErrorDialog(
+                                              context,
+                                              CustomLocalizations.of(context)
+                                                  .getString(StringIds.errorTransferFailed));
                                         }
                                       });
                                     });
@@ -122,7 +126,7 @@ class _State extends State<TransferPage> {
                             }
                           }
                         : null,
-                    text: 'Send',
+                    text: CustomLocalizations.of(context).getString(StringIds.send),
                   )
                 ],
               ),
@@ -136,7 +140,7 @@ class _State extends State<TransferPage> {
       ckbAddress.parse(address);
     } catch (e) {
       setState(() {
-        addressError = 'Wrong address';
+        addressError = CustomLocalizations.of(context).getString(StringIds.errorAddressFormat);
       });
       return false;
     }
@@ -148,7 +152,7 @@ class _State extends State<TransferPage> {
         context: context,
         builder: (_) {
           return AlertDialog(
-            title: Text('Error'),
+            title: Text(CustomLocalizations.of(context).getString(StringIds.alert)),
             content: Text(content),
             actions: <Widget>[
               FlatButton(
