@@ -42,6 +42,7 @@ class StringIds {
   static String resetBlockChainTip = 'resetBlockChainTip';
   static String receiveAddress = 'receiveAddress';
   static String copyToClipboard = 'copyToClipboard';
+  static String transferTitle = 'transferTitle';
 
   static String ok = 'OK';
   static String cancel = 'Cancel';
@@ -109,6 +110,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
           'Pay attention! Reset block chain and wallet balance.Replay will take a while,so only do this if you know why.',
       StringIds.receiveAddress: 'Receive Address',
       StringIds.copyToClipboard: 'Copied to Clipboard',
+      StringIds.transferTitle: 'Transfer',
       StringIds.ok: 'OK',
       StringIds.cancel: 'Cancel',
       StringIds.start: 'Start',
@@ -165,6 +167,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.confirMnemonicTip: '输入你的助记词',
       StringIds.settingTitle: '设置',
       StringIds.settingTheme: '主题',
+      StringIds.transferTitle: '转账',
       StringIds.settingResetBlockChain: '重置链',
       StringIds.resetBlockChainTip: '注意，重置链将会删除区块以及钱包余额，重新同步将需要一定时间',
       StringIds.receiveAddress: '收款地址',
