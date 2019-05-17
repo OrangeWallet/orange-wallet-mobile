@@ -11,6 +11,7 @@ class ThemeSetting extends StatelessWidget {
       alignment: Alignment.center,
       child: Container(
         height: 300,
+        width: 300,
         padding: const EdgeInsets.only(bottom: 10),
         child: ListView.builder(
           itemCount: Colors.primaries.length,
