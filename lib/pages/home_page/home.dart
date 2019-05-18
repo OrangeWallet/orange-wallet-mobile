@@ -1,6 +1,8 @@
+import 'package:OrangeWallet/pages/home_page/block_display/block_display.dart';
 import 'package:OrangeWallet/pages/home_page/wallet_card/wallet_card.dart';
 import 'package:OrangeWallet/pages/receive_qr.dart';
 import 'package:OrangeWallet/pages/setting_page/settings.dart';
+import 'package:OrangeWallet/pages/transfer/transfer.dart';
 import 'package:OrangeWallet/resources/strings.dart';
 import 'package:OrangeWallet/views/button/semicircle_double_button.dart';
 import 'package:fluintl/fluintl.dart';
@@ -25,7 +27,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) => Settings()));
               },
-            )
+            ),
           ],
         ),
         floatingActionButton: Builder(
@@ -35,7 +37,9 @@ class HomePage extends StatelessWidget {
                     Navigator.of(context).push(MaterialPageRoute(builder: (_) => ReceiveQr()));
                   },
                   rightText: CustomLocalizations.of(context).getString(StringIds.send),
-                  rightClick: () {},
+                  rightClick: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => TransferPage()));
+                  },
                 )),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: Container(
@@ -44,7 +48,13 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Container(
-                child: WalletCardWidget('0'),
+                child: Column(
+                  children: <Widget>[
+                    WalletCardWidget(),
+                    SizedBox(height: 20),
+                    BlockDisplay(),
+                  ],
+                ),
               )
             ],
           ),

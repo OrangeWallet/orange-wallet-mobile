@@ -1,52 +1,56 @@
 import 'package:OrangeWallet/pages/home_page/wallet_card/backup.dart';
 import 'package:OrangeWallet/pages/home_page/wallet_card/balance.dart';
 import 'package:OrangeWallet/pages/home_page/wallet_card/net_type_button.dart';
+import 'package:OrangeWallet/pages/home_page/wallet_card/sync_progressing.dart';
 import 'package:flutter/material.dart';
 
 class WalletCardWidget extends StatelessWidget {
-  final String balance;
-
-  WalletCardWidget(this.balance);
-
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [theme.primaryColor, theme.accentColor, theme.primaryColorLight],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight),
-          borderRadius: BorderRadius.all(
-            Radius.circular(8.0),
-          ),
+      height: 150,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            colors: [theme.primaryColor, theme.accentColor, theme.primaryColorLight],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight),
+        borderRadius: BorderRadius.all(
+          Radius.circular(8.0),
         ),
-        padding: const EdgeInsets.all(10),
-        child: Stack(
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                SizedBox(height: 10),
-                BalanceWidget(balance),
-                SizedBox(height: 13),
-                BackupWidget(),
-                SizedBox(height: 7)
-              ],
+      ),
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            top: 5,
+            left: 5,
+            child: SyncProgressing(),
+          ),
+          Positioned(
+            top: 45,
+            left: 20,
+            child: BalanceWidget(),
+          ),
+          Positioned(
+            left: 20,
+            bottom: 20,
+            child: BackupWidget(),
+          ),
+          Positioned(
+            right: 20,
+            bottom: 20,
+            child: Image.asset(
+              'images/ic_nervos.png',
+              height: 50,
             ),
-            Column(
-              children: <Widget>[
-                NetTypeWidget(),
-                Container(
-                  padding: EdgeInsets.fromLTRB(0, 20, 20, 0),
-                  alignment: Alignment.centerRight,
-                  child: Image.asset(
-                    'images/ic_nervos.png',
-                    height: 50,
-                  ),
-                )
-              ],
-            )
-          ],
-        ));
+          ),
+          Positioned(
+            right: 15,
+            top: 15,
+            child: NetTypeWidget(),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -1,37 +1,36 @@
+import 'package:OrangeWallet/utils/provide/balance_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:provide/provide.dart';
 
 class BalanceWidget extends StatelessWidget {
-  final String balance;
-
-  BalanceWidget(this.balance);
-
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: <Widget>[
-        SizedBox(width: 20),
-        Text.rich(
-          TextSpan(children: [
-            TextSpan(
-              text: balance,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  letterSpacing: 10,
-                  fontSize: 45),
+    final balanceProvider = Provide.value<BalanceProvider>(context);
+    return StreamBuilder<BalanceProvider>(
+      stream: Provide.stream<BalanceProvider>(context),
+      initialData: balanceProvider,
+      builder: (context, provider) {
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: <Widget>[
+            Text.rich(
+              TextSpan(children: [
+                TextSpan(
+                  text: provider.data.balance.totalForDisplay.balance,
+                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
+                ),
+                TextSpan(
+                  text: provider.data.balance.totalForDisplay.uint,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                ),
+              ]),
             ),
-            TextSpan(
-              text: 'CKB',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 30,
-                letterSpacing: 2,
-              ),
-            ),
-          ]),
-        ),
-      ],
+          ],
+        );
+      },
     );
   }
 }

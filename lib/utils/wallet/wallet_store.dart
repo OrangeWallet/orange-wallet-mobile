@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:OrangeWallet/bean/wallet_store_bean.dart';
 import 'package:OrangeWallet/utils/wallet_crypto.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -31,21 +28,20 @@ class WalletStore {
     return true;
   }
 
-  Future<void> write(WalletStoreBean bean, String password) async {
-    String base64 = WalletCrypto.encryptMnemonic(jsonEncode(bean), password);
+  Future write(String data, String password) async {
+    String base64 = WalletCrypto.encryptMnemonic(data, password);
     await _storage.write(key: WalletKey, value: base64);
   }
 
-  Future<WalletStoreBean> read(String password) async {
+  Future<String> read(String password) async {
     try {
-      String beanStr = WalletCrypto.decrptMnemonic(await _storage.read(key: WalletKey), password);
-      return WalletStoreBean.fromJson(jsonDecode(beanStr));
+      return WalletCrypto.decrptMnemonic(await _storage.read(key: WalletKey), password);
     } catch (e) {
       throw Error();
     }
   }
 
-  delete() {
-    _storage.delete(key: WalletKey);
+  Future delete() async {
+    await _storage.delete(key: WalletKey);
   }
 }

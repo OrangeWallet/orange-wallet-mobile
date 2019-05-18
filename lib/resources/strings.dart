@@ -38,8 +38,13 @@ class StringIds {
   static String confirMnemonicTip = 'confirMnemonicTip';
   static String settingTitle = 'settingTitle';
   static String settingTheme = 'settingTheme';
+  static String settingResetBlockChain = 'settingResetBlockChain';
+  static String resetBlockChainTip = 'resetBlockChainTip';
   static String receiveAddress = 'receiveAddress';
   static String copyToClipboard = 'copyToClipboard';
+  static String transferTitle = 'transferTitle';
+  static String availableCapacity = 'availableCapacity';
+  static String sourceCode = 'sourceCode';
 
   static String ok = 'OK';
   static String cancel = 'Cancel';
@@ -56,6 +61,12 @@ class StringIds {
   static String errorEmptyPwd = 'errorEmptyPwd';
   static String errorLessPwd = 'errorLessPwd';
   static String errorDiffPwd = 'errorDiffPwd';
+  static String errorSync = 'errorSync';
+  static String errorTransferFailed = 'errorTransferFailed';
+  static String errorAddressFormat = 'errorAddressFormat';
+  static String capacity = 'capacity';
+  static String errorNoEnoughCapacity = 'errorNoEnoughCapacity';
+  static String errorLessThanMinCapacity = 'errorLessThanMinCapacity';
 }
 
 Map<String, Map<String, Map<String, String>>> localizedValues = {
@@ -101,13 +112,18 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.confirMnemonicTip: 'Enter your mnemonic',
       StringIds.settingTitle: 'Settings',
       StringIds.settingTheme: 'Theme',
+      StringIds.settingResetBlockChain: 'Reset block chain',
+      StringIds.resetBlockChainTip:
+          'Pay attention! Reset block chain and wallet balance.Replay will take a while,so only do this if you know why.',
       StringIds.receiveAddress: 'Receive Address',
       StringIds.copyToClipboard: 'Copied to Clipboard',
+      StringIds.transferTitle: 'Transfer',
       StringIds.ok: 'OK',
       StringIds.cancel: 'Cancel',
       StringIds.start: 'Start',
       StringIds.receive: 'Receive',
       StringIds.send: 'Send',
+      StringIds.availableCapacity: 'Available Capacity',
       StringIds.mainNetTip: 'The main network is not up yet!',
       StringIds.mainNet: 'MainNet',
       StringIds.testNet: 'Test Net',
@@ -116,6 +132,13 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.errorEmptyPwd: 'Please enter a password.',
       StringIds.errorLessPwd: 'No less than 8 char',
       StringIds.errorDiffPwd: 'Wrong password',
+      StringIds.errorSync: 'Sync failed',
+      StringIds.errorTransferFailed: 'Transfer failed',
+      StringIds.errorAddressFormat: 'Wrong Address',
+      StringIds.capacity: 'Capacity',
+      StringIds.errorNoEnoughCapacity: 'You don`t have enough CKB',
+      StringIds.errorLessThanMinCapacity: 'Less than min capacity(60CKB)',
+      StringIds.sourceCode: 'Source Code',
     }
   },
   'zh': {
@@ -158,8 +181,12 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.confirMnemonicTip: '输入你的助记词',
       StringIds.settingTitle: '设置',
       StringIds.settingTheme: '主题',
+      StringIds.transferTitle: '转账',
+      StringIds.settingResetBlockChain: '重置链',
+      StringIds.resetBlockChainTip: '注意，重置链将会删除区块以及钱包余额，重新同步将需要一定时间',
       StringIds.receiveAddress: '收款地址',
       StringIds.copyToClipboard: '已复制到粘贴板',
+      StringIds.availableCapacity: '可用余额',
       StringIds.ok: '确定',
       StringIds.cancel: '取消',
       StringIds.start: '开始',
@@ -173,6 +200,13 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.errorEmptyPwd: '请输入密码',
       StringIds.errorLessPwd: '最少八位',
       StringIds.errorDiffPwd: '密码错误',
+      StringIds.errorSync: '同步失败',
+      StringIds.errorTransferFailed: '转账失败',
+      StringIds.errorAddressFormat: '地址错误',
+      StringIds.capacity: 'Capacity',
+      StringIds.errorNoEnoughCapacity: '你没有足够的CKB',
+      StringIds.errorLessThanMinCapacity: '最小转账为60CKB',
+      StringIds.sourceCode: '源码',
     },
   }
 };

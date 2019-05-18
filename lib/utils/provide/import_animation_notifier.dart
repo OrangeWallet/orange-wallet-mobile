@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ImportAnimationProvide with ChangeNotifier {
+class ImportAnimationProvider with ChangeNotifier {
   int _currentLoading;
 
-  ImportAnimationProvide({currentLoading: 0}) {
+  ImportAnimationProvider({currentLoading: 0}) {
     _currentLoading = currentLoading;
   }
 

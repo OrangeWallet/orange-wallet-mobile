@@ -19,10 +19,10 @@ class ImportWalletLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentLoading = Provide.value<ImportAnimationProvide>(context);
-    return StreamBuilder<ImportAnimationProvide>(
+    final currentLoading = Provide.value<ImportAnimationProvider>(context);
+    return StreamBuilder<ImportAnimationProvider>(
       initialData: currentLoading,
-      stream: Provide.stream<ImportAnimationProvide>(context),
+      stream: Provide.stream<ImportAnimationProvider>(context),
       builder: (context, snapshot) {
         List<String> _list = [
           CustomLocalizations.of(context).getString(StringIds.importAnimFirst),
@@ -84,8 +84,7 @@ class ImportWalletLoading extends StatelessWidget {
               ),
               Text(
                 text,
-                style:
-                    TextStyle(color: theme.primaryColor, fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(color: theme.primaryColor, fontSize: 20, fontWeight: FontWeight.bold),
               )
             ],
           ),
@@ -183,8 +182,7 @@ class ImportWalletLoading extends StatelessWidget {
               color: Theme.of(context).primaryColor,
               onPressed: () {
                 Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (BuildContext context) => HomePage()),
-                    (Route route) => route == null);
+                    MaterialPageRoute(builder: (BuildContext context) => HomePage()), (Route route) => route == null);
               },
             ),
           )

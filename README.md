@@ -1,22 +1,17 @@
-# ckbalance
+# Orange Wallet
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FCKBalance%2Fckbalance.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FCKBalance%2Fckbalance?ref=badge_shield)
 
 
 A wallet for Nervos
 
-## Getting Started
+![pic1](readme_image/show1.jpg)
+![pic2](readme_image/show2.png)
+![pic3](readme_image/show3.jpg)
 
-This project is a starting point for a Flutter application.
+## Download
+For TestNet.It`s very early version.Be careful.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
-
+[orange-wallet-testnet0.0.1.apk](release/orange-wallet-testnet0.0.1.apk)
 
 ## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FOrangeWallet%2Forange-wallet.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FOrangeWallet%2Forange-wallet?ref=badge_large)

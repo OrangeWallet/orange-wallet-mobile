@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:OrangeWallet/pages/backup_mnemonic.dart';
 import 'package:OrangeWallet/resources/strings.dart';
 import 'package:OrangeWallet/utils/provide/backup_notifier.dart';
-import 'package:OrangeWallet/utils/wallet/wallet_manager.dart';
+import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
 import 'package:OrangeWallet/views/dialog/password_dialog.dart';
+import 'package:ckbcore/base/config/hd_core_config.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:provide/provide.dart';
@@ -18,7 +21,6 @@ class BackupWidget extends StatelessWidget {
         if (backup.data.backup) {
           return Row(
             children: <Widget>[
-              SizedBox(width: 25),
               Icon(
                 Icons.check_circle,
                 color: Colors.white,
@@ -34,7 +36,6 @@ class BackupWidget extends StatelessWidget {
         }
         return Row(
           children: <Widget>[
-            SizedBox(width: 20),
             Row(
               children: <Widget>[
                 GestureDetector(
@@ -43,17 +44,11 @@ class BackupWidget extends StatelessWidget {
                         shape: BoxShape.rectangle,
                         color: Colors.white,
                         borderRadius: BorderRadius.all(
-                          Radius.circular(15.0),
+                          Radius.circular(10.0),
                         )),
-                    padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
+                    padding: const EdgeInsets.fromLTRB(7, 2, 7, 2),
                     child: Row(
                       children: <Widget>[
-                        Icon(
-                          Icons.warning,
-                          color: Colors.redAccent,
-                          size: 16,
-                        ),
-                        SizedBox(width: 2),
                         Text(
                           CustomLocalizations.of(context).getString(StringIds.backUp),
                           style: TextStyle(fontSize: 16, color: Colors.redAccent),
@@ -66,9 +61,12 @@ class BackupWidget extends StatelessWidget {
                         context: context,
                         builder: (_) {
                           return PasswordDialog((password) async {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    BackupMnemonic(WalletManager.getInstance().getMnemonic())));
+                            String config = await MyWalletCore.getInstance().readWallet(password);
+                            HDCoreConfig hdCoreConfig = HDCoreConfig.fromJson(jsonDecode(config));
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: (BuildContext context) {
+                              return BackupMnemonic(hdCoreConfig.mnemonic);
+                            }));
                           });
                         });
                   },
