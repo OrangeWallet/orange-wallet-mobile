@@ -105,14 +105,17 @@ class _State extends State<TransferPage> {
                                         setState(() {
                                           isLoading = true;
                                         });
-                                        String hash = await MyWalletCore.getInstance().sendCapacity(
-                                            [
-                                              ReceiverBean(address, int.parse(capacity) * 100000000)
-                                            ],
-                                            network);
+                                        String hash = await MyWalletCore.getInstance()
+                                            .sendCapacity([
+                                          ReceiverBean(
+                                              address, (double.parse(capacity) * 100000000).toInt())
+                                        ], network);
                                         if (hash != null) {
                                           Navigator.of(context).pop();
                                         } else {
+                                          setState(() {
+                                            isLoading = true;
+                                          });
                                           _showErrorDialog(
                                               context,
                                               CustomLocalizations.of(context)
@@ -121,6 +124,9 @@ class _State extends State<TransferPage> {
                                       });
                                     });
                               } catch (e) {
+                                setState(() {
+                                  isLoading = true;
+                                });
                                 _showErrorDialog(context, e.toString());
                               }
                             }
