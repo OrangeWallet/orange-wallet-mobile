@@ -38,6 +38,7 @@ class MyWalletCore extends WalletCore {
   Future initWalletFromStore(String password) async {
     WalletStoreBean walletStoreBean = await _walletStore.read(password);
     await importWallet(hex.decode(walletStoreBean.publicKey));
+    startSync();
   }
 
   initWalletFromCreate(String password) async {
@@ -110,11 +111,7 @@ class MyWalletCore extends WalletCore {
   @override
   startSync() async {
     cellsSyncProvider.synced = 0.0;
-    try {
-      super.startSync();
-    } catch (e) {
-      cellsSyncProvider.synced = -1.0;
-    }
+    super.startSync();
   }
 
   @override
@@ -134,7 +131,7 @@ class MyWalletCore extends WalletCore {
 
   @override
   syncException(Exception e) {
-    print(e.toString());
+    Log.log(e.toString());
     cellsSyncProvider.synced = -1.0;
   }
 }
