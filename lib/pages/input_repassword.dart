@@ -1,3 +1,4 @@
+import 'package:OrangeWallet/pages/home_page/home.dart';
 import 'package:OrangeWallet/pages/import_wallet_loading.dart';
 import 'package:OrangeWallet/resources/strings.dart';
 import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
@@ -30,17 +31,25 @@ class _State extends State<InputRePasswordPage> {
     return null;
   }
 
-  _handlePwd() {
+  _handlePwd() async {
     final FormFieldState<String> passwordField = _passwordFieldKey.currentState;
     if (passwordField.validate()) {
-      if (widget.mnemonic == '') {
-        MyWalletCore.getInstance().initWallet(password: widget.pwd);
-      } else {
-        MyWalletCore.getInstance().initWallet(mnemonic: widget.mnemonic, password: widget.pwd);
+      try {
+        if (widget.mnemonic == '') {
+          MyWalletCore.getInstance().initWalletFromCreate(widget.pwd);
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (BuildContext context) => ImportWalletLoading()),
+              (Route route) => route == null);
+        } else {
+          MyWalletCore.getInstance()
+              .initWalletFromImport(widget.mnemonic, widget.mnemonic, widget.pwd);
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (BuildContext context) => HomePage()),
+              (Route route) => route == null);
+        }
+      } catch (e) {
+        print(e.toString());
       }
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (BuildContext context) => ImportWalletLoading()),
-          (Route route) => route == null);
     }
   }
 

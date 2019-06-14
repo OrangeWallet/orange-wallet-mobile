@@ -1,10 +1,10 @@
 import 'package:OrangeWallet/contant/constant.dart';
 import 'package:OrangeWallet/resources/strings.dart';
 import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
-import 'package:ckbcore/base/constant/constant.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ckbcore/ckbcore_constant.dart';
 
 class CapacityInput extends StatefulWidget {
   final ValueChanged capacityChanged;
@@ -25,7 +25,7 @@ class _State extends State<CapacityInput> {
       controller: controller,
       decoration: InputDecoration(
         labelText: CustomLocalizations.of(context).getString(StringIds.capacity),
-        suffixText: CKBUnit,
+        suffixText: ckbUnit,
         errorText: errorMessage,
       ),
       keyboardType: TextInputType.number,

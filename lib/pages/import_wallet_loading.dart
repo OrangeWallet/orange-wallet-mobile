@@ -1,5 +1,6 @@
 import 'package:OrangeWallet/pages/home_page/home.dart';
 import 'package:OrangeWallet/utils/provide/import_animation_notifier.dart';
+import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
 import 'package:OrangeWallet/views/button/my_raised_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -84,7 +85,8 @@ class ImportWalletLoading extends StatelessWidget {
               ),
               Text(
                 text,
-                style: TextStyle(color: theme.primaryColor, fontSize: 20, fontWeight: FontWeight.bold),
+                style:
+                    TextStyle(color: theme.primaryColor, fontSize: 20, fontWeight: FontWeight.bold),
               )
             ],
           ),
@@ -181,8 +183,10 @@ class ImportWalletLoading extends StatelessWidget {
               text: CustomLocalizations.of(context).getString(StringIds.start),
               color: Theme.of(context).primaryColor,
               onPressed: () {
+                MyWalletCore.getInstance().startSync();
                 Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (BuildContext context) => HomePage()), (Route route) => route == null);
+                    MaterialPageRoute(builder: (BuildContext context) => HomePage()),
+                    (Route route) => route == null);
               },
             ),
           )

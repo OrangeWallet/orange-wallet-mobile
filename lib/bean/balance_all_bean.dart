@@ -1,5 +1,5 @@
 import 'package:OrangeWallet/contant/constant.dart';
-import 'package:ckbcore/base/bean/balance_bean.dart';
+import 'package:ckbcore/ckbcore_bean.dart';
 
 class BalanceAllBean extends BalanceBean {
   BalanceDisplay totalForDisplay;
@@ -15,15 +15,15 @@ BalanceDisplay handleBalance(int balance) {
   double balanceDouble = balance / 100000000;
   if (balanceDouble > 1000000000) {
     balanceDouble = balanceDouble / 1000000000;
-    return BalanceDisplay(balanceDouble.toStringAsFixed(2), CKGBUnit);
+    return BalanceDisplay(balanceDouble.toStringAsFixed(2), ckgbUnit);
   } else if (balanceDouble > 1000000) {
     balanceDouble = balanceDouble / 1000000;
-    return BalanceDisplay(balanceDouble.toStringAsFixed(2), CKMBUnit);
+    return BalanceDisplay(balanceDouble.toStringAsFixed(2), ckmbUnit);
   } else if (balanceDouble > 1000) {
     balanceDouble = balanceDouble / 1000;
-    return BalanceDisplay(balanceDouble.toStringAsFixed(2), CKKBUnit);
+    return BalanceDisplay(balanceDouble.toStringAsFixed(2), ckkbUnit);
   } else {
-    return BalanceDisplay(balanceDouble.toStringAsFixed(2), CKBUnit);
+    return BalanceDisplay(balanceDouble.toStringAsFixed(2), ckbUnit);
   }
 }
 

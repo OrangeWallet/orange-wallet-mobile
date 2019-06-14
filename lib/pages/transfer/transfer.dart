@@ -6,8 +6,8 @@ import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
 import 'package:OrangeWallet/views/button/my_raised_button.dart';
 import 'package:OrangeWallet/views/dialog/password_dialog.dart';
 import 'package:OrangeWallet/views/loading.dart';
-import 'package:ckb_sdk/ckb_address/ckb_address.dart';
-import 'package:ckbcore/base/bean/receiver_bean.dart';
+import 'package:ckb_sdk/ckb_address.dart';
+import 'package:ckbcore/ckbcore_bean.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:provide/provide.dart';
@@ -105,11 +105,13 @@ class _State extends State<TransferPage> {
                                         setState(() {
                                           isLoading = true;
                                         });
-                                        String hash = await MyWalletCore.getInstance()
-                                            .sendCapacity([
-                                          ReceiverBean(
-                                              address, (double.parse(capacity) * 100000000).toInt())
-                                        ], network);
+                                        String hash;
+                                        try {
+                                          hash = await MyWalletCore.getInstance().transfer([
+                                            ReceiverBean(address,
+                                                (double.parse(capacity) * 100000000).toInt())
+                                          ], password);
+                                        } catch (_) {}
                                         if (hash != null) {
                                           Navigator.of(context).pop();
                                         } else {

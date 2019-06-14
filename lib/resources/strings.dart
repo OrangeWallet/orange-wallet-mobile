@@ -53,8 +53,8 @@ class StringIds {
   static String send = 'Send';
 
   static String mainNetTip = 'MainNetTip';
-  static String mainNet = 'MainNet';
-  static String testNet = 'testNet';
+  static String mainNet = 'Mainnet';
+  static String testNet = 'Testnet';
 
   static String errorEmptyInput = 'errorEmptyInput';
   static String errorValidMnemonic = 'errorValidMnemonic';
@@ -86,7 +86,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.importWalletInputHint: 'Words separated by spaces',
       StringIds.importWalletInputHelper: 'Enter your mnemonic',
       StringIds.importAnimFirst: 'Generate Seed',
-      StringIds.importAnimSecond: 'Generate Node',
+      StringIds.importAnimSecond: 'Generate Keystore',
       StringIds.importAnimThird: 'Save Wallet',
       StringIds.scanQRCodeButton: 'Scan QR Code',
       StringIds.inputPwdTitle: 'Password',
@@ -125,8 +125,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.send: 'Send',
       StringIds.availableCapacity: 'Available Capacity',
       StringIds.mainNetTip: 'The main network is not up yet!',
-      StringIds.mainNet: 'MainNet',
-      StringIds.testNet: 'Test Net',
+      StringIds.mainNet: 'Mainnet',
+      StringIds.testNet: 'Testnet',
       StringIds.errorEmptyInput: 'It can not be empty',
       StringIds.errorValidMnemonic: 'Wrong mnemonic',
       StringIds.errorEmptyPwd: 'Please enter a password.',
@@ -156,7 +156,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.importWalletInputHint: '空格隔开',
       StringIds.importWalletInputHelper: '输入你的助记词',
       StringIds.importAnimFirst: '生成种子',
-      StringIds.importAnimSecond: '生成列表',
+      StringIds.importAnimSecond: '生成助记词',
       StringIds.importAnimThird: '保存钱包',
       StringIds.scanQRCodeButton: '二维码',
       StringIds.errorEmptyInput: '输入项不能为空',
@@ -193,8 +193,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.receive: '收款',
       StringIds.send: '付款',
       StringIds.mainNetTip: '主网还未上线!',
-      StringIds.mainNet: 'MainNet',
-      StringIds.testNet: 'Test Net',
+      StringIds.mainNet: 'Mainnet',
+      StringIds.testNet: 'Testnet',
       StringIds.errorEmptyInput: '输入项不能为空',
       StringIds.errorValidMnemonic: '助记词不合法',
       StringIds.errorEmptyPwd: '请输入密码',

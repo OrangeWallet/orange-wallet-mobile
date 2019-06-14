@@ -1,5 +1,5 @@
 import 'package:OrangeWallet/bean/balance_all_bean.dart';
-import 'package:ckbcore/base/bean/balance_bean.dart';
+import 'package:ckbcore/ckbcore_bean.dart';
 import 'package:flutter/material.dart';
 
 class BalanceProvider with ChangeNotifier {
