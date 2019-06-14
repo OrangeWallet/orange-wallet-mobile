@@ -51,6 +51,7 @@ class StringIds {
   static String start = 'Start';
   static String receive = 'Receive';
   static String send = 'Send';
+  static String copy = 'Copy';
 
   static String mainNetTip = 'MainNetTip';
   static String mainNet = 'Mainnet';
@@ -123,6 +124,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.start: 'Start',
       StringIds.receive: 'Receive',
       StringIds.send: 'Send',
+      StringIds.copy: 'Copy',
       StringIds.availableCapacity: 'Available Capacity',
       StringIds.mainNetTip: 'The main network is not up yet!',
       StringIds.mainNet: 'Mainnet',
@@ -192,6 +194,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.start: '开始',
       StringIds.receive: '收款',
       StringIds.send: '付款',
+      StringIds.copy: '复制',
       StringIds.mainNetTip: '主网还未上线!',
       StringIds.mainNet: 'Mainnet',
       StringIds.testNet: 'Testnet',
