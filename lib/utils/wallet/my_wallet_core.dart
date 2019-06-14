@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:OrangeWallet/bean/wallet_store_bean.dart';
@@ -8,13 +7,13 @@ import 'package:OrangeWallet/utils/provide/balance_notifier.dart';
 import 'package:OrangeWallet/utils/provide/blocks_notifier.dart';
 import 'package:OrangeWallet/utils/provide/cells_sync_notifier.dart';
 import 'package:OrangeWallet/utils/provide/import_animation_notifier.dart';
+import 'package:OrangeWallet/utils/wallet/init_wallet_utils.dart' as InitWalletUtils;
 import 'package:OrangeWallet/utils/wallet/wallet_store.dart';
 import 'package:ckb_sdk/ckb_crypto.dart';
 import 'package:ckbcore/ckbcore.dart';
 import 'package:ckbcore/ckbcore_bean.dart';
 import 'package:convert/convert.dart';
 import 'package:flutter/foundation.dart';
-import 'package:OrangeWallet/utils/wallet/init_wallet_utils.dart' as InitWalletUtils;
 
 class MyWalletCore extends WalletCore {
   static MyWalletCore _myWalletCore;
@@ -54,19 +53,26 @@ class MyWalletCore extends WalletCore {
     currentLoading.currentLoading = 3;
   }
 
-  initWalletFromImport(String password, String keystore, String privateKey) async {
+  initWalletFromImportPrivateKey(String password, String privateKey) async {
     currentLoading.currentLoading = 1;
-    Keystore myKeystore;
-    if (keystore == null) {
-      myKeystore = Keystore.fromJson(keystore, password);
-    } else {
-      myKeystore = Keystore.createNew(hex.decode(privateKey), password, Random.secure());
-    }
+    Keystore myKeystore = await compute(InitWalletUtils.createNew,
+        InitWalletUtils.KeystoreParams(password, privateKey: hex.decode(privateKey)));
     currentLoading.currentLoading = 2;
     String publicKey = hex.encode(publicKeyFromPrivate(myKeystore.privateKey));
-    WalletStoreBean walletStoreBean = WalletStoreBean(publicKey, myKeystore.toJson());
-    await _walletStore.write(walletStoreBean, password);
+    WalletStoreBean walletStoreBean =
+        WalletStoreBean(publicKey, await compute(InitWalletUtils.keystoreToJson, myKeystore));
+    _walletStore.write(walletStoreBean, password);
+    importWallet(hex.decode(publicKey));
     currentLoading.currentLoading = 3;
+  }
+
+  Future initWalletFromImportKeystore(String password, String keystore) async {
+    Keystore myKeystore = await compute(
+        InitWalletUtils.fromJson, InitWalletUtils.KeystoreParams(password, keystore: keystore));
+    String publicKey = hex.encode(publicKeyFromPrivate(myKeystore.privateKey));
+    WalletStoreBean walletStoreBean = WalletStoreBean(publicKey, keystore);
+    importWallet(hex.decode(publicKey));
+    _walletStore.write(walletStoreBean, password);
   }
 
   Future<bool> hasWallet() async {
