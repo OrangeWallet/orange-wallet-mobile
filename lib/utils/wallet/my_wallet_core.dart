@@ -49,7 +49,7 @@ class MyWalletCore extends WalletCore {
     currentLoading.currentLoading = 2;
     WalletStoreBean walletStoreBean =
         WalletStoreBean(publicKey, await compute(InitWalletUtils.keystoreToJson, keystore));
-    await _walletStore.write(walletStoreBean, password);
+    _walletStore.write(walletStoreBean, password);
     currentLoading.currentLoading = 3;
   }
 

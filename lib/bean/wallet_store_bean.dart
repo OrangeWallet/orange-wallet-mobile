@@ -2,7 +2,7 @@ class WalletStoreBean {
   String publicKey;
   String keystore;
 
-  WalletStoreBean(publicKey, keystore);
+  WalletStoreBean(this.publicKey, this.keystore);
 
   factory WalletStoreBean.fromJson(Map<String, dynamic> json) => WalletStoreBean(
     json['publicKey'] as String,

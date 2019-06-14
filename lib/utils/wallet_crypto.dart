@@ -4,12 +4,12 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 class WalletCrypto {
-  static String encryptMnemonic(String mnemonic, String password) {
+  static String encryptMnemonic(String data, String password) {
     var key = Key(_hashPassword(password));
     final iv = IV.fromLength(16);
 
     final encrypter = Encrypter(AES(key, iv, mode: AESMode.cbc));
-    final encrypted = encrypter.encrypt(mnemonic);
+    final encrypted = encrypter.encrypt(data);
     return encrypted.base64;
   }
 

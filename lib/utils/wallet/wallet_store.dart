@@ -21,7 +21,7 @@ class WalletStore {
   }
 
   Future write(WalletStoreBean data, String password) async {
-    String base64 = WalletCrypto.encryptMnemonic(data.toString(), password);
+    String base64 = WalletCrypto.encryptMnemonic(jsonEncode(data), password);
     await _storage.write(key: WalletKey, value: base64);
   }
 
