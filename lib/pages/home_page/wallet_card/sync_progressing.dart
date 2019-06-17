@@ -52,7 +52,7 @@ class SyncProgressing extends StatelessWidget {
                     ],
                   ),
                   onTap: () {
-                    MyWalletCore.getInstance().updateCurrentIndexCells();
+                    MyWalletCore.getInstance().startSync();
                   },
                 );
         });

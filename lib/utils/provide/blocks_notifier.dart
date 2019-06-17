@@ -1,6 +1,6 @@
 import 'package:OrangeWallet/bean/thin_block_with_transaction.dart';
 import 'package:OrangeWallet/contant/constant.dart';
-import 'package:ckbcore/base/bean/thin_block.dart';
+import 'package:ckbcore/ckbcore_bean.dart';
 import 'package:flutter/material.dart';
 
 class BlocksProvider with ChangeNotifier {

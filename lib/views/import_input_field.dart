@@ -4,19 +4,26 @@ import 'package:flutter/material.dart';
 
 import 'package:OrangeWallet/views/button/my_raised_button.dart';
 
-class MnemonicField extends StatefulWidget {
-  final ValueSetter<String> handleMnemonic;
+class ImportInputField extends StatefulWidget {
+  final ValueSetter<String> handle;
   final String buttonText;
   final ValueGetter<String> validate;
   final ValueSetter<String> onChanged;
+  final String title;
 
-  MnemonicField({@required this.handleMnemonic, this.buttonText, this.validate, this.onChanged});
+  ImportInputField({
+    @required this.handle,
+    @required this.title,
+    this.buttonText,
+    this.validate,
+    this.onChanged,
+  });
 
   @override
   State<StatefulWidget> createState() => _State();
 }
 
-class _State extends State<MnemonicField> {
+class _State extends State<ImportInputField> {
   final TextEditingController _controller = new TextEditingController();
   String errorMsg;
 
@@ -27,7 +34,7 @@ class _State extends State<MnemonicField> {
         errorMsg = validate;
       });
     } else {
-      widget.handleMnemonic(_controller.text);
+      widget.handle(_controller.text);
     }
   }
 
@@ -52,7 +59,7 @@ class _State extends State<MnemonicField> {
       child: Column(
         children: <Widget>[
           Text(
-            CustomLocalizations.of(context).getString(StringIds.importWalletInputHelper),
+            widget.title,
             style: Theme.of(context).textTheme.body2,
           ),
           const SizedBox(
@@ -61,11 +68,10 @@ class _State extends State<MnemonicField> {
           TextField(
             controller: _controller,
             decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText:
-                    CustomLocalizations.of(context).getString(StringIds.importWalletInputHint),
-                errorText: errorMsg),
-            maxLines: 3,
+              border: OutlineInputBorder(),
+              errorText: errorMsg,
+            ),
+            maxLines: 5,
             autofocus: true,
           ),
           const SizedBox(

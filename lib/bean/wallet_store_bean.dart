@@ -1,22 +1,16 @@
 class WalletStoreBean {
-  final String mnemonic;
-  final String seed;
-  final int receiveIndex;
-  final int changeIndex;
+  String publicKey;
+  String keystore;
 
-  WalletStoreBean(this.mnemonic, this.seed, this.receiveIndex, this.changeIndex);
+  WalletStoreBean(this.publicKey, this.keystore);
 
   factory WalletStoreBean.fromJson(Map<String, dynamic> json) => WalletStoreBean(
-        json['mnemonic'] as String,
-        json['seed'] as String,
-        json['receiveIndex'] as int,
-        json['changeIndex'] as int,
-      );
+    json['publicKey'] as String,
+    json['keystore'] as String,
+  );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'mnemonic': mnemonic,
-        'seed': seed,
-        'receiveIndex': receiveIndex,
-        'changeIndex': changeIndex,
-      };
+    'publicKey': publicKey,
+    'keystore': keystore,
+  };
 }

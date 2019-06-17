@@ -39,7 +39,7 @@ class _State extends State<CheckPasswordPage> {
   _handlePwd() async {
     final FormFieldState<String> passwordField = _passwordFieldKey.currentState;
     if (await _validatePassword()) {
-      await MyWalletCore.getInstance().initWallet(password: passwordField.value, fromStore: true);
+      await MyWalletCore.getInstance().initWalletFromStore(passwordField.value);
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (BuildContext context) => HomePage()),
           (Route route) => route == null);

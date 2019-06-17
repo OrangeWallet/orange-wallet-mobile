@@ -24,7 +24,7 @@ dependencies:
   ckbcore:
     git:
       url: https://github.com/OrangeWallet/ckbcore.git
-      ref: master
+      ref: develop
 
 dev_dependencies:
   flutter_test:

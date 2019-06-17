@@ -1,7 +1,6 @@
 import 'package:OrangeWallet/bean/thin_block_with_transaction.dart';
 import 'package:OrangeWallet/utils/provide/blocks_notifier.dart';
-import 'package:ckbcore/base/bean/thin_block.dart';
-import 'package:ckbcore/base/bean/thin_transaction.dart';
+import 'package:ckbcore/ckbcore_bean.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provide/provide.dart';
