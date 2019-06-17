@@ -1,10 +1,10 @@
-import 'package:ckb_sdk/ckb-utils/network.dart';
+import 'package:ckb_sdk/ckb_address.dart';
 
 final maxThinBlocksSize = 100;
-final nodeUrl = 'http://www.slys.in:8114';
-final network = Network.TestNet;
+final nodeUrl = 'http://192.168.2.78:8114';
+final network = CKBNetwork.Testnet;
 
-final CKBUnit = 'CKB';
-final CKKBUnit = 'CKKB';
-final CKMBUnit = 'CKMB';
-final CKGBUnit = 'CKGB';
+final ckbUnit = 'CKB';
+final ckkbUnit = 'CKKB';
+final ckmbUnit = 'CKMB';
+final ckgbUnit = 'CKGB';

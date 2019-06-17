@@ -1,3 +1,4 @@
+import 'package:OrangeWallet/pages/import_wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:OrangeWallet/resources/strings.dart';
 import 'package:fluintl/fluintl.dart';
@@ -6,9 +7,11 @@ import 'package:OrangeWallet/pages/input_repassword.dart';
 import 'package:OrangeWallet/views/button/my_raised_button.dart';
 
 class InputPasswordPage extends StatefulWidget {
-  final String mnemonic;
+  final String data;
 
-  InputPasswordPage({this.mnemonic = ""});
+  final ImportType type;
+
+  InputPasswordPage({this.data, this.type});
 
   @override
   State<StatefulWidget> createState() => _State();
@@ -31,8 +34,9 @@ class _State extends State<InputPasswordPage> {
     if (passwordField.validate()) {
       Navigator.of(context).push(MaterialPageRoute(
           builder: (BuildContext context) => InputRePasswordPage(
-                passwordField.value,
-                mnemonic: widget.mnemonic,
+                pwd: passwordField.value,
+                data: widget.data,
+                type: widget.type,
               )));
     }
   }

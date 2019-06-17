@@ -6,7 +6,7 @@ import 'package:OrangeWallet/utils/provide/blocks_notifier.dart';
 import 'package:OrangeWallet/utils/provide/cells_sync_notifier.dart';
 import 'package:OrangeWallet/utils/provide/import_animation_notifier.dart';
 import 'package:OrangeWallet/utils/provide/theme_color_notifier.dart';
-import 'package:ckbcore/base/bean/balance_bean.dart';
+import 'package:ckbcore/ckbcore_bean.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

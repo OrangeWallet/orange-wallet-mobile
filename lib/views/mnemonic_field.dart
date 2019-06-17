@@ -1,4 +1,3 @@
-import 'package:bip39/bip39.dart' as bip39;
 import 'package:OrangeWallet/resources/strings.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
@@ -36,8 +35,6 @@ class _State extends State<MnemonicField> {
     final value = _controller.text;
     if (value.isEmpty)
       return CustomLocalizations.of(context).getString(StringIds.errorEmptyInput);
-    else if (!bip39.validateMnemonic(value))
-      return CustomLocalizations.of(context).getString(StringIds.errorValidMnemonic);
     else if (widget.validate != null) {
       String parentValidate = widget.validate();
       if (parentValidate != null) return parentValidate;

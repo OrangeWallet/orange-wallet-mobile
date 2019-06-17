@@ -12,6 +12,8 @@ class StringIds {
 
   static String importWalletInputHint = 'importWalletInputHint';
   static String importWalletInputHelper = 'importWalletInputHelper';
+  static String importPrivateKeyTitle = 'importPrivateKeyTitle';
+  static String importKeystoreTitle = 'importKeystoreTitle';
   static String scanQRCodeButton = 'scanQRCodeButton';
 
   static String importAnimFirst = 'importAnimFirst';
@@ -45,16 +47,18 @@ class StringIds {
   static String transferTitle = 'transferTitle';
   static String availableCapacity = 'availableCapacity';
   static String sourceCode = 'sourceCode';
+  static String importKeystoreFailed='importKeystoreFailed';
 
   static String ok = 'OK';
   static String cancel = 'Cancel';
   static String start = 'Start';
   static String receive = 'Receive';
   static String send = 'Send';
+  static String copy = 'Copy';
 
   static String mainNetTip = 'MainNetTip';
-  static String mainNet = 'MainNet';
-  static String testNet = 'testNet';
+  static String mainNet = 'Mainnet';
+  static String testNet = 'Testnet';
 
   static String errorEmptyInput = 'errorEmptyInput';
   static String errorValidMnemonic = 'errorValidMnemonic';
@@ -84,9 +88,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.bannerOpenSourceTitle: 'Open Source',
       StringIds.bannerOpenSourceDetail: 'Code in Github,Welcome contribution code',
       StringIds.importWalletInputHint: 'Words separated by spaces',
-      StringIds.importWalletInputHelper: 'Enter your mnemonic',
+      StringIds.importWalletInputHelper: 'Enter your privateKey or Keystore',
       StringIds.importAnimFirst: 'Generate Seed',
-      StringIds.importAnimSecond: 'Generate Node',
+      StringIds.importAnimSecond: 'Generate Keystore',
       StringIds.importAnimThird: 'Save Wallet',
       StringIds.scanQRCodeButton: 'Scan QR Code',
       StringIds.inputPwdTitle: 'Password',
@@ -115,6 +119,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.settingResetBlockChain: 'Reset block chain',
       StringIds.resetBlockChainTip:
           'Pay attention! Reset block chain and wallet balance.Replay will take a while,so only do this if you know why.',
+      StringIds.importPrivateKeyTitle: 'Enter your PrivateKey',
+      StringIds.importKeystoreTitle: 'Enter your Keystore',
       StringIds.receiveAddress: 'Receive Address',
       StringIds.copyToClipboard: 'Copied to Clipboard',
       StringIds.transferTitle: 'Transfer',
@@ -123,10 +129,11 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.start: 'Start',
       StringIds.receive: 'Receive',
       StringIds.send: 'Send',
+      StringIds.copy: 'Copy',
       StringIds.availableCapacity: 'Available Capacity',
       StringIds.mainNetTip: 'The main network is not up yet!',
-      StringIds.mainNet: 'MainNet',
-      StringIds.testNet: 'Test Net',
+      StringIds.mainNet: 'Mainnet',
+      StringIds.testNet: 'Testnet',
       StringIds.errorEmptyInput: 'It can not be empty',
       StringIds.errorValidMnemonic: 'Wrong mnemonic',
       StringIds.errorEmptyPwd: 'Please enter a password.',
@@ -139,6 +146,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.errorNoEnoughCapacity: 'You don`t have enough CKB',
       StringIds.errorLessThanMinCapacity: 'Less than min capacity(60CKB)',
       StringIds.sourceCode: 'Source Code',
+      StringIds.importKeystoreFailed:'Import Keystore Failed,Please check your keystore and password',
     }
   },
   'zh': {
@@ -154,9 +162,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.bannerOpenSourceTitle: '开源',
       StringIds.bannerOpenSourceDetail: '代码在Github，欢迎贡献',
       StringIds.importWalletInputHint: '空格隔开',
-      StringIds.importWalletInputHelper: '输入你的助记词',
+      StringIds.importWalletInputHelper: '输入你的私钥或Keystore',
       StringIds.importAnimFirst: '生成种子',
-      StringIds.importAnimSecond: '生成列表',
+      StringIds.importAnimSecond: '生成助记词',
       StringIds.importAnimThird: '保存钱包',
       StringIds.scanQRCodeButton: '二维码',
       StringIds.errorEmptyInput: '输入项不能为空',
@@ -187,14 +195,17 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.receiveAddress: '收款地址',
       StringIds.copyToClipboard: '已复制到粘贴板',
       StringIds.availableCapacity: '可用余额',
+      StringIds.importPrivateKeyTitle: '输入私钥',
+      StringIds.importKeystoreTitle: '输入Keystore',
       StringIds.ok: '确定',
       StringIds.cancel: '取消',
       StringIds.start: '开始',
       StringIds.receive: '收款',
       StringIds.send: '付款',
+      StringIds.copy: '复制',
       StringIds.mainNetTip: '主网还未上线!',
-      StringIds.mainNet: 'MainNet',
-      StringIds.testNet: 'Test Net',
+      StringIds.mainNet: 'Mainnet',
+      StringIds.testNet: 'Testnet',
       StringIds.errorEmptyInput: '输入项不能为空',
       StringIds.errorValidMnemonic: '助记词不合法',
       StringIds.errorEmptyPwd: '请输入密码',
@@ -207,6 +218,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.errorNoEnoughCapacity: '你没有足够的CKB',
       StringIds.errorLessThanMinCapacity: '最小转账为60CKB',
       StringIds.sourceCode: '源码',
+      StringIds.importKeystoreFailed:'导入Keystore失败，请检查Keystore和密码',
     },
   }
 };

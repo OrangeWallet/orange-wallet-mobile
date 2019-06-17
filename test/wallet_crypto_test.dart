@@ -3,12 +3,21 @@ import 'package:OrangeWallet/utils/wallet_crypto.dart';
 
 void main() {
   test('test crypto mnemonic', () {
-    var mnemonic =
-        "strategy grocery isolate they broom mean border opera topic file salon ride ";
+    var mnemonic = "strategy grocery isolate they broom mean border opera topic file salon ride ";
     String data = WalletCrypto.encryptMnemonic(mnemonic, "password");
     print(data);
+    try {
+      String decrypted = WalletCrypto.decrptMnemonic(data, "123");
+      print(decrypted);
+    } catch (e) {
+      print(e.toString());
+    }
+  });
 
-    String decrypted = WalletCrypto.decrptMnemonic(data, "12");
-    print(decrypted);
+  test('crypto', () {
+    String encrype = WalletCrypto.encryptMnemonic("123456789", '123');
+    print(encrype);
+    String data = WalletCrypto.decrptMnemonic(encrype, "123");
+    print(data);
   });
 }

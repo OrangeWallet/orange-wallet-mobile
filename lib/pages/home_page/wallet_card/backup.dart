@@ -1,14 +1,13 @@
-import 'dart:convert';
-
-import 'package:OrangeWallet/pages/backup_mnemonic.dart';
+import 'package:OrangeWallet/bean/wallet_store_bean.dart';
 import 'package:OrangeWallet/resources/strings.dart';
 import 'package:OrangeWallet/utils/provide/backup_notifier.dart';
 import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
 import 'package:OrangeWallet/views/dialog/password_dialog.dart';
-import 'package:ckbcore/base/config/hd_core_config.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:provide/provide.dart';
+
+import '../../backup_keystore.dart';
 
 class BackupWidget extends StatelessWidget {
   @override
@@ -61,11 +60,11 @@ class BackupWidget extends StatelessWidget {
                         context: context,
                         builder: (_) {
                           return PasswordDialog((password) async {
-                            String config = await MyWalletCore.getInstance().readWallet(password);
-                            HDCoreConfig hdCoreConfig = HDCoreConfig.fromJson(jsonDecode(config));
+                            WalletStoreBean walletStoreBean =
+                                await MyWalletCore.getInstance().getWalletStore(password);
                             Navigator.of(context)
                                 .push(MaterialPageRoute(builder: (BuildContext context) {
-                              return BackupMnemonic(hdCoreConfig.mnemonic);
+                              return BackupKeystore(walletStoreBean.keystore);
                             }));
                           });
                         });
