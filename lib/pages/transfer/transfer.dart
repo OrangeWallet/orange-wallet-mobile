@@ -116,7 +116,7 @@ class _State extends State<TransferPage> {
                                           Navigator.of(context).pop();
                                         } else {
                                           setState(() {
-                                            isLoading = true;
+                                            isLoading = false;
                                           });
                                           _showErrorDialog(
                                               context,
@@ -127,7 +127,7 @@ class _State extends State<TransferPage> {
                                     });
                               } catch (e) {
                                 setState(() {
-                                  isLoading = true;
+                                  isLoading = false;
                                 });
                                 _showErrorDialog(context, e.toString());
                               }
