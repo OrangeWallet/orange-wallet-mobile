@@ -18,6 +18,7 @@ import 'package:flutter/foundation.dart';
 class MyWalletCore extends WalletCore {
   static MyWalletCore _myWalletCore;
   WalletStore _walletStore;
+  Uint8List _privateKey;
   ImportAnimationProvider currentLoading;
   CellsSyncProvider cellsSyncProvider;
   BlocksProvider blocksProvider;
@@ -34,6 +35,8 @@ class MyWalletCore extends WalletCore {
     return _myWalletCore;
   }
 
+  Uint8List get privateKey => _privateKey;
+
   Future initWalletFromStore(String password) async {
     WalletStoreBean walletStoreBean = await _walletStore.read(password);
     await importWallet(hex.decode(walletStoreBean.publicKey));
@@ -46,6 +49,7 @@ class MyWalletCore extends WalletCore {
     String publicKey = hex.encode(publicKeyFromPrivate(privateKey));
     Keystore keystore = await compute(InitWalletUtils.createNew,
         InitWalletUtils.KeystoreParams(password, privateKey: privateKey));
+    _privateKey = keystore.privateKey;
     currentLoading.currentLoading = 2;
     WalletStoreBean walletStoreBean =
         WalletStoreBean(publicKey, await compute(InitWalletUtils.keystoreToJson, keystore));
@@ -57,6 +61,7 @@ class MyWalletCore extends WalletCore {
     currentLoading.currentLoading = 1;
     Keystore myKeystore = await compute(InitWalletUtils.createNew,
         InitWalletUtils.KeystoreParams(password, privateKey: hex.decode(privateKey)));
+    _privateKey = myKeystore.privateKey;
     currentLoading.currentLoading = 2;
     String publicKey = hex.encode(publicKeyFromPrivate(myKeystore.privateKey));
     WalletStoreBean walletStoreBean =
@@ -69,6 +74,7 @@ class MyWalletCore extends WalletCore {
   Future initWalletFromImportKeystore(String password, String keystore) async {
     Keystore myKeystore = await compute(
         InitWalletUtils.fromJson, InitWalletUtils.KeystoreParams(password, keystore: keystore));
+    _privateKey = myKeystore.privateKey;
     String publicKey = hex.encode(publicKeyFromPrivate(myKeystore.privateKey));
     WalletStoreBean walletStoreBean = WalletStoreBean(publicKey, keystore);
     importWallet(hex.decode(publicKey));
@@ -108,10 +114,13 @@ class MyWalletCore extends WalletCore {
   }
 
   Future<String> transfer(List<ReceiverBean> receivers, String password) async {
-    WalletStoreBean walletStoreBean = await getWalletStore(password);
-    Keystore keystore = await compute(InitWalletUtils.fromJson,
-        InitWalletUtils.KeystoreParams(password, keystore: walletStoreBean.keystore));
-    return await sendCapacity(receivers, network, keystore.privateKey);
+    if (_privateKey == null) {
+      WalletStoreBean walletStoreBean = await getWalletStore(password);
+      Keystore keystore = await compute(InitWalletUtils.fromJson,
+          InitWalletUtils.KeystoreParams(password, keystore: walletStoreBean.keystore));
+      _privateKey = keystore.privateKey;
+    }
+    return await sendCapacity(receivers, network, _privateKey);
   }
 
   @override
