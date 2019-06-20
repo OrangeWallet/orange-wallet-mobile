@@ -47,7 +47,8 @@ class StringIds {
   static String transferTitle = 'transferTitle';
   static String availableCapacity = 'availableCapacity';
   static String sourceCode = 'sourceCode';
-  static String importKeystoreFailed='importKeystoreFailed';
+  static String importKeystoreFailed = 'importKeystoreFailed';
+  static String finishAppTip = 'finishAppTip';
 
   static String ok = 'OK';
   static String cancel = 'Cancel';
@@ -119,6 +120,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.settingResetBlockChain: 'Reset block chain',
       StringIds.resetBlockChainTip:
           'Pay attention! Reset block chain and wallet balance.Replay will take a while,so only do this if you know why.',
+      StringIds.finishAppTip: 'Quickly click the back key to exit the program',
       StringIds.importPrivateKeyTitle: 'Enter your PrivateKey',
       StringIds.importKeystoreTitle: 'Enter your Keystore',
       StringIds.receiveAddress: 'Receive Address',
@@ -146,7 +148,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.errorNoEnoughCapacity: 'You don`t have enough CKB',
       StringIds.errorLessThanMinCapacity: 'Less than min capacity(60CKB)',
       StringIds.sourceCode: 'Source Code',
-      StringIds.importKeystoreFailed:'Import Keystore Failed,Please check your keystore and password',
+      StringIds.importKeystoreFailed:
+          'Import Keystore Failed,Please check your keystore and password',
     }
   },
   'zh': {
@@ -179,6 +182,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.forgetPwd: '忘记密码',
       StringIds.forgetDialogContent: '我们没有保存你的密码，所有无法找回，如果你有助记词请重新导入，或者继续尝试',
       StringIds.deleteWalletDialogContent: '如果你没有助记词或者私钥，删除钱包后，你将丢失整个钱包！',
+      StringIds.finishAppTip: '快速点击返回键，退出程序',
       StringIds.tryAgain: '再试试',
       StringIds.deleteWallet: '删除钱包',
       StringIds.alert: '提示',
@@ -218,7 +222,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.errorNoEnoughCapacity: '你没有足够的CKB',
       StringIds.errorLessThanMinCapacity: '最小转账为60CKB',
       StringIds.sourceCode: '源码',
-      StringIds.importKeystoreFailed:'导入Keystore失败，请检查Keystore和密码',
+      StringIds.importKeystoreFailed: '导入Keystore失败，请检查Keystore和密码',
     },
   }
 };

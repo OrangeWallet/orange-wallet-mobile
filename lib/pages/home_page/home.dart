@@ -11,7 +11,9 @@ import 'package:flutter/material.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final key = new GlobalKey<ScaffoldState>();
     return Scaffold(
+        key: key,
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
@@ -42,22 +44,58 @@ class HomePage extends StatelessWidget {
                   },
                 )),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        body: Container(
-          padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Container(
-                child: Column(
-                  children: <Widget>[
-                    WalletCardWidget(),
-                    SizedBox(height: 20),
-                    BlockDisplay(),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ));
+        body: WillPosScopeRoute(
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Container(
+                    child: Column(
+                      children: <Widget>[
+                        WalletCardWidget(),
+                        SizedBox(height: 20),
+                        BlockDisplay(),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            firstClick: () {
+              key.currentState.showSnackBar(SnackBar(
+                content: Text(CustomLocalizations.of(context).getString(StringIds.finishAppTip)),
+              ));
+            }));
+  }
+}
+
+class WillPosScopeRoute extends StatefulWidget {
+  final Widget child;
+  final VoidCallback firstClick;
+
+  WillPosScopeRoute({@required this.child, @required this.firstClick});
+
+  @override
+  _WillPosScopeRouteState createState() => _WillPosScopeRouteState();
+}
+
+class _WillPosScopeRouteState extends State<WillPosScopeRoute> {
+  DateTime _lastPressedAdt;
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+        child: widget.child,
+        onWillPop: () {
+          if (_lastPressedAdt == null ||
+              DateTime.now().difference(_lastPressedAdt) > Duration(seconds: 2)) {
+            _lastPressedAdt = DateTime.now();
+            widget.firstClick();
+            return Future.value(false);
+          } else {
+            return Future.value(true);
+          }
+        });
   }
 }
