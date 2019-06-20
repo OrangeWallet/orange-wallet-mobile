@@ -4,8 +4,8 @@ import 'package:OrangeWallet/resources/strings.dart';
 import 'package:OrangeWallet/utils/provide/balance_notifier.dart';
 import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
 import 'package:OrangeWallet/views/button/my_raised_button.dart';
+import 'package:OrangeWallet/views/dialog/loading_dialog.dart';
 import 'package:OrangeWallet/views/dialog/password_dialog.dart';
-import 'package:OrangeWallet/views/loading.dart';
 import 'package:ckb_sdk/ckb_address.dart';
 import 'package:ckbcore/ckbcore_bean.dart';
 import 'package:fluintl/fluintl.dart';
@@ -23,7 +23,6 @@ class _State extends State<TransferPage> {
   String capacity = '';
   String address = '';
   String addressError = '';
-  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -32,113 +31,106 @@ class _State extends State<TransferPage> {
       appBar: AppBar(
         title: Text(CustomLocalizations.of(context).getString(StringIds.transferTitle)),
       ),
-      body: isLoading
-          ? WillPopScope(child: Loading(), onWillPop: () {})
-          : Container(
-              alignment: Alignment(0, -0.7),
-              padding: const EdgeInsets.only(left: 30, right: 30),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  StreamBuilder<BalanceProvider>(
-                      stream: Provide.stream<BalanceProvider>(context),
-                      initialData: balanceProvider,
-                      builder: (context, provider) {
-                        return Flex(
-                          direction: Axis.horizontal,
-                          children: <Widget>[
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Text(
-                                      CustomLocalizations.of(context)
-                                          .getString(StringIds.availableCapacity),
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                    SizedBox(width: 6),
-                                    Icon(
-                                      Icons.info,
-                                      color: Theme.of(context).primaryColor,
-                                      size: 18,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 10),
-                                Text(
-                                  provider.data.balance.availableForDisplay.balance +
-                                      " " +
-                                      provider.data.balance.availableForDisplay.uint,
-                                  style: TextStyle(fontSize: 26),
-                                ),
-                              ],
-                            )
-                          ],
-                        );
-                      }),
-                  SizedBox(height: 10),
-                  CapacityInput(
-                    capacityChanged: (capacity) {
-                      setState(() {
-                        this.capacity = capacity;
-                      });
-                    },
-                  ),
-                  AddressInput(
-                    addressChange: (address) {
-                      setState(() {
-                        this.address = address;
-                      });
-                    },
-                    errorMessage: addressError,
-                  ),
-                  MyRaisedButton(
-                    onPressed: capacity != '' && address != ''
-                        ? () async {
-                            if (_validateAddress(address)) {
-                              try {
-                                showDialog(
-                                    context: context,
-                                    builder: (_) {
-                                      return PasswordDialog((password) async {
-                                        setState(() {
-                                          isLoading = true;
-                                        });
-                                        String hash;
-                                        try {
-                                          hash = await MyWalletCore.getInstance().transfer([
-                                            ReceiverBean(address,
-                                                (double.parse(capacity) * 100000000).toInt())
-                                          ], password);
-                                        } catch (_) {}
-                                        if (hash != null) {
-                                          Navigator.of(context).pop();
-                                        } else {
-                                          setState(() {
-                                            isLoading = false;
-                                          });
-                                          _showErrorDialog(
-                                              context,
-                                              CustomLocalizations.of(context)
-                                                  .getString(StringIds.errorTransferFailed));
-                                        }
-                                      });
-                                    });
-                              } catch (e) {
-                                setState(() {
-                                  isLoading = false;
-                                });
-                                _showErrorDialog(context, e.toString());
-                              }
-                            }
-                          }
-                        : null,
-                    text: CustomLocalizations.of(context).getString(StringIds.send),
-                  )
-                ],
-              ),
+      body: Container(
+        alignment: Alignment(0, -0.7),
+        padding: const EdgeInsets.only(left: 30, right: 30),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            StreamBuilder<BalanceProvider>(
+                stream: Provide.stream<BalanceProvider>(context),
+                initialData: balanceProvider,
+                builder: (context, provider) {
+                  return Flex(
+                    direction: Axis.horizontal,
+                    children: <Widget>[
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Text(
+                                CustomLocalizations.of(context)
+                                    .getString(StringIds.availableCapacity),
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              SizedBox(width: 6),
+                              Icon(
+                                Icons.info,
+                                color: Theme.of(context).primaryColor,
+                                size: 18,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            provider.data.balance.availableForDisplay.balance +
+                                " " +
+                                provider.data.balance.availableForDisplay.uint,
+                            style: TextStyle(fontSize: 26),
+                          ),
+                        ],
+                      )
+                    ],
+                  );
+                }),
+            SizedBox(height: 10),
+            CapacityInput(
+              capacityChanged: (capacity) {
+                setState(() {
+                  this.capacity = capacity;
+                });
+              },
             ),
+            AddressInput(
+              addressChange: (address) {
+                setState(() {
+                  this.address = address;
+                });
+              },
+              errorMessage: addressError,
+            ),
+            MyRaisedButton(
+              onPressed: capacity != '' && address != ''
+                  ? () async {
+                      if (_validateAddress(address)) {
+                        try {
+                          showDialog(
+                              context: context,
+                              builder: (_) {
+                                return PasswordDialog((password) async {
+                                  showDialog(
+                                      context: context, builder: (_) => LoadingDialog(() {}));
+                                  String hash;
+                                  try {
+                                    hash = await MyWalletCore.getInstance().transfer([
+                                      ReceiverBean(
+                                          address, (double.parse(capacity) * 100000000).toInt())
+                                    ], password);
+                                  } catch (_) {}
+                                  Navigator.of(context).pop();
+                                  if (hash != null) {
+                                    Navigator.of(context).pop();
+                                  } else {
+                                    _showErrorDialog(
+                                        context,
+                                        CustomLocalizations.of(context)
+                                            .getString(StringIds.errorTransferFailed));
+                                  }
+                                });
+                              });
+                        } catch (e) {
+                          Navigator.of(context).pop();
+                          _showErrorDialog(context, e.toString());
+                        }
+                      }
+                    }
+                  : null,
+              text: CustomLocalizations.of(context).getString(StringIds.send),
+            )
+          ],
+        ),
+      ),
     );
   }
 
