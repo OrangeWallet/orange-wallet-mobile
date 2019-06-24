@@ -19,7 +19,7 @@ class _State extends State<AddressInput> {
       controller: controller,
       decoration: InputDecoration(
         labelText: 'Address',
-        suffixIcon: Icon(Icons.photo_camera),
+//        suffixIcon: Icon(Icons.photo_camera),
         errorText: widget.errorMessage,
       ),
       keyboardType: TextInputType.number,
