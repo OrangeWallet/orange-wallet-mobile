@@ -8,7 +8,7 @@ class NetTypeWidget extends StatelessWidget {
     return Container(
       child: Text(
         CustomLocalizations.of(context).getString(StringIds.testNet),
-        style: TextStyle(fontSize: 16, color: Colors.white),
+        style: TextStyle(fontSize: 22, color: Colors.white),
       ),
     );
   }

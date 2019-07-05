@@ -17,10 +17,10 @@ class BalanceWidget extends StatelessWidget {
               TextSpan(children: [
                 TextSpan(
                   text: provider.data.balance.totalForDisplay.balance,
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
+                  style: TextStyle(fontWeight: FontWeight.w500, color: Colors.white, fontSize: 36),
                 ),
                 TextSpan(
-                  text: provider.data.balance.totalForDisplay.uint,
+                  text: " " + provider.data.balance.totalForDisplay.uint,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,

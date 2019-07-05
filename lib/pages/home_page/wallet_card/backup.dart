@@ -43,14 +43,14 @@ class BackupWidget extends StatelessWidget {
                         shape: BoxShape.rectangle,
                         color: Colors.white,
                         borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
+                          Radius.circular(100.0),
                         )),
-                    padding: const EdgeInsets.fromLTRB(7, 2, 7, 2),
+                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: Row(
                       children: <Widget>[
                         Text(
                           CustomLocalizations.of(context).getString(StringIds.backUp),
-                          style: TextStyle(fontSize: 16, color: Colors.redAccent),
+                          style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor),
                         )
                       ],
                     ),

@@ -33,7 +33,7 @@ class SyncProgressing extends StatelessWidget {
                           ? Container()
                           : Text(
                               (balanceSync.data.synced * 100).toInt().toString() + "%",
-                              style: TextStyle(color: Colors.white, fontSize: 16),
+                              style: TextStyle(color: Colors.white, fontSize: 14),
                             ),
                     ],
                   ),
@@ -44,11 +44,11 @@ class SyncProgressing extends StatelessWidget {
                       Icon(
                         Icons.refresh,
                         color: Colors.white,
-                        size: 20,
+                        size: 16,
                       ),
                       SizedBox(width: 3),
                       Text(CustomLocalizations.of(context).getString(StringIds.errorSync),
-                          style: TextStyle(color: Colors.white, fontSize: 16))
+                          style: TextStyle(color: Colors.white, fontSize: 14))
                     ],
                   ),
                   onTap: () {

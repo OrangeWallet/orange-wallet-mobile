@@ -9,7 +9,7 @@ class WalletCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return Container(
-      height: 150,
+      height: 160,
       decoration: BoxDecoration(
         gradient: LinearGradient(
             colors: [theme.primaryColor, theme.accentColor, theme.primaryColorLight],
@@ -27,13 +27,13 @@ class WalletCardWidget extends StatelessWidget {
             child: SyncProgressing(),
           ),
           Positioned(
-            top: 45,
+            top: 50,
             left: 20,
             child: BalanceWidget(),
           ),
           Positioned(
             left: 20,
-            bottom: 20,
+            bottom: 30,
             child: BackupWidget(),
           ),
           Positioned(
@@ -41,7 +41,7 @@ class WalletCardWidget extends StatelessWidget {
             bottom: 20,
             child: Image.asset(
               'images/ic_nervos.png',
-              height: 50,
+              height: 70,
             ),
           ),
           Positioned(
