@@ -45,7 +45,7 @@ class BackupWidget extends StatelessWidget {
                         borderRadius: BorderRadius.all(
                           Radius.circular(100.0),
                         )),
-                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
                     child: Row(
                       children: <Widget>[
                         Text(
@@ -58,7 +58,7 @@ class BackupWidget extends StatelessWidget {
                   onTap: () {
                     showDialog(
                         context: context,
-                        builder: (_) {
+                        builder: (BuildContext context) {
                           return PasswordDialog((password) async {
                             WalletStoreBean walletStoreBean =
                                 await MyWalletCore.getInstance().getWalletStore(password);
