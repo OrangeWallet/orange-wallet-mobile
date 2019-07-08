@@ -70,6 +70,7 @@ class _State extends State<CheckPasswordPage> {
                     CustomLocalizations.of(context).getString(StringIds.inputPwdFieldHelper),
                 errorText: errorMsg,
                 autofocus: true,
+                border: OutlineInputBorder(),
                 onFieldSubmitted: (value) {
                   _handlePwd();
                 },

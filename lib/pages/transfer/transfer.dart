@@ -100,7 +100,7 @@ class _State extends State<TransferPage> {
                               builder: (_) {
                                 return PasswordDialog((password) async {
                                   showDialog(
-                                      context: context, builder: (_) => LoadingDialog(() {}));
+                                      context: context, builder: (_) => LoadingDialog(() {}, ""));
                                   String hash;
                                   try {
                                     hash = await MyWalletCore.getInstance().transfer([

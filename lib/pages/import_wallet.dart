@@ -1,4 +1,5 @@
 import 'package:OrangeWallet/views/import_input_field.dart';
+import 'package:OrangeWallet/views/import_keystore.dart';
 import 'package:flutter/material.dart';
 import 'package:OrangeWallet/resources/strings.dart';
 import 'package:fluintl/fluintl.dart';
@@ -37,16 +38,17 @@ class ImportWalletPage extends StatelessWidget {
                       )));
             },
           ),
-          ImportInputField(
-            title: CustomLocalizations.of(context).getString(StringIds.importKeystoreTitle),
-            handle: (data) {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => InputPasswordPage(
-                        data: data,
-                        type: ImportType.Keystore,
-                      )));
-            },
-          ),
+          ImportKeystore(),
+          // ImportInputField(
+          //   title: CustomLocalizations.of(context).getString(StringIds.importKeystoreTitle),
+          //   handle: (data) {
+          //     Navigator.of(context).push(MaterialPageRoute(
+          //         builder: (BuildContext context) => InputPasswordPage(
+          //               data: data,
+          //               type: ImportType.Keystore,
+          //             )));
+          //   },
+          // ),
         ]),
       ),
     );

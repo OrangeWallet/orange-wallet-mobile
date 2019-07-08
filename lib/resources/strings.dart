@@ -49,6 +49,9 @@ class StringIds {
   static String sourceCode = 'sourceCode';
   static String importKeystoreFailed = 'importKeystoreFailed';
   static String finishAppTip = 'finishAppTip';
+  static String importing = 'importing';
+  static String inputKeystoreLabel = 'inputKeystoreLabel';
+  static String inputKeystorePasswordLabel = 'inputKeystorePasswordLabel';
 
   static String ok = 'OK';
   static String cancel = 'Cancel';
@@ -150,6 +153,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.sourceCode: 'Source Code',
       StringIds.importKeystoreFailed:
           'Import Keystore Failed,Please check your keystore and password',
+      StringIds.importing: 'Importing',
+      StringIds.inputKeystoreLabel: 'Keystore',
+      StringIds.inputKeystorePasswordLabel: 'Password of keystore',
     }
   },
   'zh': {
@@ -223,6 +229,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.errorLessThanMinCapacity: '最小转账为60CKB',
       StringIds.sourceCode: '源码',
       StringIds.importKeystoreFailed: '导入Keystore失败，请检查Keystore和密码',
+      StringIds.importing: '导入中',
+      StringIds.inputKeystoreLabel: '请输入Keystore',
+      StringIds.inputKeystorePasswordLabel: 'Keystore密码'
     },
   }
 };
