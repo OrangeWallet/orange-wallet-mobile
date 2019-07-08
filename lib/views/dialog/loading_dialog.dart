@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class LoadingDialog extends Dialog {
   final VoidCallback pressBack;
+  final String content;
 
-  LoadingDialog(this.pressBack);
+  LoadingDialog(this.pressBack, this.content);
 
   @override
   Widget get child => WillPopScope(
@@ -19,11 +20,27 @@ class LoadingDialog extends Dialog {
                     ),
                   ),
                 ),
-                width: 70,
-                height: 70,
+                width: 110,
+                height: 110,
                 padding: const EdgeInsets.all(10),
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                        width: 60,
+                        height: 60,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                        )),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    content == ''
+                        ? Container()
+                        : Text(
+                            content + "...",
+                            style: TextStyle(fontSize: 14),
+                          )
+                  ],
                 ),
               ),
             ],

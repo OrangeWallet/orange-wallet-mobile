@@ -72,6 +72,7 @@ class _State extends State<InputPasswordPage> {
                     CustomLocalizations.of(context).getString(StringIds.inputPwdFieldHelper),
                 validator: _validatePassword,
                 autofocus: true,
+                border: OutlineInputBorder(),
                 onFieldSubmitted: (value) {
                   _handlePwd();
                 },
