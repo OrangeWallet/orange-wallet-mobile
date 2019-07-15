@@ -1,5 +1,6 @@
 import 'package:OrangeWallet/exception/exception.dart';
 import 'package:OrangeWallet/pages/setting_page/settings/theme_setting.dart';
+import 'package:OrangeWallet/pages/setting_page/settings/node_setting.dart';
 import 'package:OrangeWallet/resources/strings.dart';
 import 'package:OrangeWallet/utils/wallet/my_wallet_core.dart';
 import 'package:OrangeWallet/views/button/setting_button.dart';
@@ -20,6 +21,7 @@ class Settings extends StatelessWidget {
           children: <Widget>[
             buildThemeSetting(),
             buildResetBlockChainSetting(),
+            buildChangeNodeSetting(),
             buildGithubSetting(),
           ],
         ),
@@ -109,6 +111,31 @@ class Settings extends StatelessWidget {
           }
         },
       );
+    });
+  }
+
+  Builder buildChangeNodeSetting(){
+    return Builder(builder:(BuildContext context){
+        return SettingButton(
+          iconData: Icons.cloud_queue,
+          text: CustomLocalizations.of(context).getString(StringIds.changeNodeSetting),
+          onClick: (){
+          showDialog(
+              context: context,
+              builder: (_) {
+                return SimpleDialog(
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(width: 1.0, color: Theme.of(context).primaryColor),
+                      borderRadius: new BorderRadius.circular(20.0)),
+                  title: Text(
+                    CustomLocalizations.of(context).getString(StringIds.changeNodeSetting),
+                    textAlign: TextAlign.center,
+                  ),
+                  children: <Widget>[NodeSetting()],
+                );
+              });
+          },
+        );
     });
   }
 }
