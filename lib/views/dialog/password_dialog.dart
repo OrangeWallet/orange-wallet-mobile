@@ -88,9 +88,12 @@ class _State extends State<PasswordWidget> {
                   padding: const EdgeInsets.fromLTRB(15, 20, 15, 10),
                   child: PasswordField(
                     fieldKey: _passwordFieldKey,
-                    labelText: CustomLocalizations.of(context).getString(StringIds.inputPwdFieldLabel),
-                    helperText: CustomLocalizations.of(context).getString(StringIds.inputPwdFieldHelper),
+                    labelText:
+                        CustomLocalizations.of(context).getString(StringIds.inputPwdFieldLabel),
+                    helperText:
+                        CustomLocalizations.of(context).getString(StringIds.inputPwdFieldHelper),
                     errorText: errorMsg,
+                    border: OutlineInputBorder(),
                     autofocus: true,
                     onFieldSubmitted: (value) {
                       _handlePwd();
