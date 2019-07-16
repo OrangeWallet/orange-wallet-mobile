@@ -52,6 +52,8 @@ class StringIds {
   static String importing = 'importing';
   static String inputKeystoreLabel = 'inputKeystoreLabel';
   static String inputKeystorePasswordLabel = 'inputKeystorePasswordLabel';
+  static String changeNodeSetting = 'changeNodeSetting';
+ static String  inputNodeUrl = 'inputNodeUrl';
 
   static String ok = 'OK';
   static String cancel = 'Cancel';
@@ -156,6 +158,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.importing: 'Importing',
       StringIds.inputKeystoreLabel: 'Keystore',
       StringIds.inputKeystorePasswordLabel: 'Password of keystore',
+      StringIds.changeNodeSetting: 'Swith Node',
+      StringIds.inputNodeUrl: 'Please input Node url'
     }
   },
   'zh': {
@@ -231,7 +235,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       StringIds.importKeystoreFailed: '导入Keystore失败，请检查Keystore和密码',
       StringIds.importing: '导入中',
       StringIds.inputKeystoreLabel: '请输入Keystore',
-      StringIds.inputKeystorePasswordLabel: 'Keystore密码'
+      StringIds.inputKeystorePasswordLabel: 'Keystore密码',
+      StringIds.changeNodeSetting: '切换节点',
+      StringIds.inputNodeUrl: '输入节点地址'
     },
   }
 };
